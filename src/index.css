@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Lato:wght@300;400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Net-Tech - Warm, Local, Community-Focused Design */
+
+@layer base {
+  :root {
+    /* Light, warm theme */
+    --background: 0 0% 96%;
+    --foreground: 0 0% 20%;
+
+    /* Cards and elevated surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+
+    /* Popovers and dropdowns */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+
+    /* Primary - Warm trustworthy blue */
+    --primary: 213 51% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Soft warm gray */
+    --secondary: 30 10% 92%;
+    --secondary-foreground: 0 0% 20%;
+
+    /* Muted */
+    --muted: 30 10% 92%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Accent - Light blue (Net-Tech logo) */
+    --accent: 200 65% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders */
+    --border: 30 10% 85%;
+    --input: 30 10% 85%;
+    --ring: 213 51% 36%;
+
+    --radius: 0.5rem;
+
+    /* Ubiquiti AP light blue glow */
+    --ap-glow: 195 90% 60%;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 213 51% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 10% 92%;
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 30 10% 85%;
+    --sidebar-ring: 213 51% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Lato', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
