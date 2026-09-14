@@ -1,33 +1,31 @@
-import { Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Home } from "lucide-react";
+import { Container } from "@/components/site/Container";
+import { usePageMeta } from "@/lib/usePageMeta";
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
+  usePageMeta({ title: "Page not found" });
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center">
-      <div className="text-center px-6">
-        <h1 className="text-8xl font-bold text-primary mb-4">404</h1>
-        <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
-          Page Not Found
-        </h2>
-        <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-          The page you're looking for doesn't exist or has been moved.
+    <section>
+      <Container className="flex min-h-[60vh] flex-col justify-center py-24">
+        <p className="eyebrow">404</p>
+        <h1 className="display mt-5 text-5xl sm:text-6xl">That page is not here.</h1>
+        <p className="mt-6 max-w-prose text-lg text-ink-soft">
+          The link may be old, or the page may have moved. Head back home or give us a call and we will point you the
+          right way.
         </p>
-        <Button className="rounded-full px-8 gap-2" asChild>
-          <Link to="/">
-            <Home className="w-4 h-4" />
-            Back to Home
-          </Link>
-        </Button>
-      </div>
-    </div>
+        <div className="mt-10">
+          <Button asChild size="lg">
+            <Link to="/">
+              <ArrowLeft />
+              Back to home
+            </Link>
+          </Button>
+        </div>
+      </Container>
+    </section>
   );
 };
 

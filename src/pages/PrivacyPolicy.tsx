@@ -1,24 +1,23 @@
-import { motion } from "framer-motion";
+import { Container } from "@/components/site/Container";
+import { usePageMeta } from "@/lib/usePageMeta";
 
 const PrivacyPolicy = () => {
+  usePageMeta({ title: "Privacy Policy" });
+
   return (
-    <section className="py-16 sm:py-24">
-      <div className="container mx-auto px-6 lg:px-8 max-w-3xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-8"
-        >
+    <section>
+      <Container className="max-w-3xl py-16 sm:py-24">
+        <div className="animate-rise-in">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-black text-foreground mb-2">
+            <h1 className="display text-5xl sm:text-6xl">
               Privacy Policy
             </h1>
-            <p className="text-muted-foreground text-sm">
+            <p className="mt-4 text-sm text-ink-soft">
               Last Updated: March 25, 2026
             </p>
           </div>
 
-          <div className="prose prose-sm max-w-none text-foreground/90 space-y-6">
+          <div className="legal-prose mt-10">
             <p>
               Net-Tech ("we," "us," or "our") is committed to protecting your
               privacy. This Privacy Policy explains how we collect, use,
@@ -26,11 +25,11 @@ const PrivacyPolicy = () => {
               website, use our services, or interact with us in any way.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               1. Information We Collect
             </h2>
             <p>We may collect the following types of information:</p>
-            <ul className="list-disc pl-6 space-y-1">
+            <ul>
               <li>
                 <strong>Personal Information:</strong> Name, email address,
                 phone number, business name, and mailing address provided
@@ -46,10 +45,10 @@ const PrivacyPolicy = () => {
               </li>
             </ul>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               2. How We Use Your Information
             </h2>
-            <ul className="list-disc pl-6 space-y-1">
+            <ul>
               <li>To provide, operate, and maintain our IT services.</li>
               <li>To respond to your inquiries and support requests.</li>
               <li>To send transactional messages related to your service requests (e.g., appointment confirmations, ticket updates, service reminders).</li>
@@ -58,7 +57,7 @@ const PrivacyPolicy = () => {
               <li>To comply with legal obligations.</li>
             </ul>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               3. SMS/Text Messaging Policy
             </h2>
             <p>
@@ -95,12 +94,12 @@ const PrivacyPolicy = () => {
                 message for assistance, or contact us at{" "}
                 <a
                   href="mailto:support@nettech.ms"
-                  className="text-primary underline"
+                 
                 >
                   support@nettech.ms
                 </a>{" "}
                 or{" "}
-                <a href="tel:+16625397787" className="text-primary underline">
+                <a href="tel:+16625397787">
                   (662) 539-7787
                 </a>
                 .
@@ -119,14 +118,14 @@ const PrivacyPolicy = () => {
               </li>
             </ul>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               4. How We Share Your Information
             </h2>
             <p>
               We do not sell your personal information. We may share your
               information only in the following circumstances:
             </p>
-            <ul className="list-disc pl-6 space-y-1">
+            <ul>
               <li>
                 <strong>Service Providers:</strong> With trusted vendors who
                 assist us in operating our business (e.g., CRM platforms, SMS
@@ -143,7 +142,7 @@ const PrivacyPolicy = () => {
               </li>
             </ul>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               5. Data Security
             </h2>
             <p>
@@ -153,7 +152,7 @@ const PrivacyPolicy = () => {
               100% secure.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               6. Data Retention
             </h2>
             <p>
@@ -164,11 +163,11 @@ const PrivacyPolicy = () => {
               purposes.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               7. Your Rights
             </h2>
             <p>Depending on your jurisdiction, you may have the right to:</p>
-            <ul className="list-disc pl-6 space-y-1">
+            <ul>
               <li>Access, correct, or delete your personal information.</li>
               <li>Opt out of marketing communications at any time.</li>
               <li>
@@ -176,7 +175,7 @@ const PrivacyPolicy = () => {
               </li>
             </ul>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               8. Children's Privacy
             </h2>
             <p>
@@ -184,7 +183,7 @@ const PrivacyPolicy = () => {
               knowingly collect personal information from children under 13.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               9. Changes to This Policy
             </h2>
             <p>
@@ -194,7 +193,7 @@ const PrivacyPolicy = () => {
               of the updated policy.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               10. Contact Us
             </h2>
             <p>
@@ -208,7 +207,7 @@ const PrivacyPolicy = () => {
               <li>112 W Main St, New Albany, MS 38652</li>
               <li>
                 Phone:{" "}
-                <a href="tel:+16625397787" className="text-primary underline">
+                <a href="tel:+16625397787">
                   (662) 539-7787
                 </a>
               </li>
@@ -216,15 +215,15 @@ const PrivacyPolicy = () => {
                 Email:{" "}
                 <a
                   href="mailto:support@nettech.ms"
-                  className="text-primary underline"
+                 
                 >
                   support@nettech.ms
                 </a>
               </li>
             </ul>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </Container>
     </section>
   );
 };

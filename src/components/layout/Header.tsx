@@ -1,135 +1,151 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { Menu, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.png";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Contact", href: "/contact" },
-  { name: "Customer Support", href: "/support-form" },
-];
+import { Container } from "@/components/site/Container";
+import { Logo } from "./Logo";
+import { navigation, site } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
+    setOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [isOpen]);
+    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-          isScrolled || isOpen
-            ? "bg-card/95 backdrop-blur-md shadow-sm border-b border-border"
-            : "bg-card/80 backdrop-blur-sm"
-        }`}
+        className={cn(
+          "sticky top-0 z-50 border-b bg-paper/90 backdrop-blur-md transition-colors duration-300",
+          scrolled || open ? "border-line" : "border-transparent",
+        )}
       >
-        <nav className="container mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <Link to="/" className="flex items-center">
-              <img src={logo} alt="Net-Tech" className="h-10 w-auto" />
-            </Link>
+        <Container className="flex h-[72px] items-center justify-between">
+          <Logo />
 
-            <div className="hidden lg:flex items-center gap-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`text-sm font-bold uppercase tracking-wide transition-colors ${
-                    location.pathname === item.href
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+          <nav
+            className="hidden items-center gap-8 lg:flex"
+            aria-label="Primary"
+          >
+            {navigation.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  cn(
+                    "relative py-2 text-[15px] font-medium text-ink-soft transition-colors hover:text-ink",
+                    "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-ink after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100",
+                    isActive && "text-ink after:scale-x-100",
+                  )
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
 
-            <div className="hidden lg:flex items-center">
-              <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold">
-                <Link to="/contact">Get a Free Consultation</Link>
-              </Button>
-            </div>
-
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 -mr-2"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? (
-                <X className="w-6 h-6 text-foreground" />
-              ) : (
-                <Menu className="w-6 h-6 text-foreground" />
-              )}
-            </button>
+          <div className="hidden items-center gap-6 lg:flex">
+            <a href={site.phone.href} className="link text-[15px] tabular">
+              <Phone className="h-4 w-4" />
+              {site.phone.display}
+            </a>
+            <Button asChild size="sm">
+              <Link to="/contact">Free consultation</Link>
+            </Button>
           </div>
-        </nav>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-ink lg:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </Container>
       </header>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[90] lg:hidden bg-card pt-20"
-          >
-            <div className="flex flex-col items-center px-6 pt-8 h-full overflow-y-auto">
-              <nav className="flex flex-col gap-1 w-full max-w-sm">
-                {navigation.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05, duration: 0.2 }}
-                  >
-                    <Link
-                      to={item.href}
-                      className={`block w-full py-4 px-4 text-lg font-bold rounded-lg transition-colors ${
-                        location.pathname === item.href
-                          ? "text-primary bg-primary/10"
-                          : "text-foreground hover:bg-secondary"
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  </motion.div>
-                ))}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: navigation.length * 0.05, duration: 0.2 }}
-                  className="pt-4"
-                >
-                  <Button className="w-full h-12 text-base bg-accent hover:bg-accent/90 text-accent-foreground font-bold" asChild>
-                    <Link to="/contact">Get a Free Consultation</Link>
-                  </Button>
-                </motion.div>
-              </nav>
-            </div>
-          </motion.div>
+      {/* Mobile menu. Rendered outside the header because its backdrop-filter
+          would otherwise become the containing block for this fixed panel. */}
+      <div
+        id="mobile-menu"
+        className={cn(
+          "fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto bg-paper transition-opacity duration-200 lg:hidden",
+          open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
-      </AnimatePresence>
+        aria-hidden={!open}
+      >
+        <Container className="flex min-h-full flex-col py-8">
+          <nav className="flex flex-col" aria-label="Mobile">
+            {[{ label: "Home", to: "/" }, ...navigation].map((item, i) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === "/"}
+                style={{ transitionDelay: open ? `${60 + i * 40}ms` : "0ms" }}
+                className={({ isActive }) =>
+                  cn(
+                    "display flex items-center justify-between border-b border-line py-5 text-4xl transition-all duration-500 ease-out",
+                    open
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-3 opacity-0",
+                    isActive ? "text-ink" : "text-ink-soft",
+                  )
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+
+          <div
+            className={cn(
+              "mt-auto space-y-4 pt-10 transition-all duration-500 ease-out",
+              open ? "opacity-100" : "opacity-0",
+            )}
+            style={{ transitionDelay: open ? "300ms" : "0ms" }}
+          >
+            <a
+              href={site.phone.href}
+              className="flex items-center gap-3 text-lg font-medium text-ink"
+            >
+              <Phone className="h-5 w-5 text-brand-deep" />
+              {site.phone.display}
+            </a>
+            <p className="text-sm text-ink-soft">
+              {site.address.street}, {site.address.city}, {site.address.state}{" "}
+              {site.address.zip}
+            </p>
+            <Button asChild size="lg" className="w-full">
+              <Link to="/contact">Book a free consultation</Link>
+            </Button>
+          </div>
+        </Container>
+      </div>
     </>
   );
 };

@@ -1,122 +1,245 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import supportImage from "@/assets/support_call.png";
-import { useToast } from "@/hooks/use-toast";
+import { Textarea } from "@/components/ui/textarea";
+import { Container } from "@/components/site/Container";
+import { SectionHeading } from "@/components/site/SectionHeading";
+import { mailtoHref, postWebhook } from "@/lib/forms";
+import { site } from "@/lib/site";
+import { usePageMeta } from "@/lib/usePageMeta";
+
+const emptyForm = { name: "", email: "", phone: "", message: "" };
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "", message: "" });
+  usePageMeta({
+    title: "Contact",
+    description: `Call ${site.phone.display}, email ${site.email.display} or send a message to book a free IT consultation with Net-Tech in New Albany, MS.`,
+  });
+
+  const [form, setForm] = useState(emptyForm);
   const [smsConsent, setSmsConsent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const update = (field: keyof typeof emptyForm) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((f) => ({ ...f, [field]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message sent!", description: "We'll get back to you shortly." });
-    setContactForm({ name: "", email: "", phone: "", message: "" });
+    setSending(true);
+    try {
+      if (site.contactWebhookUrl) {
+        await postWebhook(site.contactWebhookUrl, {
+          full_name: form.name,
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+          sms_consent: smsConsent ? "yes" : "no",
+          marketing_consent: marketingConsent ? "yes" : "no",
+        });
+        toast.success("Message sent", { description: "Thanks. We will get back to you shortly." });
+      } else {
+        const body = [
+          `Name: ${form.name}`,
+          `Email: ${form.email}`,
+          `Phone: ${form.phone}`,
+          "",
+          form.message,
+          "",
+          `SMS consent: ${smsConsent ? "yes" : "no"}`,
+          `Marketing consent: ${marketingConsent ? "yes" : "no"}`,
+        ].join("\n");
+        window.location.href = mailtoHref(site.email.display, `Website inquiry from ${form.name}`, body);
+        toast("Opening your email app", { description: "Your message is ready to send." });
+      }
+      setForm(emptyForm);
+      setSmsConsent(false);
+      setMarketingConsent(false);
+    } catch {
+      toast.error("Something went wrong", { description: `Please call us at ${site.phone.display}.` });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
-    <section className="py-16 sm:py-24">
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-4">
-            Get In Touch
-          </h1>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Ready to talk? Give us a call, send an email, or fill out the form below. We'd love to hear from you.
-          </p>
-        </div>
+    <section>
+      <Container className="py-16 sm:py-24">
+        <SectionHeading
+          as="h1"
+          eyebrow="Contact"
+          title="Get in touch."
+          lead="Call, email or send a note. We read every message and reply quickly. Consultations are free and never come with a hard sell."
+          split
+          className="animate-rise-in"
+        />
 
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
-          {/* Form */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <form onSubmit={handleContactSubmit} className="bg-card rounded-xl p-6 sm:p-8 border border-border space-y-5">
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="text-sm font-bold text-foreground mb-1.5 block">Name</label>
-                  <Input value={contactForm.name} onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} placeholder="Your name" required />
-                </div>
-                <div>
-                  <label className="text-sm font-bold text-foreground mb-1.5 block">Email</label>
-                  <Input type="email" value={contactForm.email} onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })} placeholder="you@business.com" required />
-                </div>
+        <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 animate-rise-in [animation-delay:100ms] lg:col-span-7"
+            aria-label="Contact form"
+          >
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="name">Name</Label>
+                <Input id="name" name="name" autoComplete="name" value={form.name} onChange={update("name")} required />
               </div>
-              <div>
-                <label className="text-sm font-bold text-foreground mb-1.5 block">Phone <span className="text-destructive">*</span></label>
-                <Input type="tel" value={contactForm.phone} onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} placeholder="(662) 555-0000" required />
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  value={form.email}
+                  onChange={update("email")}
+                  required
+                />
               </div>
-              <div>
-                <label className="text-sm font-bold text-foreground mb-1.5 block">How can we help?</label>
-                <Textarea value={contactForm.message} onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })} placeholder="Tell us about your IT needs..." rows={5} required />
-              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone</Label>
+              <Input
+                id="phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                placeholder="(662) 555-0000"
+                value={form.phone}
+                onChange={update("phone")}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="message">How can we help?</Label>
+              <Textarea
+                id="message"
+                name="message"
+                rows={6}
+                placeholder="Tell us a little about your business and what is going on."
+                value={form.message}
+                onChange={update("message")}
+                required
+              />
+            </div>
 
-              {/* A2P Compliant SMS Consent */}
-              <div className="space-y-3 border border-border rounded-lg p-4 bg-muted/30">
-                <div className="flex items-start gap-3">
-                  <Checkbox
-                    id="sms-consent"
-                    checked={smsConsent}
-                    onCheckedChange={(checked) => setSmsConsent(checked === true)}
-                  />
-                  <Label htmlFor="sms-consent" className="text-sm leading-relaxed font-normal cursor-pointer">
-                    I consent to receive transactional messages from <strong>Net-Tech</strong> at the phone number provided. Message frequency may vary. Message & Data rates may apply. Reply HELP for help or STOP to opt-out.
-                  </Label>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Checkbox
-                    id="marketing-consent"
-                    checked={marketingConsent}
-                    onCheckedChange={(checked) => setMarketingConsent(checked === true)}
-                  />
-                  <Label htmlFor="marketing-consent" className="text-sm leading-relaxed font-normal cursor-pointer">
-                    I consent to receive marketing and promotional messages from Net-Tech at the phone number provided. Message frequency may vary. Message & Data rates may apply. Reply HELP for help or STOP to opt-out.
-                  </Label>
-                </div>
+            <div className="space-y-4 rounded-md border border-line bg-surface p-5">
+              <div className="flex items-start gap-3">
+                <Checkbox id="sms-consent" checked={smsConsent} onCheckedChange={(c) => setSmsConsent(c === true)} />
+                <Label htmlFor="sms-consent" className="cursor-pointer text-[13px] font-normal leading-relaxed text-ink-soft">
+                  I consent to receive transactional messages from <strong className="font-medium text-ink">Net-Tech</strong> at
+                  the phone number provided. Message frequency may vary. Message &amp; data rates may apply. Reply HELP
+                  for help or STOP to opt out.
+                </Label>
               </div>
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="marketing-consent"
+                  checked={marketingConsent}
+                  onCheckedChange={(c) => setMarketingConsent(c === true)}
+                />
+                <Label
+                  htmlFor="marketing-consent"
+                  className="cursor-pointer text-[13px] font-normal leading-relaxed text-ink-soft"
+                >
+                  I consent to receive marketing and promotional messages from Net-Tech at the phone number provided.
+                  Message frequency may vary. Message &amp; data rates may apply. Reply HELP for help or STOP to opt
+                  out.
+                </Label>
+              </div>
+            </div>
 
-              <Button type="submit" size="lg" className="w-full gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-bold">
-                <Send className="w-4 h-4" />
-                Send Message
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <Button type="submit" size="lg" disabled={sending} className="sm:min-w-[200px]">
+                {sending ? "Sending…" : "Send message"}
               </Button>
-              <p className="text-xs text-muted-foreground text-center">
-                <a href="/privacy-policy" className="underline hover:text-primary transition-colors">Privacy Policy</a>
-                {" | "}
-                <a href="/terms-of-service" className="underline hover:text-primary transition-colors">Terms of Service</a>
+              <p className="text-xs text-ink-soft">
+                By sending you agree to our{" "}
+                <Link to="/privacy-policy" className="underline underline-offset-4 hover:text-ink">
+                  Privacy Policy
+                </Link>{" "}
+                and{" "}
+                <Link to="/terms-of-service" className="underline underline-offset-4 hover:text-ink">
+                  Terms of Service
+                </Link>
+                .
               </p>
-            </form>
-          </motion.div>
+            </div>
+          </form>
 
-          {/* Info + Image */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="space-y-8">
-            <div className="rounded-xl overflow-hidden">
-              <img src={supportImage} alt="Net-Tech support team" className="w-full h-48 sm:h-56 object-cover" />
+          <aside className="space-y-10 animate-rise-in [animation-delay:180ms] lg:col-span-5">
+            <ul className="divide-y divide-line border-y border-line">
+              <li>
+                <a href={site.phone.href} className="group flex items-center gap-4 py-5">
+                  <Phone className="h-5 w-5 text-brand-deep" />
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.14em] text-ink-soft">Call</p>
+                    <p className="tabular mt-0.5 text-lg font-medium text-ink group-hover:text-brand-deep">
+                      {site.phone.display}
+                    </p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href={site.email.href} className="group flex items-center gap-4 py-5">
+                  <Mail className="h-5 w-5 text-brand-deep" />
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.14em] text-ink-soft">Email</p>
+                    <p className="mt-0.5 text-lg font-medium text-ink group-hover:text-brand-deep">{site.email.display}</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.address.mapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-4 py-5"
+                >
+                  <MapPin className="h-5 w-5 text-brand-deep" />
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.14em] text-ink-soft">Visit</p>
+                    <p className="mt-0.5 text-lg font-medium text-ink group-hover:text-brand-deep">
+                      {site.address.street}, {site.address.city}, {site.address.state} {site.address.zip}
+                    </p>
+                  </div>
+                  <ArrowUpRight className="ml-auto h-4 w-4 text-ink-soft opacity-0 transition-opacity group-hover:opacity-100" />
+                </a>
+              </li>
+            </ul>
+
+            <div className="overflow-hidden rounded-lg border border-line bg-line">
+              <iframe
+                title="Map showing Net-Tech at 112 W Main St, New Albany, MS"
+                src={site.address.embedSrc}
+                width="100%"
+                height="260"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
-            <div className="space-y-5">
-              <a href="tel:+16625397787" className="flex items-center gap-4 group">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0"><Phone className="w-5 h-5 text-primary" /></div>
-                <div><p className="text-sm text-muted-foreground">Call us</p><p className="font-bold text-foreground group-hover:text-primary transition-colors">(662) 539-7787</p></div>
-              </a>
-              <a href="mailto:support@nettech.ms" className="flex items-center gap-4 group">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0"><Mail className="w-5 h-5 text-primary" /></div>
-                <div><p className="text-sm text-muted-foreground">Email us</p><p className="font-bold text-foreground group-hover:text-primary transition-colors">support@nettech.ms</p></div>
-              </a>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0"><MapPin className="w-5 h-5 text-primary" /></div>
-                <div><p className="text-sm text-muted-foreground">Visit us</p><p className="font-bold text-foreground">112 W Main St, New Albany, MS 38652</p></div>
-              </div>
+
+            <div className="rounded-lg border border-line bg-surface p-6">
+              <p className="eyebrow">Already a client?</p>
+              <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+                Skip the form and open a support ticket so it lands with the right person straight away.
+              </p>
+              <Link to="/support-form" className="link mt-4 text-[15px]">
+                Submit a support ticket
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
             </div>
-            <div className="rounded-xl overflow-hidden border border-border">
-              <iframe title="Net-Tech Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3264.5!2d-89.0078!3d34.4943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDI5JzM5LjUiTiA4OcKwMDAnMjguMSJX!5e0!3m2!1sen!2sus!4v1" width="100%" height="200" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-            </div>
-          </motion.div>
+          </aside>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

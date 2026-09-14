@@ -1,32 +1,31 @@
-import { motion } from "framer-motion";
+import { Container } from "@/components/site/Container";
+import { usePageMeta } from "@/lib/usePageMeta";
 import { Link } from "react-router-dom";
 
 const TermsOfService = () => {
+  usePageMeta({ title: "Terms of Service" });
+
   return (
-    <section className="py-16 sm:py-24">
-      <div className="container mx-auto px-6 lg:px-8 max-w-3xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-8"
-        >
+    <section>
+      <Container className="max-w-3xl py-16 sm:py-24">
+        <div className="animate-rise-in">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-black text-foreground mb-2">
+            <h1 className="display text-5xl sm:text-6xl">
               Terms of Service
             </h1>
-            <p className="text-muted-foreground text-sm">
+            <p className="mt-4 text-sm text-ink-soft">
               Last Updated: March 25, 2026
             </p>
           </div>
 
-          <div className="prose prose-sm max-w-none text-foreground/90 space-y-6">
+          <div className="legal-prose mt-10">
             <p>
               Welcome to Net-Tech. By accessing or using our website and
               services, you agree to be bound by these Terms of Service
               ("Terms"). If you do not agree, please do not use our services.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               1. Services
             </h2>
             <p>
@@ -36,18 +35,18 @@ const TermsOfService = () => {
               in a separate service agreement or statement of work.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               2. Use of Website
             </h2>
             <p>You agree to use our website only for lawful purposes and in a manner that does not:</p>
-            <ul className="list-disc pl-6 space-y-1">
+            <ul>
               <li>Violate any applicable law or regulation.</li>
               <li>Infringe the rights of any third party.</li>
               <li>Attempt to interfere with the proper functioning of the website.</li>
               <li>Submit false, misleading, or fraudulent information through any form.</li>
             </ul>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               3. SMS/Text Messaging Terms
             </h2>
             <p>
@@ -87,12 +86,12 @@ const TermsOfService = () => {
                 <strong>HELP</strong> to any message, email{" "}
                 <a
                   href="mailto:support@nettech.ms"
-                  className="text-primary underline"
+                 
                 >
                   support@nettech.ms
                 </a>
                 , or call{" "}
-                <a href="tel:+16625397787" className="text-primary underline">
+                <a href="tel:+16625397787">
                   (662) 539-7787
                 </a>
                 .
@@ -111,7 +110,7 @@ const TermsOfService = () => {
               </li>
             </ul>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               4. Intellectual Property
             </h2>
             <p>
@@ -122,7 +121,7 @@ const TermsOfService = () => {
               prior written consent.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               5. Disclaimers
             </h2>
             <p>
@@ -132,7 +131,7 @@ const TermsOfService = () => {
               free of viruses or other harmful components.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               6. Limitation of Liability
             </h2>
             <p>
@@ -142,7 +141,7 @@ const TermsOfService = () => {
               website or services.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               7. Indemnification
             </h2>
             <p>
@@ -152,7 +151,7 @@ const TermsOfService = () => {
               these Terms.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               8. Third-Party Links
             </h2>
             <p>
@@ -161,7 +160,7 @@ const TermsOfService = () => {
               Accessing third-party links is at your own risk.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               9. Governing Law
             </h2>
             <p>
@@ -170,7 +169,7 @@ const TermsOfService = () => {
               conflict of law provisions.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               10. Changes to These Terms
             </h2>
             <p>
@@ -179,21 +178,21 @@ const TermsOfService = () => {
               our services constitutes acceptance of the updated Terms.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               11. Privacy Policy
             </h2>
             <p>
               Your use of our services is also governed by our{" "}
               <Link
                 to="/privacy-policy"
-                className="text-primary underline"
+               
               >
                 Privacy Policy
               </Link>
               , which is incorporated into these Terms by reference.
             </p>
 
-            <h2 className="text-xl font-bold text-foreground">
+            <h2>
               12. Contact Us
             </h2>
             <p>
@@ -206,7 +205,7 @@ const TermsOfService = () => {
               <li>112 W Main St, New Albany, MS 38652</li>
               <li>
                 Phone:{" "}
-                <a href="tel:+16625397787" className="text-primary underline">
+                <a href="tel:+16625397787">
                   (662) 539-7787
                 </a>
               </li>
@@ -214,15 +213,15 @@ const TermsOfService = () => {
                 Email:{" "}
                 <a
                   href="mailto:support@nettech.ms"
-                  className="text-primary underline"
+                 
                 >
                   support@nettech.ms
                 </a>
               </li>
             </ul>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </Container>
     </section>
   );
 };

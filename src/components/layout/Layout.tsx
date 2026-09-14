@@ -1,26 +1,21 @@
 import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import ScrollProgress from "@/components/ui/ScrollProgress";
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-const Layout = ({ children }: LayoutProps) => {
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      {/* Desktop scroll progress rail */}
-      <div className="hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-40">
-        <ScrollProgress variant="desktop" />
-      </div>
-      <main className="flex-1 pt-20">{children}</main>
-      {/* Mobile scroll progress bar */}
-      <ScrollProgress variant="mobile" />
-      <Footer />
-    </div>
-  );
-};
+const Layout = ({ children }: { children: ReactNode }) => (
+  <div className="flex min-h-screen flex-col bg-paper">
+    <a
+      href="#main"
+      className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+    >
+      Skip to content
+    </a>
+    <Header />
+    <main id="main" className="flex-1">
+      {children}
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Layout;

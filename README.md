@@ -1,73 +1,59 @@
-# Welcome to your Lovable project
+# Net-Tech website
 
-## Project info
+Marketing site for [Net-Tech](https://nettech.ms), a managed IT, networking and security company at 112 W Main St, New Albany, Mississippi.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Built with Vite, React 18, TypeScript and Tailwind CSS. No page builder, no external CMS.
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Develop
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+npm install
+npm run dev        # http://localhost:8080
 ```
 
-**Edit a file directly in GitHub**
+Other scripts:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+| Script              | What it does                                  |
+| ------------------- | --------------------------------------------- |
+| `npm run build`     | Type-checks, then builds to `dist/`           |
+| `npm run preview`   | Serves the production build locally           |
+| `npm run lint`      | ESLint                                        |
+| `npm run typecheck` | `tsc` without emitting                        |
+| `npm test`          | Vitest (jsdom + Testing Library)              |
 
-**Use GitHub Codespaces**
+CI runs lint, typecheck, tests and a production build on every push and pull request (`.github/workflows/ci.yml`).
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deploy
 
-## What technologies are used for this project?
+The build is a static single-page app. Any static host works:
 
-This project is built with:
+- **Vercel**: import the repo. `vercel.json` sets the SPA rewrite and long-lived caching for hashed assets.
+- **Netlify / Cloudflare Pages**: build command `npm run build`, publish directory `dist`. `public/_redirects` handles the SPA rewrite.
+- **Anything else**: serve `dist/` and route unknown paths to `index.html`.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Point the `nettech.ms` DNS at the new host once the deployment is verified.
 
-## How can I deploy this project?
+## Forms
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- **Support ticket** (`/support-form`) posts to the existing LeadConnector webhook. Override it with `VITE_SUPPORT_WEBHOOK_URL`.
+- **Contact** (`/contact`) posts to `VITE_CONTACT_WEBHOOK_URL` when that variable is set. When it is not, the form opens the visitor's email client with the message pre-filled and addressed to support@nettech.ms.
 
-## Can I connect a custom domain to my Lovable project?
+Copy `.env.example` to `.env` to set either variable locally. On a host, set them as build-time environment variables.
 
-Yes, you can!
+## Project layout
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```
+src/
+  assets/            Optimised photos, logo mark and wordmark
+  components/
+    layout/          Header, footer, logo, page shell
+    site/            Container, Reveal (scroll-in), SectionHeading, CTABand
+    ui/              Form primitives (button, input, select, checkbox, ...)
+  data/services.ts   Service catalogue shown on the home and services pages
+  lib/site.ts        Business details (phone, email, address, webhooks) and nav
+  lib/usePageMeta.ts Per-route <title> and meta description
+  pages/             One file per route
+  index.css          Design tokens and global styles
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Business details live in one place, `src/lib/site.ts`. Service copy lives in `src/data/services.ts`. Update those files rather than hunting through pages.

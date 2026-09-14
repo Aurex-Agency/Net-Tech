@@ -1,81 +1,102 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
-import logo from "@/assets/logo.png";
+import { Container } from "@/components/site/Container";
+import { Logo } from "./Logo";
+import { services } from "@/data/services";
+import { navigation, site } from "@/lib/site";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link to="/" className="inline-block mb-4">
-              <img src={logo} alt="Net-Tech" className="h-10 w-auto brightness-0 invert" />
-            </Link>
-            <p className="text-primary-foreground/70 text-sm">
-              Your friendly, local expert for reliable business IT in New Albany, Mississippi.
+    <footer className="border-t border-line bg-paper">
+      <Container className="py-16 sm:py-20">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Logo />
+            <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-ink-soft">
+              Managed IT, Ubiquiti networking and security cameras for businesses in {site.serviceArea}.
             </p>
+            <address className="mt-6 text-[15px] not-italic leading-relaxed text-ink-soft">
+              <a href={site.address.mapsHref} target="_blank" rel="noopener noreferrer" className="hover:text-ink">
+                {site.address.street}
+                <br />
+                {site.address.city}, {site.address.state} {site.address.zip}
+              </a>
+            </address>
           </div>
 
-          {/* Sitemap */}
-          <div>
-            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide">Sitemap</h4>
-            <ul className="space-y-3">
-              {[
-                { name: "Home", href: "/" },
-                { name: "About Us", href: "/about" },
-                { name: "Services", href: "/services" },
-                { name: "Contact", href: "/contact" },
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link to={link.href} className="text-primary-foreground/70 hover:text-primary-foreground text-sm transition-colors">
-                    {link.name}
+          <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">
+            <div>
+              <h2 className="eyebrow">Company</h2>
+              <ul className="mt-5 space-y-3 text-[15px]">
+                <li>
+                  <Link to="/" className="text-ink-soft transition-colors hover:text-ink">
+                    Home
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
+                {navigation.map((item) => (
+                  <li key={item.to}>
+                    <Link to={item.to} className="text-ink-soft transition-colors hover:text-ink">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide">Services</h4>
-            <ul className="space-y-3">
-              {["Managed IT", "Network & Security", "Cloud Solutions", "Security Cameras"].map((s) => (
-                <li key={s}>
-                  <span className="text-primary-foreground/70 text-sm">{s}</span>
+            <div>
+              <h2 className="eyebrow">Services</h2>
+              <ul className="mt-5 space-y-3 text-[15px]">
+                {services.map((s) => (
+                  <li key={s.slug}>
+                    <Link to={`/services#${s.slug}`} className="text-ink-soft transition-colors hover:text-ink">
+                      {s.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="eyebrow">Contact</h2>
+              <ul className="mt-5 space-y-3 text-[15px]">
+                <li>
+                  <a href={site.phone.href} className="tabular text-ink-soft transition-colors hover:text-ink">
+                    {site.phone.display}
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-bold mb-4 text-sm uppercase tracking-wide">Contact</h4>
-            <ul className="space-y-3">
-              <li>
-                <a href="tel:+16625397787" className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground text-sm transition-colors">
-                  <Phone className="w-4 h-4" /> (662) 539-7787
-                </a>
-              </li>
-              <li>
-                <a href="mailto:support@nettech.ms" className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground text-sm transition-colors">
-                  <Mail className="w-4 h-4" /> support@nettech.ms
-                </a>
-              </li>
-              <li className="flex items-start gap-2 text-primary-foreground/70 text-sm">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>112 W Main St<br />New Albany, MS 38652</span>
-              </li>
-            </ul>
+                <li>
+                  <a href={site.email.href} className="text-ink-soft transition-colors hover:text-ink">
+                    {site.email.display}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={site.remoteSupportHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-ink-soft transition-colors hover:text-ink"
+                  >
+                    Remote support client
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center">
-          <p className="text-primary-foreground/60 text-sm">
-            © {new Date().getFullYear()} Net-Tech. All rights reserved.
-          </p>
+        <div className="mt-16 flex flex-col gap-4 border-t border-line pt-8 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} Net-Tech. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link to="/privacy-policy" className="transition-colors hover:text-ink">
+              Privacy Policy
+            </Link>
+            <Link to="/terms-of-service" className="transition-colors hover:text-ink">
+              Terms of Service
+            </Link>
+          </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };
