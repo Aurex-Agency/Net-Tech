@@ -27,7 +27,7 @@ const HOME_TITLE = `${site.name} | Managed IT, Networking & Security in New Alba
  * Per-route head tags.
  *
  * These render during the static build, so the title, description, canonical
- * and JSON-LD are in the HTML a crawler receives — including crawlers that
+ * and JSON-LD are in the HTML a crawler receives, including crawlers that
  * never run JavaScript. Every page canonicalises to itself; the previous
  * implementation left a single homepage canonical on every route, which told
  * Google the whole site was one page.

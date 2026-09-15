@@ -142,7 +142,7 @@ const About = () => {
           <Reveal className="lg:col-span-5">
             <SectionHeading eyebrow="The details" title="Everything in one place." />
             <p className="mt-6 max-w-prose text-[15px] leading-relaxed text-ink-soft">
-              Locally owned, locally staffed, and reachable by a real phone number {site.hours.display.toLowerCase()}.
+              Locally owned, locally staffed, and reachable by a real phone number {site.hours.display}.
             </p>
           </Reveal>
 

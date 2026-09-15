@@ -74,7 +74,7 @@ export function organizationNode() {
     },
   };
 
-  // Only emitted once real hours are known — never guessed.
+  // Only emitted once real hours are known, never guessed.
   if (site.hours) {
     node.openingHoursSpecification = [
       {
@@ -172,5 +172,50 @@ export function graph(nodes: unknown[]) {
   return {
     "@context": "https://schema.org",
     "@graph": [organizationNode(), logoNode(), websiteNode(), ...townNodes, ...nodes.filter(Boolean)],
+  };
+}
+
+/** A blog post, for /blog/:slug. */
+export function blogPostingNode(opts: {
+  path: string;
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified?: string;
+  wordCount: number;
+  keywords: string[];
+}) {
+  return {
+    "@type": "BlogPosting",
+    "@id": `${abs(opts.path)}#article`,
+    mainEntityOfPage: { "@id": `${abs(opts.path)}#webpage` },
+    headline: opts.headline,
+    description: opts.description,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+    wordCount: opts.wordCount,
+    keywords: opts.keywords.join(", "),
+    image: { "@id": LOGO_ID },
+    inLanguage: "en-US",
+    // The business is the author and the publisher. No individual byline is
+    // claimed, because inventing one would be worse than having none.
+    author: orgRef,
+    publisher: orgRef,
+  };
+}
+
+/** The blog index, as an item list of its posts. */
+export function blogNode(items: { path: string; name: string }[]) {
+  return {
+    "@type": "Blog",
+    "@id": `${URL}/blog#blog`,
+    name: `${site.name} insights`,
+    publisher: orgRef,
+    blogPost: items.map((i) => ({
+      "@type": "BlogPosting",
+      "@id": `${abs(i.path)}#article`,
+      headline: i.name,
+      url: abs(i.path),
+    })),
   };
 }

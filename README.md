@@ -2,7 +2,7 @@
 
 Marketing site for [Net-Tech](https://nettech.ms), a managed IT, networking and security company at 112 W Main St, New Albany, Mississippi.
 
-Built with Vite, React 18, TypeScript and Tailwind CSS. **Statically pre-rendered** — every route builds to a real HTML file. No page builder, no external CMS.
+Built with Vite, React 18, TypeScript and Tailwind CSS. **Statically pre-rendered**: every route builds to a real HTML file. No page builder, no external CMS.
 
 ## Develop
 
@@ -23,9 +23,9 @@ CI runs lint, typecheck, tests and a production build on every push and pull req
 
 ## Why pre-rendering
 
-This was a client-rendered SPA and shipped an empty `<div id="root">` — zero words of HTML. Google renders JavaScript on a deferred second pass, but the crawlers behind AI answers (GPTBot, OAI-SearchBot, PerplexityBot, ClaudeBot, Claude-SearchBot, Meta-ExternalAgent) do not execute JavaScript at all, so the site was invisible to them.
+This was a client-rendered SPA and shipped an empty `<div id="root">`, meaning zero words of HTML. Google renders JavaScript on a deferred second pass, but the crawlers behind AI answers (GPTBot, OAI-SearchBot, PerplexityBot, ClaudeBot, Claude-SearchBot, Meta-ExternalAgent) do not execute JavaScript at all, so the site was invisible to them.
 
-`vite-react-ssg` now generates static HTML per route at build time. Pinned to **0.8.7** — 0.9.x requires Vite 6+ and this project is on Vite 5.
+`vite-react-ssg` now generates static HTML per route at build time. Pinned to **0.8.7**, because 0.9.x requires Vite 6+ and this project is on Vite 5.
 
 Two consequences worth knowing:
 
@@ -36,7 +36,7 @@ Adding a route means adding it to `src/App.tsx` (route table plus `staticPaths`)
 
 ## Deploy
 
-Static output. Any host works, but it must **not** rewrite unknown paths to `index.html` — that produces soft 404s, which is what the old config did.
+Static output. Any host works, but it must **not** rewrite unknown paths to `index.html`. That produces soft 404s, which is what the old config did.
 
 - **Vercel**: import the repo. `vercel.json` sets `cleanUrls`, `trailingSlash: false`, security headers and immutable caching for `/assets` and `/fonts`. No SPA rewrite.
 - **Netlify / Cloudflare Pages**: build `npm run build`, publish `dist`. Do not add a catch-all redirect.
@@ -46,7 +46,7 @@ Point the `nettech.ms` DNS at the new host once the deployment is verified.
 
 ### After deploying
 
-- Change the `www` → apex redirect from 302 to **301** (Cloudflare), so link authority consolidates.
+- Change the `www` to apex redirect from 302 to **301** (Cloudflare), so link authority consolidates.
 - Verify the property in Google Search Console and submit `https://nettech.ms/sitemap.xml`.
 - Confirm a nonsense path returns 404, not 200.
 
@@ -64,10 +64,10 @@ These render automatically once the data exists, and stay hidden until then. Not
 | File | What's missing | Why it matters |
 | ---- | -------------- | -------------- |
 | `src/data/trust.ts` | Team, testimonials, credentials, case studies | The largest remaining credibility gap. A named owner with a photo is the highest-impact, lowest-effort item on the site. |
-| `src/lib/site.ts` → `sameAs` | Google Business Profile, Facebook, LinkedIn URLs | Links the entity across platforms in schema. Add only profiles that exist. |
-| `src/lib/site.ts` → `address.embedSrc` | Real embed string from the Business Profile dashboard | The current embed is built from the postal address, not the verified listing. |
+| `src/lib/site.ts` `sameAs` | Google Business Profile, Facebook, LinkedIn URLs | Links the entity across platforms in schema. Add only profiles that exist. |
+| `src/lib/site.ts` `address.embedSrc` | Real embed string from the Business Profile dashboard | The current embed is built from the postal address, not the verified listing. |
 
-Do **not** add `aggregateRating` to the schema until there are real reviews *and* they are visible on the page — schema-only ratings breach Google's guidelines.
+Do **not** add `aggregateRating` to the schema until there are real reviews *and* they are visible on the page. Schema-only ratings breach Google's guidelines.
 
 ## Project layout
 
@@ -80,11 +80,13 @@ src/
                        Reveal, SectionHeading, CTABand
     ui/                Form primitives (button, input, select, checkbox, ...)
   data/
-    services.ts        Five services — copy, includes, equipment, FAQs
+    services.ts        Five services: copy, includes, equipment, FAQs
     locations.ts       Three location pages, each with market-specific content
     pricing.ts         Pricing models and cost drivers
     faqs.ts            Site-wide FAQ
     trust.ts           Team, testimonials, credentials (empty until filled)
+    industries.ts      Vertical landing pages (healthcare and rehab)
+    posts/             Blog: one file per article, plus types and an index
   lib/
     site.ts            Business details, hours, towns, nav
     schema.ts          JSON-LD graph builders
@@ -99,7 +101,9 @@ Business details live in `src/lib/site.ts`; page copy lives in `src/data/`. Upda
 
 ## SEO notes
 
-- **Location pages** exist for New Albany, Tupelo and Oxford only. Each carries content specific to that market. A fourth town belongs in running copy and `areaServed` unless it can clear the same bar — a city name swapped into a template is a doorway page.
+- **Location pages** exist for New Albany, Tupelo and Oxford only. Each carries content specific to that market. A fourth town belongs in running copy and `areaServed` unless it can clear the same bar. A city name swapped into a template is a doorway page.
 - **No `FAQPage` schema.** Google retired FAQ rich results for all sites in May 2026. The FAQ content stays; the markup would buy nothing.
-- **`/support-form` and `/ticketclaimed` are `noindex`** — utility pages with no organic value.
+- **`/support-form` and `/ticketclaimed` are `noindex`**, being utility pages with no organic value.
+- **No em dashes.** The client asked for none anywhere on the site, and `src/test/no-em-dash.test.ts` fails the build if one appears in `src/`, `scripts/`, `public/`, `index.html` or this README. Rewrite the sentence rather than swapping the character.
+- **Businesses only.** Net-Tech does not take residential work, and the site says so in the footer, the FAQ and a dedicated article. That is deliberate lead filtering, not an oversight.
 - `robots.txt` names AI crawlers explicitly. They were never blocked (the wildcard already allowed them), but being explicit removes the ambiguity.

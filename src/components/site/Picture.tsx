@@ -13,7 +13,7 @@ interface PictureProps {
   width: number;
   height: number;
   className?: string;
-  /** True for the LCP image — eager with high fetch priority. */
+  /** True for the LCP image, which loads eagerly at high fetch priority. */
   priority?: boolean;
 }
 
@@ -22,7 +22,7 @@ interface PictureProps {
  *
  * Because the page is now pre-rendered, this markup is in the HTML the browser
  * receives, so the preload scanner finds the hero image before any JavaScript
- * runs — which is what makes `fetchpriority` do anything at all.
+ * runs. That is what makes `fetchpriority` do anything at all.
  */
 export function Picture({
   webp,

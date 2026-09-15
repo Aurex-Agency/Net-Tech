@@ -57,14 +57,14 @@ export const services: Service[] = [
         heading: "What proactive monitoring actually catches",
         body: [
           "Monitoring is not a dashboard nobody looks at. It is a set of specific alarms tied to the failures that actually take small businesses offline.",
-          "Hard drives announce themselves before they die — SMART attributes degrade, reallocated sector counts climb. We see that and swap the drive during business-as-usual instead of rebuilding a machine from scratch. Backup jobs that silently fail are the single most common disaster we find when taking over an account; a backup nobody has tested is not a backup. Disk space filling on a server, a domain or SSL certificate approaching expiry, a security patch that has not applied across three machines — all of it is visible in advance if somebody is looking.",
+          "Hard drives announce themselves before they die. SMART attributes degrade and reallocated sector counts climb. We see that and swap the drive during business-as-usual instead of rebuilding a machine from scratch. Backup jobs that silently fail are the single most common disaster we find when taking over an account; a backup nobody has tested is not a backup. Disk space filling on a server, a domain or SSL certificate approaching expiry, a security patch that has not applied across three machines: all of it is visible in advance if somebody is looking.",
         ],
       },
       {
         heading: "What the help desk is like to actually use",
         body: [
           "You call and a technician picks up, or you submit a ticket and get a real response the same business day. There is no tier-one script, no queue position, no explaining your setup from scratch every time because we already have it documented.",
-          "Most issues get solved remotely in minutes. When we need to see your screen, we send a remote access client, you read us a session code, and we are looking at the problem with you. When it needs hands on the machine, we are in New Albany — on-site is a short drive, not a scheduled appointment for next week.",
+          "Most issues get solved remotely in minutes. When we need to see your screen, we send a remote access client, you read us a session code, and we are looking at the problem with you. When it needs hands on the machine, we are in New Albany, so on-site is a short drive rather than a scheduled appointment for next week.",
         ],
       },
       {
@@ -113,7 +113,7 @@ export const services: Service[] = [
       },
       {
         q: "What happens if something breaks after hours?",
-        a: "Call the office number and follow the prompts. For anything that stops the business running, reach us by phone rather than the ticket form — that is what it is there for.",
+        a: "Call the office number and follow the prompts. For anything that stops the business running, reach us by phone rather than the ticket form. That is what the phone is there for.",
       },
     ],
     related: ["networking", "cloud", "multi-site"],
@@ -135,14 +135,14 @@ export const services: Service[] = [
       body: [
         "Almost every bad small-business network we are called out to has the same history. Someone bought a consumer router from a big-box store. When coverage did not reach the warehouse, someone added a range extender. When that was not enough, a second router went in, running its own DHCP, quietly fighting the first one for control of the network.",
         "The symptoms are always the same: Wi-Fi that works at the front desk and dies halfway down the building, devices that drop mid-call, a card reader that fails at the worst possible moment, and nobody able to say why because there is no way to see what is happening.",
-        "The fix is not a bigger router. It is a network that was designed for the building it is in — access points placed for the actual floor plan and construction, one system managing all of them, and a firewall doing real work at the edge.",
+        "The fix is not a bigger router. It is a network designed for the building it is in: access points placed for the actual floor plan and construction, one system managing all of them, and a firewall doing real work at the edge.",
       ],
     },
     sections: [
       {
         heading: "Designed for your building, not guessed at",
         body: [
-          "Coverage is a function of the building, not the box. Metal racking in a warehouse, brick interior walls in an older Main Street building, insulated partitions in a clinic — all of it changes where signal goes and where it dies.",
+          "Coverage is a function of the building, not the box. Metal racking in a warehouse, brick interior walls in an older Main Street building, insulated partitions in a clinic. All of it changes where signal goes and where it dies.",
           "We walk the building, work out where access points need to go and what they need to be mounted on, and plan the cable runs to reach them. Then we tune the result: channel assignments that do not collide, transmit power set so devices roam cleanly instead of clinging to a distant access point, and separate networks for staff, guests and card readers or cameras that have no business talking to each other.",
         ],
       },
@@ -150,14 +150,14 @@ export const services: Service[] = [
         heading: "Security that is actually configured, not just purchased",
         body: [
           "A firewall out of the box is a router with a marketing term attached. The value is in the configuration: what is allowed out, what is blocked, what gets inspected, and what happens when something on the inside starts behaving strangely.",
-          "We set up content and threat filtering, segment the network so a compromised device cannot reach everything else, and configure secure VPN access so staff working from home or on the road are not exposing the network to do it. Where you have obligations — payment card handling, patient data, client confidentiality — the segmentation is where most of that work actually gets done.",
+          "We set up content and threat filtering, segment the network so a compromised device cannot reach everything else, and configure secure VPN access so staff working from home or on the road are not exposing the network to do it. Where you have obligations around payment card handling, patient records or client confidentiality, segmentation is where most of that work actually gets done.",
         ],
       },
       {
         heading: "Why we standardised on Ubiquiti",
         body: [
           "There is a real argument here, and it is about the licence, not the hardware. Most business-grade networking vendors sell you the equipment and then sell you the right to keep using its features: per-device annual subscriptions for threat protection, management, or support, renewed forever, scaling with every access point you add.",
-          "UniFi does not work that way. You buy the hardware and the management software is free, for the life of the equipment. For a ten-person business in New Albany that difference compounds into real money over a five-year equipment cycle — money better spent on the access points themselves than on the right to keep managing them.",
+          "UniFi does not work that way. You buy the hardware and the management software is free, for the life of the equipment. For a ten-person business in New Albany that difference compounds into real money over a five-year equipment cycle. That is money better spent on the access points themselves than on the right to keep managing them.",
           "The second reason is that everything lives in one interface. Network, Wi-Fi, cameras and door access all managed from the same place, by us remotely and by you if you want visibility. That is also what makes multi-site work practical.",
         ],
       },
@@ -235,7 +235,7 @@ export const services: Service[] = [
         heading: "Coverage is a design problem, not a camera count",
         body: [
           "The question is never how many cameras. It is what you need to be able to prove, and where the light is coming from.",
-          "Identification needs far more detail than general observation — recognising who someone is takes several times the pixel density of simply seeing that a person walked through. A camera pointed at a doorway with bright afternoon sun behind it will silhouette everyone who walks through unless the exposure is handled for it. Entrances, registers, stockrooms, loading areas and car parks each need different placement and different lenses.",
+          "Identification needs far more detail than general observation. Recognising who someone is takes several times the pixel density of simply seeing that a person walked through. A camera pointed at a doorway with bright afternoon sun behind it will silhouette everyone who walks through unless the exposure is handled for it. Entrances, registers, stockrooms, loading areas and car parks each need different placement and different lenses.",
           "We plan for what you actually need to see, then size the system to it.",
         ],
       },
@@ -243,8 +243,8 @@ export const services: Service[] = [
         heading: "Your footage stays on your property",
         body: [
           "This is the decision that costs most businesses the most money over time, and it is usually made without anyone explaining the trade-off.",
-          "Cloud camera systems are cheaper on day one and charge you per camera, per month, forever — usually with tiers that limit how far back you can look. Cancel the subscription and the footage goes with it. Over a five-year life, the subscription on a modest system commonly costs more than the hardware did.",
-          "We install systems that record to a network video recorder on site. The footage is yours, it is on your property, and there is no monthly bill attached to keeping it. You still get remote viewing on your phone from anywhere — the difference is where the recording lives and who controls access to it.",
+          "Cloud camera systems are cheaper on day one and charge you per camera, per month, forever, usually with tiers that limit how far back you can look. Cancel the subscription and the footage goes with it. Over a five-year life, the subscription on a modest system commonly costs more than the hardware did.",
+          "We install systems that record to a network video recorder on site. The footage is yours, it is on your property, and there is no monthly bill attached to keeping it. You still get remote viewing on your phone from anywhere. The difference is where the recording lives and who controls access to it.",
           "There is one honest caveat: on-site recording means the recorder itself is a physical target, so it goes somewhere secure rather than on the counter next to the till. That is a placement decision, and we handle it during design.",
         ],
       },
@@ -252,7 +252,7 @@ export const services: Service[] = [
         heading: "Alerts you will not immediately turn off",
         body: [
           "The fastest way to make a camera system useless is to set it to alert on any motion. Within a week you have learned to ignore it, because a cat, a passing truck and a shadow at dusk all look like motion.",
-          "Modern detection distinguishes people and vehicles from everything else, and can be restricted to zones that matter — the loading door after hours, not the road beyond it. Configured properly, an alert means something happened worth looking at.",
+          "Modern detection distinguishes people and vehicles from everything else, and can be restricted to zones that matter, such as the loading door after hours rather than the road beyond it. Configured properly, an alert means something happened worth looking at.",
         ],
       },
       {
@@ -321,7 +321,7 @@ export const services: Service[] = [
       body: [
         "The first is the migration itself. Email is the one system a business genuinely cannot be without for a day, and a badly planned move loses mail, breaks calendar invitations, strands shared mailboxes or leaves half the office unable to send for an afternoon.",
         "The second is quieter and more common: the migration works, and then nothing else happens. Multi-factor authentication never gets switched on because it seemed like a hassle. The departing employee's mailbox stays licensed and active for a year. Nobody realises that Microsoft hosting your email is not the same as Microsoft backing it up for you.",
-        "Business email compromise — an attacker getting into a mailbox and quietly redirecting an invoice payment — is one of the most expensive things that happens to small businesses, and it is overwhelmingly preventable with configuration that takes an afternoon.",
+        "Business email compromise, where an attacker gets into a mailbox and quietly redirects an invoice payment, is one of the most expensive things that happens to small businesses, and it is overwhelmingly preventable with configuration that takes an afternoon.",
       ],
     },
     sections: [
@@ -336,7 +336,7 @@ export const services: Service[] = [
         heading: "Security configuration that is not optional",
         body: [
           "Multi-factor authentication on every account is the single highest-value thing a small business can do for its own security, and it is included as standard rather than offered as an upgrade.",
-          "Beyond that we configure conditional access rules, anti-phishing and impersonation protection, and — importantly — alerting on the specific things that indicate an account has been compromised, such as a mailbox rule that silently forwards or deletes incoming mail. That rule is the fingerprint of an invoice-redirection attack, and catching it early is the difference between an incident and a loss.",
+          "Beyond that we configure conditional access rules, anti-phishing and impersonation protection, and, most importantly, alerting on the specific things that indicate an account has been compromised, such as a mailbox rule that silently forwards or deletes incoming mail. That rule is the fingerprint of an invoice-redirection attack, and catching it early is the difference between an incident and a loss.",
         ],
       },
       {
@@ -406,7 +406,7 @@ export const services: Service[] = [
       heading: "Every location becomes its own island",
       body: [
         "Multi-site IT problems rarely start as a decision. The second location opened and whoever was available set it up. The third was handled by a different contractor. Five years later each site has different equipment, different passwords, different internet providers and a different idea of what normal looks like.",
-        "The cost shows up as time. Nobody can answer a simple question — is that site down, or is it just that phone? — without driving there. Staff who move between locations find nothing works the same way. Opening a new site means starting from scratch again, because there is no pattern to copy.",
+        "The cost shows up as time. Nobody can answer a simple question, such as whether a site is down or it is just that one phone, without driving there. Staff who move between locations find nothing works the same way. Opening a new site means starting from scratch again, because there is no pattern to copy.",
       ],
     },
     sections: [
@@ -427,7 +427,7 @@ export const services: Service[] = [
       {
         heading: "Connecting sites securely",
         body: [
-          "Where locations need to share systems — a central server, a shared drive, a point-of-sale or management platform — we connect them with site-to-site VPN so the traffic between them is encrypted and the systems behave as if they were in the same building.",
+          "Where locations need to share systems, whether that is a central server, a shared drive or a practice management platform, we connect them with site-to-site VPN so the traffic between them is encrypted and the systems behave as if they were in the same building.",
           "Where they do not need to share, we deliberately keep them separate. A problem at one location should not be able to become a problem at all of them, and that containment is a design decision made up front.",
         ],
       },

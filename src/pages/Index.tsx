@@ -9,6 +9,8 @@ import {
   Network,
   Phone,
   Video,
+  Stethoscope,
+  Building2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/site/Container";
@@ -18,6 +20,8 @@ import { CTABand } from "@/components/site/CTABand";
 import { TestimonialsSection } from "@/components/site/Trust";
 import { Seo } from "@/components/site/Seo";
 import { services } from "@/data/services";
+import { industries } from "@/data/industries";
+import { posts, postCategories, readingMinutes } from "@/data/posts";
 import { featuredTowns, site, towns } from "@/lib/site";
 import { graph, serviceNode, webPageNode } from "@/lib/schema";
 import { Picture } from "@/components/site/Picture";
@@ -50,7 +54,7 @@ const serviceIcons: Record<string, typeof Network> = {
 const facts = [
   { value: "15+", label: "Years in business" },
   { value: "Local", label: "Main St, New Albany" },
-  { value: "UniFi", label: "Certified installer" },
+  { value: "Clinics", label: "Healthcare & rehab specialists" },
   { value: "1 call", label: "Straight to a technician" },
 ];
 
@@ -120,8 +124,8 @@ const Index = () => (
           </h1>
 
           <p className="mt-7 max-w-prose text-[17px] leading-relaxed text-white/65 animate-rise-in [animation-delay:160ms] sm:text-lg">
-            Net-Tech keeps businesses in New Albany, Tupelo, Oxford and across North Mississippi connected, secure and
-            running. Managed IT, Ubiquiti networking and security cameras, handled by people you can call by name.
+            Managed IT, Ubiquiti networking and security cameras for clinics, rehab practices and commercial
+            businesses across North Mississippi. Handled by people you can call by name.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 animate-rise-in [animation-delay:240ms] sm:flex-row">
@@ -141,7 +145,7 @@ const Index = () => (
 
           <p className="mt-8 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-white/55 animate-fade-in [animation-delay:400ms]">
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-signal animate-pulse-dot" />
-            No contracts to get a quote · Free on-site assessment
+            Commercial clients only · No contract to get a quote
           </p>
         </div>
 
@@ -245,6 +249,57 @@ const Index = () => (
       </Container>
     </section>
 
+    {/* ───────────── Who we work with ───────────── */}
+    <section id="industries" className="scroll-mt-24 border-t border-line bg-surface">
+      <Container className="py-20 sm:py-24">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Who we work with"
+            title="Commercial clients, and a lot of them are clinics."
+            lead="Healthcare and rehab practices are the largest part of what we do. The work is different from ordinary small-business IT, and most of the difference is in what you have to be able to prove."
+            split
+          />
+        </Reveal>
+
+        <div className="mt-14 grid gap-5 lg:grid-cols-2">
+          {industries.map((ind, i) => (
+            <Reveal key={ind.slug} delay={i * 70}>
+              <Link to={`/industries/${ind.slug}`} className="card card-interactive group flex h-full flex-col p-8">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand-tint text-brand-deep transition-colors duration-300 group-hover:bg-brand-deep group-hover:text-white">
+                  <Stethoscope className="h-5 w-5" strokeWidth={1.75} />
+                </span>
+                <h3 className="display-sm mt-6 text-xl text-ink">{ind.name}</h3>
+                <p className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-soft">{ind.lead}</p>
+                <span className="mt-7 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-brand-deep">
+                  How we work with practices
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+
+          <Reveal delay={140} className="flex h-full flex-col rounded-xl border border-line bg-base p-8">
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-surface-sunk text-ink-soft">
+              <Building2 className="h-5 w-5" strokeWidth={1.75} />
+            </span>
+            <h3 className="display-sm mt-6 text-xl text-ink">Everyone else commercial</h3>
+            <p className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-soft">
+              Manufacturers and their suppliers, professional offices, retail, restaurants and multi-location
+              operators. If there are staff or customers and being offline costs money, we can help.
+            </p>
+            <p className="mt-6 rounded-lg bg-surface-sunk px-4 py-3 text-[14px] leading-relaxed text-ink-soft">
+              <span className="font-semibold text-ink">Businesses only.</span> We do not take on home or residential
+              work.{" "}
+              <Link to="/blog/why-we-work-with-businesses-only" className="link">
+                Why
+              </Link>
+              .
+            </p>
+          </Reveal>
+        </div>
+      </Container>
+    </section>
+
     {/* ───────────── Service area ───────────── */}
     <section id="service-area" className="scroll-mt-24 border-y border-line bg-surface">
       <Container className="py-20 sm:py-24">
@@ -289,7 +344,7 @@ const Index = () => (
           <a href={site.phone.href} className="link tabular">
             call and ask
           </a>{" "}
-          — the answer is usually yes.
+          . The answer is usually yes.
         </p>
       </Container>
     </section>
@@ -428,6 +483,44 @@ const Index = () => (
             </Button>
           </div>
         </Reveal>
+      </Container>
+    </section>
+
+    {/* ───────────── Insights ───────────── */}
+    <section className="border-t border-line bg-surface">
+      <Container className="py-20 sm:py-24">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Insights"
+            title="Answers to what we get asked most."
+            lead="Written for the person running the business, not for another IT company."
+            split
+          />
+        </Reveal>
+
+        <ul className="mt-14 grid gap-5 sm:grid-cols-3">
+          {posts.slice(0, 3).map((p, i) => (
+            <Reveal key={p.slug} as="li" delay={i * 70}>
+              <Link to={`/blog/${p.slug}`} className="card card-interactive group flex h-full flex-col p-7">
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-brand-deep">
+                  {postCategories[p.category]}
+                </p>
+                <h3 className="display-sm mt-4 text-lg text-ink">{p.title}</h3>
+                <p className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-soft">{p.excerpt}</p>
+                <p className="tabular mt-6 border-t border-line pt-5 font-mono text-[11px] tracking-[0.06em] text-ink-soft">
+                  {readingMinutes(p)} min read
+                </p>
+              </Link>
+            </Reveal>
+          ))}
+        </ul>
+
+        <p className="mt-10">
+          <Link to="/blog" className="link text-[15px]">
+            All articles
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </p>
       </Container>
     </section>
 

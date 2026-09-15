@@ -47,14 +47,21 @@ export const site = {
   },
   yearsInBusiness: "15+",
   serviceArea: "New Albany and surrounding North Mississippi",
+  /**
+   * Net-Tech works with businesses only. Saying so plainly filters out
+   * residential enquiries before they reach the contact form, which is the
+   * whole point of stating it rather than leaving it implied.
+   */
+  commercialOnly: true,
+  residentialNotice: "We work with businesses only. We do not take on home or residential jobs.",
   remoteSupportHref: "https://sos.splashtop.com/",
   supportWebhookUrl:
     import.meta.env.VITE_SUPPORT_WEBHOOK_URL ||
     "https://services.leadconnectorhq.com/hooks/ErZnn0dKKTqWAnjTnzaP/webhook-trigger/1f29b918-a9b2-4aa9-9338-bf9344887baf",
   contactWebhookUrl: import.meta.env.VITE_CONTACT_WEBHOOK_URL || "",
   /**
-   * Public profiles, emitted as schema `sameAs`. Add only URLs that exist —
-   * a wrong or missing profile is worse than an absent one.
+   * Public profiles, emitted as schema `sameAs`. Add only URLs that exist.
+   * A wrong or missing profile is worse than an absent one.
    */
   sameAs: [] as string[],
 } as const;
@@ -91,6 +98,7 @@ export const featuredTowns = towns.filter((t) => t.slug);
 export const navigation = [
   { label: "Services", to: "/services" },
   { label: "Pricing", to: "/pricing" },
+  { label: "Insights", to: "/blog" },
   { label: "About", to: "/about" },
   { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" },

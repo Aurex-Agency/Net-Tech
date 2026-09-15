@@ -2,13 +2,15 @@ import type { RouteRecord } from "vite-react-ssg";
 import Layout from "./components/layout/Layout";
 import { services } from "./data/services";
 import { locations } from "./data/locations";
+import { industries } from "./data/industries";
+import { posts } from "./data/posts";
 
 /**
  * Route table for vite-react-ssg.
  *
  * Every route is statically pre-rendered to its own HTML file at build time,
- * so crawlers — including the AI crawlers that never execute JavaScript — get
- * real markup rather than an empty `#root` div. Pages load lazily, which keeps
+ * so crawlers get real markup, including the AI crawlers that never execute
+ * JavaScript. Pages load lazily, which keeps
  * the form stack (react-hook-form, zod, Radix) out of the bundle for the six
  * routes that do not have a form on them.
  *
@@ -37,6 +39,21 @@ export const routes: RouteRecord[] = [
         getStaticPaths: () => locations.map((l) => `/locations/${l.slug}`),
       },
 
+      {
+        path: "industries/:slug",
+        entry: "src/pages/IndustryDetail.tsx",
+        lazy: () => import("./pages/IndustryDetail"),
+        getStaticPaths: () => industries.map((i) => `/industries/${i.slug}`),
+      },
+
+      { path: "blog", entry: "src/pages/Blog.tsx", lazy: () => import("./pages/Blog") },
+      {
+        path: "blog/:slug",
+        entry: "src/pages/BlogPost.tsx",
+        lazy: () => import("./pages/BlogPost"),
+        getStaticPaths: () => posts.map((p) => `/blog/${p.slug}`),
+      },
+
       { path: "pricing", entry: "src/pages/Pricing.tsx", lazy: () => import("./pages/Pricing") },
       { path: "faq", entry: "src/pages/Faq.tsx", lazy: () => import("./pages/Faq") },
       { path: "about", entry: "src/pages/About.tsx", lazy: () => import("./pages/About") },
@@ -59,6 +76,9 @@ export const staticPaths = [
   "/services",
   ...services.map((s) => `/services/${s.slug}`),
   ...locations.map((l) => `/locations/${l.slug}`),
+  ...industries.map((i) => `/industries/${i.slug}`),
+  "/blog",
+  ...posts.map((p) => `/blog/${p.slug}`),
   "/pricing",
   "/faq",
   "/about",

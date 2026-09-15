@@ -14,7 +14,7 @@ export interface Location {
   /** H1 on the page. */
   title: string;
   lead: string;
-  /** Why this market is different — the part that must not be templated. */
+  /** Why this market is different. The part that must not be templated. */
   sections: LocationSection[];
   /** The industries we actually see in this market. */
   sectors: { name: string; note: string }[];
@@ -29,7 +29,7 @@ export interface Location {
  * Each one has to say something a business owner in that town would find true
  * and useful that a business owner in the next town would not. If a fourth
  * town cannot clear that bar, it belongs in running copy and in `areaServed`,
- * not in a page of its own — a city name swapped into a template is a doorway
+ * not in a page of its own. A city name swapped into a template is a doorway
  * page, and Google treats it as one.
  */
 export const locations: Location[] = [
@@ -48,7 +48,7 @@ export const locations: Location[] = [
         heading: "Being down the street is the whole point",
         body: [
           "Most IT providers serving Union County are not in Union County. They are in Tupelo or further, and their response to anything they cannot fix remotely is to schedule a visit for whenever the route brings them this way.",
-          "We are at 112 W Main St. When something needs hands on it, we are minutes away, and we will often just come rather than talk you through it over the phone. That changes what is practical — swapping a failed switch before lunch instead of losing a day, or dropping in to check a camera angle rather than asking you to describe it.",
+          "We are at 112 W Main St. When something needs hands on it, we are minutes away, and we will often just come rather than talk you through it over the phone. That changes what is practical: swapping a failed switch before lunch instead of losing a day, or dropping in to check a camera angle rather than asking you to describe it.",
         ],
       },
       {
@@ -80,7 +80,7 @@ export const locations: Location[] = [
       },
       {
         q: "Do you work with businesses outside Union County?",
-        a: "Yes — regularly in Tupelo, Oxford, Pontotoc, Ripley, Booneville and Corinth. New Albany is simply where we are based.",
+        a: "Yes, regularly in Tupelo, Oxford, Pontotoc, Ripley, Booneville and Corinth. New Albany is simply where we are based.",
       },
       {
         q: "Are you actually local, or a national company with a local number?",
@@ -103,14 +103,14 @@ export const locations: Location[] = [
       {
         heading: "A bigger market with a different set of problems",
         body: [
-          "Tupelo businesses tend to be a step larger than their Union County equivalents, and the IT problems change shape with size. More staff means account management actually matters — onboarding, offboarding, and the departed employee whose access nobody revoked. More locations means the question of whether every site works the same way. More regulatory exposure, particularly around the medical district, means someone has to be able to answer how data is handled.",
+          "Tupelo businesses tend to be a step larger than their Union County equivalents, and the IT problems change shape with size. More staff means account management actually matters: onboarding, offboarding, and the departed employee whose access nobody revoked. More locations means the question of whether every site works the same way. More regulatory exposure, particularly around the medical district, means someone has to be able to answer how data is handled.",
           "It is also a market where businesses have usually had IT support before, often several times. A good part of our Tupelo work starts by documenting a setup nobody has a record of, because the last provider left and took the knowledge with them.",
         ],
       },
       {
         heading: "The healthcare corridor",
         body: [
-          "Tupelo's medical sector — the regional hospital and the dense ring of specialist practices, clinics and dental offices around it — is unlike anything else in North Mississippi.",
+          "Tupelo's medical sector, meaning the regional hospital and the dense ring of specialist practices, clinics, therapy and rehab offices around it, is unlike anything else in North Mississippi.",
           "Practices in that orbit carry obligations that most small businesses do not: patient data that has to be handled defensibly, systems that cannot simply be down, and vendors for practice-management and imaging software that all need to talk to each other. The network design work there is mostly segmentation and documentation, and the email work is mostly making sure secure communication is actually secure rather than assumed to be.",
         ],
       },
@@ -124,7 +124,7 @@ export const locations: Location[] = [
       {
         heading: "Honest about distance",
         body: [
-          "We are in New Albany, about thirty minutes from Tupelo. For monitoring, help desk and anything solvable remotely — which is most things — that distance makes no difference at all.",
+          "We are in New Albany, about thirty minutes from Tupelo. For monitoring, help desk and anything solvable remotely, which is most things, that distance makes no difference at all.",
           "For on-site work it means we are scheduling a drive. We would rather say that plainly than pretend otherwise. In practice it means we are quicker than a provider dispatching from Memphis or Jackson, and slower than someone with an office on Gloster Street. What we offer against that is a team that actually picks up the phone and a network standard that reduces how often anyone needs to be on site at all.",
         ],
       },
@@ -139,11 +139,11 @@ export const locations: Location[] = [
     faqs: [
       {
         q: "You are in New Albany. How does that work for a Tupelo business?",
-        a: "Monitoring and help desk are remote, so location makes no difference for most issues. For on-site work we are about thirty minutes away — quicker than a provider coming from Memphis, slower than one based in Tupelo itself. We would rather be straight with you about that.",
+        a: "Monitoring and help desk are remote, so location makes no difference for most issues. For on-site work we are about thirty minutes away, quicker than a provider coming from Memphis and slower than one based in Tupelo itself. We would rather be straight with you about that.",
       },
       {
         q: "Do you support medical practices?",
-        a: "Yes. The work is mostly network segmentation, access control, secure email and documented backup — the things you need to be able to evidence if anyone asks.",
+        a: "Yes. The work is mostly network segmentation, access control, secure email and documented backup. Those are the things you need to be able to evidence if anyone asks.",
       },
       {
         q: "Can you take over from our current IT provider?",
@@ -170,7 +170,7 @@ export const locations: Location[] = [
       {
         heading: "Built for the busy weekend, not the quiet Tuesday",
         body: [
-          "Most small-business networks are sized for typical load. In Oxford, typical load is not the problem — the problem is the weekend when the town's population effectively doubles.",
+          "Most small-business networks are sized for typical load. In Oxford, typical load is not the problem. The problem is the weekend when the town's population effectively doubles.",
           "A restaurant that handles forty covers comfortably discovers its Wi-Fi collapses at a hundred and forty, because the access point that was adequate is now serving five times the devices. A retailer's card terminals start timing out at the exact hour they can least afford it. The failure is almost never bandwidth from the internet provider; it is access point density and channel planning inside the building.",
           "We design for the peak, because in Oxford the peak is the part that pays.",
         ],
@@ -179,7 +179,7 @@ export const locations: Location[] = [
         heading: "The Square and its buildings",
         body: [
           "Oxford's commercial heart is historic buildings, and historic buildings are hostile to Wi-Fi. Thick masonry, plaster over lath, additions built across decades, and in many cases a preservation constraint on what you can drill, run and mount.",
-          "Those jobs are a design problem more than an equipment problem — working out where signal can actually reach, where a cable can legitimately run, and how to get coverage into a back dining room or upstairs office without anything visible from the street. It is slower work than a modern building and it is a good part of what we do in Oxford.",
+          "Those jobs are a design problem more than an equipment problem: working out where signal can actually reach, where a cable can legitimately run, and how to get coverage into a back dining room or upstairs office without anything visible from the street. It is slower work than a modern building and it is a good part of what we do in Oxford.",
         ],
       },
       {

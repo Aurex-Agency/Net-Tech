@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <>
       {/* Utility strip. Puts the phone number and support entry point above
-          everything else — the two things existing clients come here for. */}
+          everything else, being the two things existing clients come here for. */}
       <div className="hidden bg-navy text-white lg:block">
         <Container className="flex h-9 items-center justify-between font-mono text-[11px] tracking-[0.06em]">
           <p className="flex items-center gap-2 text-white/55">

@@ -91,7 +91,7 @@ export function TestimonialsSection({ className }: { className?: string }) {
   );
 }
 
-/** Compact credential strip — sits well under a hero or above a CTA. */
+/** Compact credential strip. Sits well under a hero or above a CTA. */
 export function CredentialStrip({ className }: { className?: string }) {
   if (credentials.length === 0) return null;
 
@@ -135,7 +135,7 @@ export function CredentialStrip({ className }: { className?: string }) {
   );
 }
 
-/** Points at the trust data file when nothing is filled in — dev only. */
+/** Points at the trust data file when nothing is filled in. Dev only. */
 export function TrustGapNotice() {
   if (!import.meta.env.DEV) return null;
   if (team.length || testimonials.length || credentials.length) return null;

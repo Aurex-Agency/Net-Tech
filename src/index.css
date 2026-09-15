@@ -10,7 +10,8 @@
   Cool, technical and high-contrast: a near-white slate page, a deep navy used
   for anchor sections, and the cyan-to-blue brand pulled straight from the
   logo mark. Type is a single Inter family for everything readable, with
-  JetBrains Mono reserved for labels, counters and data — the technical signal.
+  JetBrains Mono reserved for labels, counters and data, which is the technical
+  signal.
   All colours are HSL triplets so Tailwind can apply opacity modifiers.
 */
 @layer base {
@@ -112,7 +113,7 @@
 @layer components {
   /*
     Headline treatment. Inter at a heavy optical weight with negative tracking
-    reads as engineered rather than editorial — the point of the redesign.
+    reads as engineered rather than editorial, which is the point of the redesign.
   */
   .display {
     font-weight: 680;

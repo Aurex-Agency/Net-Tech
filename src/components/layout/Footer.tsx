@@ -16,8 +16,10 @@ const Footer = () => {
           <div className="lg:col-span-4">
             <Logo inverse />
             <p className="mt-6 max-w-xs text-[15px] leading-relaxed text-white/55">
-              Managed IT, Ubiquiti networking and security cameras for businesses in {site.serviceArea}.
+              Managed IT, Ubiquiti networking and security cameras for clinics, rehab practices and commercial
+              businesses in {site.serviceArea}.
             </p>
+            <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-white/55">{site.residentialNotice}</p>
 
             <ul className="mt-8 space-y-3.5">
               <li>
@@ -143,6 +145,19 @@ const Footer = () => {
                 <li>
                   <Link to="/pricing" className="text-white/70 transition-colors hover:text-brand-bright">
                     Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/blog" className="text-white/70 transition-colors hover:text-brand-bright">
+                    Insights
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/industries/healthcare-rehab"
+                    className="text-white/70 transition-colors hover:text-brand-bright"
+                  >
+                    Healthcare &amp; rehab
                   </Link>
                 </li>
               </ul>

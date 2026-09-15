@@ -3,15 +3,15 @@
  *
  * This is the single largest remaining gap in the site's credibility, and the
  * one thing that cannot be written without the business. Every array below is
- * empty on purpose — nothing here is invented. Fill an array and the matching
+ * empty on purpose, because nothing here is invented. Fill an array and the matching
  * section starts rendering on the pages that use it; leave it empty and the
  * section does not appear at all, so the site never shows a hollow placeholder.
  *
  * Priority order, by how much each closes the trust gap:
- *   1. team          — a named human with a face. Highest impact, lowest effort.
- *   2. testimonials  — three to five, with real business names and permission.
- *   3. credentials   — the actual Ubiquiti tier, with a verification link.
- *   4. caseStudies   — two short before/after stories.
+ *   1. team          A named human with a face. Highest impact, lowest effort.
+ *   2. testimonials  Three to five, with real business names and permission.
+ *   3. credentials   The actual Ubiquiti tier, with a verification link.
+ *   4. caseStudies   Two short before and after stories.
  */
 
 export interface TeamMember {
@@ -24,12 +24,12 @@ export interface TeamMember {
 }
 
 export interface Testimonial {
-  /** Keep it specific — a sentence about what actually changed beats praise. */
+  /** Keep it specific. A sentence about what actually changed beats praise. */
   quote: string;
   name: string;
   /** Business name, with the client's permission. */
   business: string;
-  /** e.g. "Tupelo, MS" — local attribution is worth more than a generic title. */
+  /** e.g. "Tupelo, MS". Local attribution is worth more than a generic title. */
   location?: string;
 }
 
@@ -64,7 +64,7 @@ export const testimonials: Testimonial[] = [];
 /**
  * "Ubiquiti certified" currently appears on the site with no tier and no link.
  * UniFi certifications are distinct qualifications (UCA, UCP, UEWA and so on),
- * so naming the real one — and linking to a verification page if there is one —
+ * so naming the real one, and linking to a verification page if there is one,
  * turns an unverifiable adjective into a checkable credential.
  */
 export const credentials: Credential[] = [];

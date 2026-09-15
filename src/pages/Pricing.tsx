@@ -144,7 +144,7 @@ const Pricing = () => (
         <div className="max-w-prose">
           <h2 className="display text-[1.9rem] sm:text-[2.25rem]">Just want a ballpark?</h2>
           <p className="mt-5 text-[16.5px] leading-relaxed text-ink-soft">
-            Call and describe your business in two minutes — how many people, how many locations, whether you run a
+            Call and describe your business in two minutes. How many people, how many locations, whether you run a
             server, what breaks most often. We will give you a range on the phone.
           </p>
           <p className="mt-4 text-[16.5px] leading-relaxed text-ink-soft">

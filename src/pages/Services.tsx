@@ -30,7 +30,7 @@ const icons: Record<string, typeof Network> = {
 };
 
 /**
- * Hub page. Deliberately short — its job is to route to the five service
+ * Hub page. Deliberately short, because its job is to route to the five service
  * pages, not to compete with them for the same queries.
  */
 const Services = () => (
@@ -53,7 +53,7 @@ const Services = () => (
           Five things we do, <span className="text-brand-bright">done properly.</span>
         </>
       }
-      lead="Pick what you need today and add the rest as you grow. Everything is priced plainly, installed carefully and supported by the same people who put it in."
+      lead="For clinics, rehab practices and commercial businesses across North Mississippi. Pick what you need today and add the rest as you grow. Everything is priced plainly and supported by the same people who put it in."
       above={<Breadcrumbs items={crumbs} inverse className="mb-7" />}
     />
 
@@ -88,7 +88,7 @@ const Services = () => (
                 <h2 className="display-sm text-xl text-ink">Not sure what you need?</h2>
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
                   Most clients start with a free walkthrough. We look at what you have and tell you honestly what is
-                  worth changing — and what is not.
+                  worth changing, and what is not.
                 </p>
               </div>
               <Link to="/contact" className="link mt-7 text-[15px] self-start">
@@ -108,7 +108,7 @@ const Services = () => (
           <div className="lg:col-span-5">
             <SectionHeading eyebrow="Service area" title="Where we work." />
             <p className="mt-6 max-w-prose text-[16.5px] leading-relaxed text-ink-soft">
-              Based on Main Street in New Albany, covering North Mississippi — including Pontotoc, Ripley, Booneville,
+              Based on Main Street in New Albany, covering North Mississippi, including Pontotoc, Ripley, Booneville,
               Baldwyn, Corinth, Blue Springs and Ecru alongside the three below.
             </p>
           </div>

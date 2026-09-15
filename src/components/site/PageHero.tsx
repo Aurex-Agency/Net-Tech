@@ -5,7 +5,7 @@ interface PageHeroProps {
   eyebrow: string;
   title: React.ReactNode;
   lead?: React.ReactNode;
-  /** Sits above the eyebrow — breadcrumbs, usually. */
+  /** Sits above the eyebrow. Breadcrumbs, usually. */
   above?: React.ReactNode;
   /** Optional right-hand column: contact details, stats, a callout. */
   aside?: React.ReactNode;

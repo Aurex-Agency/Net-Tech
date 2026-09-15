@@ -198,7 +198,7 @@ const LocationDetail = () => {
           </ul>
           <p className="mt-8 max-w-prose text-[15px] leading-relaxed text-ink-soft">
             We also cover Pontotoc, Ripley, Booneville, Baldwyn, Corinth, Blue Springs and Ecru. If you are in North
-            Mississippi and not on this list, call and ask — the answer is usually yes.
+            Mississippi and not on this list, call and ask. The answer is usually yes.
           </p>
         </Container>
       </section>

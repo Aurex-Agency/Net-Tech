@@ -175,8 +175,8 @@ const ServiceDetail = () => {
             <div className="lg:col-span-5">
               <h2 className="display text-[1.9rem] sm:text-[2.25rem]">Where we do this work</h2>
               <p className="mt-5 max-w-prose text-[16.5px] leading-relaxed text-ink-soft">
-                Based in New Albany, working across North Mississippi — Tupelo, Oxford, Pontotoc, Ripley, Booneville,
-                Baldwyn and Corinth included.
+                Based in New Albany, working across North Mississippi, including Tupelo, Oxford, Pontotoc, Ripley,
+                Booneville, Baldwyn and Corinth.
               </p>
             </div>
             <ul className="grid gap-3 sm:grid-cols-3 lg:col-span-7">

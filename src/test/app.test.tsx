@@ -9,7 +9,7 @@ import { locations } from "@/data/locations";
 import { site } from "@/lib/site";
 
 /**
- * Routes are lazy, so the router resolves them asynchronously — every
+ * Routes are lazy, so the router resolves them asynchronously. Every
  * assertion about page content waits for the route module to load.
  */
 const renderAt = (path: string) => {

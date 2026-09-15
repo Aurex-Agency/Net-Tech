@@ -124,8 +124,8 @@ const TermsOfService = () => {
               4. Intellectual Property
             </h2>
             <p>
-              All content on this website — including text, graphics, logos,
-              images, and software — is the property of Net-Tech or its content
+              All content on this website, including text, graphics, logos,
+              images, and software, is the property of Net-Tech or its content
               suppliers and is protected by intellectual property laws. You may
               not reproduce, distribute, or create derivative works without our
               prior written consent.

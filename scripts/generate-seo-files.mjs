@@ -12,9 +12,23 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
 const URL = "https://nettech.ms";
 
-// Mirrors src/data — kept as literals so this script has no build step.
+// Mirrors src/data, kept as literals so this script has no build step.
 const serviceSlugs = ["managed-it", "networking", "security-cameras", "cloud", "multi-site"];
 const locationSlugs = ["new-albany-ms", "tupelo-ms", "oxford-ms"];
+const industrySlugs = ["healthcare-rehab"];
+const postSlugs = [
+  "hipaa-it-checklist-small-practice",
+  "clinic-wifi-drops-treatment-rooms",
+  "ransomware-monday-morning",
+  "managed-it-cost-medical-practice",
+  "microsoft-365-migration-practice",
+  "security-cameras-clinic-placement",
+  "second-clinic-it-checklist",
+  "internet-down-checklist",
+  "unifi-five-year-cost",
+  "switching-it-providers",
+  "why-we-work-with-businesses-only",
+];
 
 /** Indexable routes only. /support-form and /ticketclaimed are noindex. */
 const pages = [
@@ -22,6 +36,9 @@ const pages = [
   { path: "/services", priority: "0.9", changefreq: "monthly" },
   ...serviceSlugs.map((s) => ({ path: `/services/${s}`, priority: "0.9", changefreq: "monthly" })),
   ...locationSlugs.map((l) => ({ path: `/locations/${l}`, priority: "0.8", changefreq: "monthly" })),
+  ...industrySlugs.map((i) => ({ path: `/industries/${i}`, priority: "0.9", changefreq: "monthly" })),
+  { path: "/blog", priority: "0.8", changefreq: "weekly" },
+  ...postSlugs.map((p) => ({ path: `/blog/${p}`, priority: "0.7", changefreq: "yearly" })),
   { path: "/pricing", priority: "0.8", changefreq: "monthly" },
   { path: "/faq", priority: "0.7", changefreq: "monthly" },
   { path: "/about", priority: "0.7", changefreq: "yearly" },
@@ -45,7 +62,7 @@ ${pages
 
 /**
  * llms.txt is not a crawl directive and no major provider confirms reading it.
- * It is cheap, and it is plain text — which means a non-rendering crawler that
+ * It is cheap, and it is plain text, which means a non-rendering crawler that
  * happens to fetch it gets real content either way.
  */
 const llms = `# Net-Tech
@@ -67,20 +84,38 @@ Net-Tech is a locally owned IT company at 112 W Main St, New Albany, Mississippi
 - [Cloud & Microsoft 365](${URL}/services/cloud): Microsoft 365 and Google Workspace migration, multi-factor authentication, and independent backup of cloud mail and files.
 - [Multi-Site IT Management](${URL}/services/multi-site): One standard, one help desk and one point of contact across every location.
 
+## Who we work with
+Net-Tech works with businesses only and does not take residential work. Healthcare and rehab practices are the largest client segment.
+- [IT for healthcare and rehab practices](${URL}/industries/healthcare-rehab): HIPAA-aware IT, segmented clinical networks, signed Business Associate Agreement.
+
 ## Locations
 - [IT support in New Albany, MS](${URL}/locations/new-albany-ms)
 - [Managed IT services in Tupelo, MS](${URL}/locations/tupelo-ms)
 - [IT support in Oxford, MS](${URL}/locations/oxford-ms)
 
+## Articles
+- [The HIPAA IT checklist for a small practice](${URL}/blog/hipaa-it-checklist-small-practice)
+- [Why your clinic Wi-Fi dies in the back treatment rooms](${URL}/blog/clinic-wifi-drops-treatment-rooms)
+- [Ransomware hits your practice on a Monday. What happens next?](${URL}/blog/ransomware-monday-morning)
+- [What managed IT actually costs a medical practice](${URL}/blog/managed-it-cost-medical-practice)
+- [Moving a practice to Microsoft 365 without breaking anything](${URL}/blog/microsoft-365-migration-practice)
+- [Security cameras in a clinic: where they go, and where they cannot](${URL}/blog/security-cameras-clinic-placement)
+- [Opening a second clinic: the IT checklist nobody gives you](${URL}/blog/second-clinic-it-checklist)
+- [Business internet down? Ten minutes before you call anyone](${URL}/blog/internet-down-checklist)
+- [Subscription networking and what it costs you over five years](${URL}/blog/unifi-five-year-cost)
+- [Switching IT providers without losing the keys to your own practice](${URL}/blog/switching-it-providers)
+- [Why we work with businesses only](${URL}/blog/why-we-work-with-businesses-only)
+
 ## Key pages
 - [Pricing and how quotes are built](${URL}/pricing)
 - [Frequently asked questions](${URL}/faq)
+- [All articles](${URL}/blog)
 - [About Net-Tech](${URL}/about)
 - [Contact](${URL}/contact)
 `;
 
 if (!existsSync(dist)) {
-  console.error("dist/ not found — run the build first.");
+  console.error("dist/ not found, run the build first.");
   process.exit(1);
 }
 

@@ -15,7 +15,7 @@ export interface PricingModel {
   who: string;
   how: string;
   includes: string[];
-  /** e.g. "from $85 per user / month" — omitted until the owner sets it. */
+  /** e.g. "from $85 per user / month". Omitted until the owner sets it. */
   startingAt?: string;
   cta: { label: string; to: string };
 }
@@ -78,7 +78,7 @@ export const costDrivers = [
   {
     factor: "Compliance obligations",
     detail:
-      "Handling patient records, card payments or client financial data raises the bar on documentation, access control and retention — and the work that goes with it.",
+      "Handling patient records, card payments or client financial data raises the bar on documentation, access control and retention, and the work that goes with it.",
   },
   {
     factor: "The state of what you have now",

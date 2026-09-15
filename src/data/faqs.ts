@@ -43,6 +43,14 @@ export const faqGroups: FaqGroup[] = [
         a: "Yes, and it is common. The first step is documenting what you actually have, since that knowledge often leaves with the outgoing provider. We handle the transition so you are not caught between two companies.",
       },
       {
+        q: "Do you do home or residential work?",
+        a: "No. We work with businesses only, which lets us keep our day structured around commercial clients and hold a standard that residential work does not need. If you are a homeowner, we have written up the things that fix most home problems rather than just turning you away.",
+      },
+      {
+        q: "What kinds of businesses do you usually work with?",
+        a: "Healthcare and rehab practices are the largest share, so clinics, therapy practices, dental and medical offices. Alongside that, manufacturers and their suppliers, professional offices, retail, restaurants and multi-location operators.",
+      },
+      {
         q: "What size business do you work with?",
         a: "Mostly small and mid-sized businesses, from a handful of computers up to multi-location operations. If you are smaller than makes sense for a managed plan, we will say so and offer as-needed support instead.",
       },
@@ -110,7 +118,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "We handle patient or client records. Can you support that?",
-        a: "Yes. The work is mainly network segmentation, access control, secure email and backups that have actually been test-restored — the things you need to be able to evidence if anyone asks.",
+        a: "Yes. The work is mainly network segmentation, access control, secure email and backups that have actually been test-restored. Those are the things you need to be able to evidence if anyone asks.",
       },
       {
         q: "You would have access to our systems. How is that handled?",
