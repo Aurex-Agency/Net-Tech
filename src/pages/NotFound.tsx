@@ -10,7 +10,6 @@ const NotFound = () => {
 
   return (
     <section className="relative overflow-hidden bg-navy">
-      <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines" />
       <div aria-hidden className="pointer-events-none absolute inset-0 dot-grid mask-fade opacity-50" />
       <div
         aria-hidden

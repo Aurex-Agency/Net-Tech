@@ -7,7 +7,6 @@ const TicketClaimed = () => {
 
   return (
     <section className="relative overflow-hidden bg-navy">
-      <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines" />
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-0 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full brand-glow blur-3xl"

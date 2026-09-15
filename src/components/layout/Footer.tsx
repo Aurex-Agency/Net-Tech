@@ -9,10 +9,8 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-navy text-white">
-      <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines opacity-70" />
-
-      <Container className="relative py-16 sm:py-20">
+    <footer className="bg-navy text-white">
+      <Container className="py-16 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <Logo inverse />

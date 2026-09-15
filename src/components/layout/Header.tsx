@@ -147,8 +147,7 @@ const Header = () => {
         )}
         aria-hidden={!open}
       >
-        <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines opacity-60" />
-        <Container className="relative flex min-h-full flex-col py-8">
+        <Container className="flex min-h-full flex-col py-8">
           <nav className="flex flex-col" aria-label="Mobile">
             {[{ label: "Home", to: "/" }, ...navigation].map((item, i) => (
               <NavLink

@@ -19,7 +19,6 @@ interface PageHeroProps {
 export function PageHero({ eyebrow, title, lead, aside, compact = false, className }: PageHeroProps) {
   return (
     <section className={cn("relative overflow-hidden bg-navy", className)}>
-      <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines" />
       <div aria-hidden className="pointer-events-none absolute inset-0 dot-grid mask-fade opacity-50" />
       <div
         aria-hidden

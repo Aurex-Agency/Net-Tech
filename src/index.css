@@ -203,22 +203,10 @@
 
 @layer utilities {
   /*
-    Blueprint grid. Echoes patch-panel and rack geometry; sits behind dark
-    sections at low opacity so it reads as texture, never as content.
+    The pixel-dissolve motif lifted from the logo mark. The one decorative
+    texture on the site, so it stays tied to the brand rather than reading as
+    generic chrome.
   */
-  .grid-lines {
-    background-image: linear-gradient(hsl(var(--navy-line) / 0.055) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--navy-line) / 0.055) 1px, transparent 1px);
-    background-size: 64px 64px;
-  }
-
-  .grid-lines-light {
-    background-image: linear-gradient(hsl(var(--ink) / 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--ink) / 0.045) 1px, transparent 1px);
-    background-size: 56px 56px;
-  }
-
-  /* The pixel-dissolve motif from the logo mark, as a background texture. */
   .dot-grid {
     background-image: radial-gradient(hsl(var(--navy-line) / 0.16) 1px, transparent 1px);
     background-size: 22px 22px;

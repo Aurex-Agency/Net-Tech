@@ -76,7 +76,6 @@ const Index = () => {
     <>
       {/* ───────────── Hero ───────────── */}
       <section className="relative overflow-hidden bg-navy">
-        <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines" />
         <div aria-hidden className="pointer-events-none absolute inset-0 dot-grid mask-fade opacity-60" />
         <div
           aria-hidden
@@ -163,9 +162,8 @@ const Index = () => {
       </section>
 
       {/* ───────────── Services ───────────── */}
-      <section id="services" className="relative overflow-hidden">
-        <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines-light mask-fade-b opacity-50" />
-        <Container className="relative py-20 sm:py-24 lg:py-28">
+      <section id="services">
+        <Container className="py-20 sm:py-24 lg:py-28">
           <Reveal>
             <SectionHeading
               eyebrow="What we do"
@@ -300,7 +298,6 @@ const Index = () => {
       <section className="border-t border-line bg-surface">
         <Container className="grid gap-5 py-20 sm:py-24 lg:grid-cols-2 lg:py-28">
           <Reveal className="relative flex flex-col overflow-hidden rounded-xl bg-navy p-8 sm:p-10">
-            <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines opacity-70" />
             <div
               aria-hidden
               className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full brand-glow blur-2xl"

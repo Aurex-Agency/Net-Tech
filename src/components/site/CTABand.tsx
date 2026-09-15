@@ -21,7 +21,6 @@ export function CTABand({
 }: CTABandProps) {
   return (
     <section className="relative overflow-hidden bg-navy">
-      <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines mask-fade-b opacity-70" />
       <div
         aria-hidden
         className="pointer-events-none absolute -right-40 -top-32 h-[28rem] w-[28rem] rounded-full brand-glow blur-2xl"

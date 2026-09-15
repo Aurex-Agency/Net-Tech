@@ -72,7 +72,6 @@ export default {
       },
       transitionTimingFunction: {
         out: "cubic-bezier(0.22, 0.72, 0.24, 1)",
-        spring: "cubic-bezier(0.34, 1.4, 0.44, 1)",
       },
       keyframes: {
         "rise-in": {
