@@ -1,23 +1,17 @@
 import { Container } from "@/components/site/Container";
+import { PageHero } from "@/components/site/PageHero";
 import { usePageMeta } from "@/lib/usePageMeta";
 
 const PrivacyPolicy = () => {
   usePageMeta({ title: "Privacy Policy" });
 
   return (
-    <section>
-      <Container className="max-w-3xl py-16 sm:py-24">
-        <div className="animate-rise-in">
-          <div>
-            <h1 className="display text-5xl sm:text-6xl">
-              Privacy Policy
-            </h1>
-            <p className="mt-4 text-sm text-ink-soft">
-              Last Updated: March 25, 2026
-            </p>
-          </div>
+    <>
+      <PageHero eyebrow="Legal" title="Privacy Policy" lead="Last updated March 25, 2026" compact />
 
-          <div className="legal-prose mt-10">
+      <section>
+        <Container className="max-w-3xl py-16 sm:py-20">
+          <div className="legal-prose">
             <p>
               Net-Tech ("we," "us," or "our") is committed to protecting your
               privacy. This Privacy Policy explains how we collect, use,
@@ -222,9 +216,9 @@ const PrivacyPolicy = () => {
               </li>
             </ul>
           </div>
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </>
   );
 };
 

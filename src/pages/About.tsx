@@ -1,6 +1,8 @@
+import { MapPin } from "lucide-react";
 import { Container } from "@/components/site/Container";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { PageHero } from "@/components/site/PageHero";
 import { CTABand } from "@/components/site/CTABand";
 import { site } from "@/lib/site";
 import { usePageMeta } from "@/lib/usePageMeta";
@@ -39,57 +41,92 @@ const About = () => {
 
   return (
     <>
-      <section>
-        <Container className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-6 animate-rise-in">
-            <SectionHeading as="h1" eyebrow="About Net-Tech" title="Meet your local IT expert." />
-            <p className="mt-8 max-w-prose text-lg leading-relaxed text-ink-soft">
-              Net-Tech was founded on a simple idea: small businesses in New Albany deserve the same quality of IT
-              support as the big guys, with a personal touch.
+      <PageHero
+        eyebrow="About Net-Tech"
+        title={
+          <>
+            Meet your <span className="text-brand-bright">local IT expert.</span>
+          </>
+        }
+        lead="Net-Tech was founded on a simple idea: small businesses in New Albany deserve the same quality of IT support as the big guys, with a personal touch."
+        aside={
+          <div className="rounded-xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm">
+            <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-brand-bright">
+              <MapPin className="h-3.5 w-3.5" />
+              Find us
+            </p>
+            <a
+              href={site.address.mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 block text-lg font-medium leading-relaxed text-white transition-colors hover:text-brand-bright"
+            >
+              {site.address.street}
+              <br />
+              {site.address.city}, {site.address.state} {site.address.zip}
+            </a>
+            <p className="mt-5 border-t border-white/10 pt-5 text-[15px] leading-relaxed text-white/55">
+              Fifteen years on Main Street, serving {site.serviceArea}.
+            </p>
+          </div>
+        }
+      />
+
+      {/* Story */}
+      <section className="border-b border-line bg-surface">
+        <Container className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:gap-16 lg:py-24">
+          <Reveal className="lg:col-span-6">
+            <SectionHeading eyebrow="Rooted in the community" title="Right on Main Street." />
+            <p className="mt-6 max-w-prose text-[17px] leading-relaxed text-ink-soft">
+              Located on Main Street in New Albany, we are part of the fabric of this community. We understand the
+              challenges local businesses face because we face them too.
             </p>
             <p className="mt-5 max-w-prose text-[15px] leading-relaxed text-ink-soft sm:text-base">
               For more than 15 years we have helped local businesses stay connected, secure and running smoothly. We
               are not a faceless corporation. We are your neighbors, and we take pride in building lasting
               relationships with every client we serve.
             </p>
-          </div>
-          <figure className="lg:col-span-6 animate-fade-in [animation-delay:150ms]">
-            <div className="overflow-hidden rounded-lg bg-line">
-              <img
-                src={officeImage}
-                srcSet={`${officeImageSmall} 800w, ${officeImage} 1600w`}
-                sizes="(min-width: 1024px) 560px, 100vw"
-                alt="A Net-Tech technician greeting a client in a brick-walled office"
-                width={1600}
-                height={893}
-                className="aspect-[4/3] w-full object-cover"
-                loading="eager"
-                {...{ fetchpriority: "high" }}
-                decoding="async"
-              />
-            </div>
-          </figure>
-        </Container>
-      </section>
-
-      <section className="border-t border-line bg-surface">
-        <Container className="grid gap-12 py-20 sm:py-28 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-6">
-            <SectionHeading eyebrow="Rooted in the community" title="Right on Main Street." />
-            <p className="mt-6 max-w-prose text-lg leading-relaxed text-ink-soft">
-              Located on Main Street in New Albany, we are part of the fabric of this community. We understand the
-              challenges local businesses face because we face them too.
-            </p>
             <p className="mt-5 max-w-prose text-[15px] leading-relaxed text-ink-soft sm:text-base">
               When you call Net-Tech you will talk to a real person who knows your name, understands your setup and
               genuinely cares about keeping your business running. That is the Net-Tech difference.
             </p>
           </Reveal>
-          <Reveal delay={80} className="lg:col-span-6">
-            <dl className="divide-y divide-line border-y border-line">
+
+          <Reveal as="figure" delay={80} className="lg:col-span-6">
+            <div className="overflow-hidden rounded-xl border border-line shadow-md">
+              <img
+                src={officeImage}
+                srcSet={`${officeImageSmall} 800w, ${officeImage} 1600w`}
+                sizes="(min-width: 1024px) 520px, 100vw"
+                alt="A Net-Tech technician greeting a client in a brick-walled office"
+                width={1600}
+                height={893}
+                className="aspect-[4/3] w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Details */}
+      <section className="border-b border-line">
+        <Container className="grid gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:gap-16 lg:py-24">
+          <Reveal className="lg:col-span-5">
+            <SectionHeading eyebrow="The details" title="Everything in one place." />
+            <p className="mt-6 max-w-prose text-[15px] leading-relaxed text-ink-soft">
+              Locally owned, locally staffed and reachable by a real phone number during business hours.
+            </p>
+          </Reveal>
+
+          <Reveal delay={80} className="lg:col-span-7">
+            <dl className="card divide-y divide-line overflow-hidden">
               {details.map((d) => (
-                <div key={d.label} className="grid gap-1 py-4 sm:grid-cols-12 sm:gap-6">
-                  <dt className="eyebrow before:hidden sm:col-span-4">{d.label}</dt>
+                <div key={d.label} className="grid gap-1 p-6 sm:grid-cols-12 sm:gap-6">
+                  <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft sm:col-span-4 sm:pt-1">
+                    {d.label}
+                  </dt>
                   <dd className="text-[15px] text-ink sm:col-span-8">
                     {d.href ? (
                       <a href={d.href} className="link">
@@ -106,17 +143,26 @@ const About = () => {
         </Container>
       </section>
 
-      <section className="border-t border-line">
-        <Container className="py-20 sm:py-28">
+      {/* Promise */}
+      <section className="bg-surface">
+        <Container className="py-16 sm:py-20 lg:py-24">
           <Reveal>
-            <SectionHeading eyebrow="Our promise" title="Three things you can count on." />
+            <SectionHeading
+              eyebrow="Our promise"
+              title="Three things you can count on."
+              lead="The same commitments on every job, whether it is a single laptop or a five-site network."
+              split
+            />
           </Reveal>
-          <ol className="mt-14 grid gap-10 border-t border-line pt-10 md:grid-cols-3">
+
+          <ol className="mt-14 grid gap-5 md:grid-cols-3">
             {promises.map((p, i) => (
-              <Reveal key={p.title} as="li" delay={i * 70}>
-                <span className="tabular text-sm font-medium text-brand-deep">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-3 text-xl font-semibold text-ink">{p.title}</h3>
-                <p className="mt-3 max-w-prose text-[15px] leading-relaxed text-ink-soft">{p.body}</p>
+              <Reveal key={p.title} as="li" delay={i * 80} className="card p-7">
+                <span className="tabular font-mono text-[11px] uppercase tracking-[0.18em] text-brand-deep">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="display-sm mt-4 text-xl text-ink">{p.title}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{p.body}</p>
               </Reveal>
             ))}
           </ol>

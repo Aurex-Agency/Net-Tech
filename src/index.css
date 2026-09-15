@@ -4,47 +4,68 @@
 
 /*
   Net-Tech design tokens.
-  Warm paper background, deep ink text, a single brand blue pulled from the
-  logo, and one warm accent used sparingly. All colours are HSL triplets so
-  Tailwind can apply opacity modifiers.
+
+  Cool, technical and high-contrast: a near-white slate page, a deep navy used
+  for anchor sections, and the cyan-to-blue brand pulled straight from the
+  logo mark. Type is a single Inter family for everything readable, with
+  JetBrains Mono reserved for labels, counters and data — the technical signal.
+  All colours are HSL triplets so Tailwind can apply opacity modifiers.
 */
 @layer base {
   :root {
-    --paper: 40 23% 97%;
+    /* Surfaces */
+    --base: 210 40% 98%;
     --surface: 0 0% 100%;
-    --ink: 210 29% 12%;
-    --ink-soft: 212 11% 42%;
-    --line: 40 12% 87%;
-    --line-strong: 40 9% 76%;
-    --brand: 198 88% 40%;
-    --brand-deep: 200 84% 30%;
-    --brand-soft: 198 64% 94%;
-    --amber: 26 63% 46%;
-    --danger: 0 72% 46%;
+    --surface-sunk: 213 33% 96%;
 
-    /* Aliases for the retained form primitives. */
-    --background: var(--paper);
+    /* Dark anchor sections */
+    --navy: 214 56% 9%;
+    --navy-soft: 214 40% 14%;
+    --navy-line: 210 30% 100%;
+
+    /* Text */
+    --ink: 215 52% 10%;
+    --ink-body: 215 22% 28%;
+    --ink-soft: 215 15% 45%;
+
+    /* Hairlines */
+    --line: 214 28% 91%;
+    --line-strong: 214 20% 82%;
+
+    /* Brand, sampled from the logo gradient */
+    --brand: 197 90% 45%;
+    --brand-bright: 193 92% 56%;
+    --brand-deep: 202 89% 32%;
+    --brand-ink: 205 84% 22%;
+    --brand-tint: 199 82% 95%;
+
+    --signal: 152 58% 38%;
+    --danger: 0 72% 46%;
+    --shadow: 215 45% 18%;
+
+    /* Aliases for the shadcn form primitives. */
+    --background: var(--base);
     --foreground: var(--ink);
     --popover: var(--surface);
     --popover-foreground: var(--ink);
     --primary: var(--brand-deep);
     --primary-foreground: 0 0% 100%;
-    --muted: 40 15% 93%;
+    --muted: var(--surface-sunk);
     --muted-foreground: var(--ink-soft);
-    --accent: var(--brand-soft);
-    --accent-foreground: var(--ink);
+    --accent: var(--brand-tint);
+    --accent-foreground: var(--brand-ink);
     --destructive: var(--danger);
     --destructive-foreground: 0 0% 100%;
     --border: var(--line);
     --input: var(--line-strong);
     --ring: var(--brand);
-    --radius: 0.375rem;
+    --radius: 0.5rem;
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 6rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -54,17 +75,19 @@
   }
 
   body {
-    @apply bg-paper text-ink font-sans antialiased;
-    font-feature-settings: "ss01", "cv11", "calt";
+    @apply bg-base font-sans text-ink-body antialiased;
+    font-feature-settings: "cv11", "ss01", "calt";
   }
 
   ::selection {
-    background: hsl(var(--brand) / 0.18);
+    background: hsl(var(--brand) / 0.22);
   }
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
+    @apply text-ink;
     text-wrap: balance;
   }
 
@@ -75,7 +98,7 @@
   :focus-visible {
     outline: 2px solid hsl(var(--brand));
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 3px;
   }
 
   img {
@@ -85,39 +108,67 @@
 }
 
 @layer components {
+  /*
+    Headline treatment. Inter at a heavy optical weight with negative tracking
+    reads as engineered rather than editorial — the point of the redesign.
+  */
   .display {
-    font-family: theme(fontFamily.display);
-    font-weight: 400;
-    letter-spacing: -0.012em;
-    line-height: 1.04;
+    font-weight: 680;
+    letter-spacing: -0.033em;
+    line-height: 1.02;
   }
 
+  .display-sm {
+    font-weight: 660;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+  }
+
+  /* Mono label. The small technical voice used above section headings. */
   .eyebrow {
-    @apply text-xs font-medium uppercase tracking-[0.16em] text-ink-soft;
+    @apply inline-flex items-center gap-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-brand-deep;
   }
 
   .eyebrow::before {
     content: "";
-    @apply mr-3 inline-block h-px w-6 -translate-y-[3px] bg-brand align-middle;
+    @apply h-1.5 w-1.5 shrink-0 rounded-[1px] bg-brand;
+  }
+
+  .eyebrow-inverse {
+    @apply text-brand-bright;
+  }
+
+  .eyebrow-inverse::before {
+    @apply bg-brand-bright;
+  }
+
+  /* Card surface with a restrained hover lift. */
+  .card {
+    @apply relative rounded-xl border border-line bg-surface shadow-sm transition-[transform,box-shadow,border-color] duration-300 ease-out;
+  }
+
+  .card-interactive:hover {
+    @apply -translate-y-0.5 border-line-strong shadow-lg;
   }
 
   /* Text link with an underline that grows on hover. */
   .link {
-    @apply relative inline-flex items-center gap-1 font-medium text-ink;
+    @apply relative inline-flex items-center gap-1.5 font-medium text-ink;
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 1px;
     background-repeat: no-repeat;
     background-position: 0 100%;
-    transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.2s;
+    transition: background-size 0.3s cubic-bezier(0.22, 0.72, 0.24, 1), color 0.2s;
     padding-bottom: 2px;
   }
 
   .link:hover {
     background-size: 100% 1px;
+    @apply text-brand-deep;
   }
 
   .link > svg {
-    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.22, 0.72, 0.24, 1);
   }
 
   .link:hover > svg {
@@ -126,11 +177,11 @@
 
   /* Long-form legal pages. */
   .legal-prose {
-    @apply text-[15px] leading-7 text-ink-soft;
+    @apply text-[15px] leading-7 text-ink-body;
   }
 
   .legal-prose h2 {
-    @apply mt-10 text-xl font-semibold text-ink;
+    @apply mt-10 text-xl font-semibold tracking-[-0.015em] text-ink;
   }
 
   .legal-prose p + p {
@@ -138,7 +189,7 @@
   }
 
   .legal-prose ul {
-    @apply my-4 list-disc space-y-1.5 pl-6;
+    @apply my-4 list-disc space-y-1.5 pl-6 marker:text-brand;
   }
 
   .legal-prose strong {
@@ -146,17 +197,60 @@
   }
 
   .legal-prose a {
-    @apply text-brand-deep underline underline-offset-4 hover:text-brand;
+    @apply font-medium text-brand-deep underline underline-offset-4 hover:text-brand;
   }
 }
 
 @layer utilities {
+  /*
+    Blueprint grid. Echoes patch-panel and rack geometry; sits behind dark
+    sections at low opacity so it reads as texture, never as content.
+  */
+  .grid-lines {
+    background-image: linear-gradient(hsl(var(--navy-line) / 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--navy-line) / 0.055) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .grid-lines-light {
+    background-image: linear-gradient(hsl(var(--ink) / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--ink) / 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* The pixel-dissolve motif from the logo mark, as a background texture. */
+  .dot-grid {
+    background-image: radial-gradient(hsl(var(--navy-line) / 0.16) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Fades a texture out toward the edges so it never hits a hard boundary. */
+  .mask-fade {
+    -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 78%);
+    mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 78%);
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+
+  /* Cyan bloom behind hero content on dark sections. */
+  .brand-glow {
+    background: radial-gradient(
+      50% 55% at 50% 40%,
+      hsl(var(--brand) / 0.28) 0%,
+      hsl(var(--brand) / 0.09) 45%,
+      transparent 72%
+    );
+  }
+
   /* Scroll-triggered reveal. The Reveal component toggles .is-visible. */
   .reveal {
     opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
-      transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transform: translateY(16px);
+    transition: opacity 0.7s cubic-bezier(0.22, 0.72, 0.24, 1),
+      transform 0.7s cubic-bezier(0.22, 0.72, 0.24, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
@@ -174,13 +268,24 @@
       transition: none !important;
       animation: none !important;
     }
-  }
 
-  .hairline-t {
-    @apply border-t border-line;
+    .animate-pulse-dot,
+    .animate-sweep {
+      animation: none !important;
+    }
   }
 
   .tabular {
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Horizontal chip rails scroll on mobile without showing a scrollbar. */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -1,4 +1,5 @@
 import { Container } from "@/components/site/Container";
+import { PageHero } from "@/components/site/PageHero";
 import { usePageMeta } from "@/lib/usePageMeta";
 import { Link } from "react-router-dom";
 
@@ -6,19 +7,12 @@ const TermsOfService = () => {
   usePageMeta({ title: "Terms of Service" });
 
   return (
-    <section>
-      <Container className="max-w-3xl py-16 sm:py-24">
-        <div className="animate-rise-in">
-          <div>
-            <h1 className="display text-5xl sm:text-6xl">
-              Terms of Service
-            </h1>
-            <p className="mt-4 text-sm text-ink-soft">
-              Last Updated: March 25, 2026
-            </p>
-          </div>
+    <>
+      <PageHero eyebrow="Legal" title="Terms of Service" lead="Last updated March 25, 2026" compact />
 
-          <div className="legal-prose mt-10">
+      <section>
+        <Container className="max-w-3xl py-16 sm:py-20">
+          <div className="legal-prose">
             <p>
               Welcome to Net-Tech. By accessing or using our website and
               services, you agree to be bound by these Terms of Service
@@ -220,9 +214,9 @@ const TermsOfService = () => {
               </li>
             </ul>
           </div>
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </>
   );
 };
 

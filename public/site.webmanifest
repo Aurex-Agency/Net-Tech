@@ -4,8 +4,8 @@
   "description": "Managed IT, networking and security for New Albany, Mississippi businesses.",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#f8f6f2",
-  "theme_color": "#f8f6f2",
+  "background_color": "#f7f9fc",
+  "theme_color": "#0a131f",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }

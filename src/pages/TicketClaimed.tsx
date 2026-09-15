@@ -6,13 +6,19 @@ const TicketClaimed = () => {
   usePageMeta({ title: "Ticket claimed" });
 
   return (
-    <section>
-      <Container className="flex min-h-[60vh] flex-col items-center justify-center py-24 text-center">
-        <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-brand-deep">
-          <Check className="h-6 w-6" strokeWidth={2.5} />
+    <section className="relative overflow-hidden bg-navy">
+      <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full brand-glow blur-3xl"
+      />
+
+      <Container className="relative flex min-h-[70vh] flex-col items-center justify-center py-20 text-center">
+        <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand/15 text-brand-bright ring-1 ring-brand/30">
+          <Check className="h-7 w-7" strokeWidth={2.5} />
         </span>
-        <h1 className="display mt-6 text-4xl sm:text-5xl">You have claimed this ticket.</h1>
-        <p className="mt-4 max-w-prose text-ink-soft">You can close this tab.</p>
+        <h1 className="display mt-7 text-[2.1rem] text-white sm:text-4xl">You have claimed this ticket.</h1>
+        <p className="mt-4 max-w-prose text-[15px] leading-relaxed text-white/60">You can close this tab.</p>
       </Container>
     </section>
   );

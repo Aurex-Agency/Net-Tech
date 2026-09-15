@@ -9,7 +9,7 @@ const Toaster = ({ ...props }: ToasterProps) => (
       classNames: {
         toast: "group toast !rounded-md !border !border-line !bg-surface !text-ink !shadow-lg !shadow-ink/10 !font-sans",
         description: "!text-ink-soft",
-        actionButton: "!bg-ink !text-paper",
+        actionButton: "!bg-ink !text-white",
       },
     }}
     {...props}

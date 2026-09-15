@@ -12,28 +12,38 @@ interface CTABandProps {
 
 /** Dark closing panel used at the bottom of most pages. */
 export function CTABand({
-  title = "Ready to stop worrying about your IT?",
+  title = (
+    <>
+      Ready to stop worrying <span className="text-brand-bright">about your IT?</span>
+    </>
+  ),
   lead = "Book a free, no-pressure consultation. We will look at what you have, tell you what we would change and give you a straightforward quote.",
 }: CTABandProps) {
   return (
-    <section className="bg-ink text-paper">
-      <Container className="py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-navy">
+      <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines mask-fade-b opacity-70" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-40 -top-32 h-[28rem] w-[28rem] rounded-full brand-glow blur-2xl"
+      />
+
+      <Container className="relative py-20 sm:py-24 lg:py-28">
         <Reveal className="grid gap-10 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-8">
-            <h2 className="display text-4xl sm:text-5xl lg:text-6xl">{title}</h2>
-            <p className="mt-6 max-w-prose text-lg leading-relaxed text-paper/70">{lead}</p>
+          <div className="lg:col-span-7">
+            <h2 className="display text-[2.1rem] text-white sm:text-4xl lg:text-[3rem]">{title}</h2>
+            <p className="mt-6 max-w-prose text-[17px] leading-relaxed text-white/65">{lead}</p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:justify-end">
+          <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
             <Button asChild variant="inverse" size="lg">
               <Link to="/contact">
                 Book a consultation
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
               </Link>
             </Button>
-            <Button asChild variant="ghost" size="lg" className="text-paper hover:bg-paper/10">
+            <Button asChild variant="outlineInverse" size="lg">
               <a href={site.phone.href}>
                 <Phone />
-                {site.phone.display}
+                <span className="tabular">{site.phone.display}</span>
               </a>
             </Button>
           </div>
