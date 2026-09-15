@@ -1,8 +1,11 @@
-import { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import ScrollToTop from "../ScrollToTop";
+import { Toaster } from "@/components/ui/sonner";
 
-const Layout = ({ children }: { children: ReactNode }) => (
+/** App shell wrapping every route. */
+const Layout = () => (
   <div className="flex min-h-screen flex-col bg-base">
     <a
       href="#main"
@@ -10,11 +13,13 @@ const Layout = ({ children }: { children: ReactNode }) => (
     >
       Skip to content
     </a>
+    <ScrollToTop />
     <Header />
     <main id="main" className="flex-1">
-      {children}
+      <Outlet />
     </main>
     <Footer />
+    <Toaster />
   </div>
 );
 

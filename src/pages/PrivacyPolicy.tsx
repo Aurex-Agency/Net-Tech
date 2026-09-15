@@ -1,13 +1,29 @@
 import { Container } from "@/components/site/Container";
 import { PageHero } from "@/components/site/PageHero";
-import { usePageMeta } from "@/lib/usePageMeta";
+import { Seo } from "@/components/site/Seo";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 
 const PrivacyPolicy = () => {
-  usePageMeta({ title: "Privacy Policy" });
+
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: "Privacy Policy", path: "/privacy-policy" },
+  ];
 
   return (
     <>
-      <PageHero eyebrow="Legal" title="Privacy Policy" lead="Last updated March 25, 2026" compact />
+      <Seo
+        title="Privacy Policy"
+        description="How Net-Tech collects, uses and protects information submitted through nettech.ms."
+        path="/privacy-policy"
+        schema={graph([
+          webPageNode({ path: "/privacy-policy", name: "Privacy Policy", description: "How Net-Tech collects, uses and protects information submitted through nettech.ms." }),
+          breadcrumbNode("/privacy-policy", crumbs),
+        ])}
+      />
+      <PageHero
+        above={<Breadcrumbs items={crumbs} inverse className="mb-7" />} eyebrow="Legal" title="Privacy Policy" lead="Last updated March 25, 2026" compact />
 
       <section>
         <Container className="max-w-3xl py-16 sm:py-20">
@@ -222,4 +238,6 @@ const PrivacyPolicy = () => {
   );
 };
 
+
+export const Component = PrivacyPolicy;
 export default PrivacyPolicy;

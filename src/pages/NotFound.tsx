@@ -3,12 +3,18 @@ import { ArrowLeft, LifeBuoy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/site/Container";
 import { site } from "@/lib/site";
-import { usePageMeta } from "@/lib/usePageMeta";
+import { Seo } from "@/components/site/Seo";
 
 const NotFound = () => {
-  usePageMeta({ title: "Page not found" });
 
   return (
+    <>
+      <Seo
+        title="Page not found"
+        description="That page is not here. Head back to the Net-Tech home page or call (662) 539-7787."
+        path="/404"
+        noindex
+      />
     <section className="relative overflow-hidden bg-navy">
       <div aria-hidden className="pointer-events-none absolute inset-0 dot-grid mask-fade opacity-50" />
       <div
@@ -44,7 +50,10 @@ const NotFound = () => {
         </div>
       </Container>
     </section>
+    </>
   );
 };
 
+
+export const Component = NotFound;
 export default NotFound;

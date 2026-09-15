@@ -12,7 +12,7 @@ import { Container } from "@/components/site/Container";
 import { PageHero } from "@/components/site/PageHero";
 import { postWebhook } from "@/lib/forms";
 import { site } from "@/lib/site";
-import { usePageMeta } from "@/lib/usePageMeta";
+import { Seo } from "@/components/site/Seo";
 
 const issueTypes = ["Computer", "Phone", "Copier", "Internet", "Other"] as const;
 
@@ -28,10 +28,6 @@ const supportSchema = z.object({
 type SupportFormValues = z.infer<typeof supportSchema>;
 
 const Support = () => {
-  usePageMeta({
-    title: "Customer Support",
-    description: "Existing Net-Tech clients can submit a support ticket or download the remote access client here.",
-  });
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -61,6 +57,12 @@ const Support = () => {
 
   return (
     <>
+      <Seo
+        title="Customer Support"
+        description="Existing Net-Tech clients can submit a support ticket or download the remote access client here."
+        path="/support-form"
+        noindex
+      />
       <PageHero
         eyebrow="Existing clients"
         title={
@@ -301,4 +303,6 @@ const Support = () => {
   );
 };
 
+
+export const Component = Support;
 export default Support;

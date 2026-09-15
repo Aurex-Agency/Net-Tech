@@ -9,18 +9,15 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Container } from "@/components/site/Container";
 import { PageHero } from "@/components/site/PageHero";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { Seo } from "@/components/site/Seo";
+import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 import { mailtoHref, postWebhook } from "@/lib/forms";
 import { site } from "@/lib/site";
-import { usePageMeta } from "@/lib/usePageMeta";
 
 const emptyForm = { name: "", email: "", phone: "", message: "" };
 
 const Contact = () => {
-  usePageMeta({
-    title: "Contact",
-    description: `Call ${site.phone.display}, email ${site.email.display} or send a message to book a free IT consultation with Net-Tech in New Albany, MS.`,
-  });
-
   const [form, setForm] = useState(emptyForm);
   const [smsConsent, setSmsConsent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
@@ -67,9 +64,25 @@ const Contact = () => {
     }
   };
 
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ];
+  const description = `Call ${site.phone.display}, email ${site.email.display} or send a message to book a free IT consultation with Net-Tech in New Albany, MS.`;
+
   return (
     <>
+      <Seo
+        title="Contact Net-Tech | New Albany, MS"
+        description={description}
+        path="/contact"
+        schema={graph([
+          webPageNode({ type: "ContactPage", path: "/contact", name: "Contact Net-Tech", description }),
+          breadcrumbNode("/contact", crumbs),
+        ])}
+      />
       <PageHero
+        above={<Breadcrumbs items={crumbs} inverse className="mb-7" />}
         eyebrow="Contact"
         title={
           <>
@@ -253,4 +266,6 @@ const Contact = () => {
   );
 };
 
+
+export const Component = Contact;
 export default Contact;

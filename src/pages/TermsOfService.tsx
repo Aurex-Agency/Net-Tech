@@ -1,14 +1,30 @@
 import { Container } from "@/components/site/Container";
 import { PageHero } from "@/components/site/PageHero";
-import { usePageMeta } from "@/lib/usePageMeta";
+import { Seo } from "@/components/site/Seo";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 import { Link } from "react-router-dom";
 
 const TermsOfService = () => {
-  usePageMeta({ title: "Terms of Service" });
+
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: "Terms of Service", path: "/terms-of-service" },
+  ];
 
   return (
     <>
-      <PageHero eyebrow="Legal" title="Terms of Service" lead="Last updated March 25, 2026" compact />
+      <Seo
+        title="Terms of Service"
+        description="The terms that apply to using the Net-Tech website and services."
+        path="/terms-of-service"
+        schema={graph([
+          webPageNode({ path: "/terms-of-service", name: "Terms of Service", description: "The terms that apply to using the Net-Tech website and services." }),
+          breadcrumbNode("/terms-of-service", crumbs),
+        ])}
+      />
+      <PageHero
+        above={<Breadcrumbs items={crumbs} inverse className="mb-7" />} eyebrow="Legal" title="Terms of Service" lead="Last updated March 25, 2026" compact />
 
       <section>
         <Container className="max-w-3xl py-16 sm:py-20">
@@ -220,4 +236,6 @@ const TermsOfService = () => {
   );
 };
 
+
+export const Component = TermsOfService;
 export default TermsOfService;

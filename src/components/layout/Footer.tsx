@@ -3,6 +3,7 @@ import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/site/Container";
 import { Logo } from "./Logo";
 import { services } from "@/data/services";
+import { locations } from "@/data/locations";
 import { navigation, site } from "@/lib/site";
 
 const Footer = () => {
@@ -55,9 +56,9 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7 lg:col-start-6">
+          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:col-start-5 lg:grid-cols-4">
             <div>
-              <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35">Company</h2>
+              <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">Company</h2>
               <ul className="mt-5 space-y-3 text-[15px]">
                 <li>
                   <Link to="/" className="text-white/70 transition-colors hover:text-brand-bright">
@@ -75,15 +76,15 @@ const Footer = () => {
             </div>
 
             <div>
-              <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35">Services</h2>
+              <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">Services</h2>
               <ul className="mt-5 space-y-3 text-[15px]">
                 {services.map((s) => (
                   <li key={s.slug}>
                     <Link
-                      to={`/services#${s.slug}`}
+                      to={`/services/${s.slug}`}
                       className="text-white/70 transition-colors hover:text-brand-bright"
                     >
-                      {s.title}
+                      {s.shortTitle}
                     </Link>
                   </li>
                 ))}
@@ -91,7 +92,23 @@ const Footer = () => {
             </div>
 
             <div>
-              <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35">Support</h2>
+              <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">Service area</h2>
+              <ul className="mt-5 space-y-3 text-[15px]">
+                {locations.map((l) => (
+                  <li key={l.slug}>
+                    <Link
+                      to={`/locations/${l.slug}`}
+                      className="text-white/70 transition-colors hover:text-brand-bright"
+                    >
+                      {l.city}, {site.address.state}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">Support</h2>
               <ul className="mt-5 space-y-3 text-[15px]">
                 <li>
                   <Link to="/support-form" className="text-white/70 transition-colors hover:text-brand-bright">
@@ -114,12 +131,22 @@ const Footer = () => {
                     Book a consultation
                   </Link>
                 </li>
+                <li>
+                  <Link to="/faq" className="text-white/70 transition-colors hover:text-brand-bright">
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/pricing" className="text-white/70 transition-colors hover:text-brand-bright">
+                    Pricing
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-white/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} Net-Tech. All rights reserved.</p>
           <div className="flex gap-6">
             <Link to="/privacy-policy" className="transition-colors hover:text-white">

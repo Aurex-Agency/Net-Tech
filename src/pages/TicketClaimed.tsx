@@ -1,11 +1,17 @@
 import { Check } from "lucide-react";
 import { Container } from "@/components/site/Container";
-import { usePageMeta } from "@/lib/usePageMeta";
+import { Seo } from "@/components/site/Seo";
 
 const TicketClaimed = () => {
-  usePageMeta({ title: "Ticket claimed" });
 
   return (
+    <>
+      <Seo
+        title="Ticket claimed"
+        description="This support ticket has been claimed by a Net-Tech technician."
+        path="/ticketclaimed"
+        noindex
+      />
     <section className="relative overflow-hidden bg-navy">
       <div
         aria-hidden
@@ -20,7 +26,10 @@ const TicketClaimed = () => {
         <p className="mt-4 max-w-prose text-[15px] leading-relaxed text-white/60">You can close this tab.</p>
       </Container>
     </section>
+    </>
   );
 };
 
+
+export const Component = TicketClaimed;
 export default TicketClaimed;

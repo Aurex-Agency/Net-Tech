@@ -142,8 +142,10 @@ const Header = () => {
       <div
         id="mobile-menu"
         className={cn(
-          "fixed inset-x-0 bottom-0 top-[70px] z-40 overflow-y-auto bg-navy transition-opacity duration-200 lg:hidden",
-          open ? "opacity-100" : "pointer-events-none opacity-0",
+          "fixed inset-x-0 bottom-0 top-[70px] z-40 overflow-y-auto bg-navy transition-[opacity,visibility] duration-200 lg:hidden",
+          // `invisible` (not just opacity-0) takes the links out of the tab order,
+          // so the aria-hidden panel holds no focusable content when closed.
+          open ? "visible opacity-100" : "invisible pointer-events-none opacity-0",
         )}
         aria-hidden={!open}
       >
@@ -164,7 +166,7 @@ const Header = () => {
                 }
               >
                 {item.label}
-                <span aria-hidden className="font-mono text-xs tracking-[0.18em] text-white/25">
+                <span aria-hidden className="font-mono text-xs tracking-[0.18em] text-white/50">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </NavLink>
@@ -179,7 +181,7 @@ const Header = () => {
               <Phone className="h-5 w-5 text-brand-bright" />
               <span className="tabular">{site.phone.display}</span>
             </a>
-            <p className="font-mono text-xs leading-relaxed tracking-[0.06em] text-white/45">
+            <p className="font-mono text-xs leading-relaxed tracking-[0.06em] text-white/55">
               {site.address.street}
               <br />
               {site.address.city}, {site.address.state} {site.address.zip}

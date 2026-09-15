@@ -3,11 +3,18 @@ import { Container } from "@/components/site/Container";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { PageHero } from "@/components/site/PageHero";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { Seo } from "@/components/site/Seo";
+import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 import { CTABand } from "@/components/site/CTABand";
 import { site } from "@/lib/site";
-import { usePageMeta } from "@/lib/usePageMeta";
-import officeImage from "@/assets/office-handshake.jpg";
-import officeImageSmall from "@/assets/office-handshake-800.jpg";
+import { Picture } from "@/components/site/Picture";
+import officeJpg from "@/assets/office-handshake.jpg";
+import officeJpgSmall from "@/assets/office-handshake-800.jpg";
+import officeWebp from "@/assets/office-handshake.webp";
+import officeWebpSmall from "@/assets/office-handshake-800.webp";
+import officeWebpTiny from "@/assets/office-handshake-400.webp";
+import officeJpgTiny from "@/assets/office-handshake-400.jpg";
 
 const promises = [
   {
@@ -33,15 +40,26 @@ const details = [
 ];
 
 const About = () => {
-  usePageMeta({
-    title: "About",
-    description:
-      "Net-Tech is a locally owned IT company on Main Street in New Albany, Mississippi, serving small businesses for more than 15 years.",
-  });
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+  ];
+  const description =
+    "Net-Tech is a locally owned IT company on Main Street in New Albany, Mississippi, serving small businesses for more than 15 years.";
 
   return (
     <>
+      <Seo
+        title="About Net-Tech | Local IT Company in New Albany, MS"
+        description={description}
+        path="/about"
+        schema={graph([
+          webPageNode({ type: "AboutPage", path: "/about", name: "About Net-Tech", description }),
+          breadcrumbNode("/about", crumbs),
+        ])}
+      />
       <PageHero
+        above={<Breadcrumbs items={crumbs} inverse className="mb-7" />}
         eyebrow="About Net-Tech"
         title={
           <>
@@ -94,16 +112,18 @@ const About = () => {
 
           <Reveal as="figure" delay={80} className="lg:col-span-6">
             <div className="overflow-hidden rounded-xl border border-line shadow-md">
-              <img
-                src={officeImage}
-                srcSet={`${officeImageSmall} 800w, ${officeImage} 1600w`}
+              <Picture
+                webp={officeWebp}
+                webpSmall={officeWebpSmall}
+                webpTiny={officeWebpTiny}
+                jpg={officeJpg}
+                jpgSmall={officeJpgSmall}
+                jpgTiny={officeJpgTiny}
                 sizes="(min-width: 1024px) 520px, 100vw"
-                alt="A Net-Tech technician greeting a client in a brick-walled office"
+                alt="A Net-Tech technician greeting a client in a brick-walled New Albany office"
                 width={1600}
                 height={893}
-                className="aspect-[4/3] w-full object-cover"
-                loading="lazy"
-                decoding="async"
+                className="aspect-[4/3]"
               />
             </div>
           </Reveal>
@@ -174,4 +194,6 @@ const About = () => {
   );
 };
 
+
+export const Component = About;
 export default About;

@@ -3,66 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Net-Tech | Managed IT, Networking &amp; Security in New Albany, MS</title>
-    <meta
-      name="description"
-      content="Net-Tech provides managed IT, Ubiquiti networking, security cameras and Microsoft 365 support for businesses in New Albany and across North Mississippi."
-    />
     <meta name="author" content="Net-Tech" />
     <meta name="theme-color" content="#0a131f" />
-    <link rel="canonical" href="https://nettech.ms/" />
+
+    <!--
+      Title, description, canonical, Open Graph and JSON-LD are emitted per
+      route by src/components/site/Seo.tsx at build time. Nothing page-specific
+      belongs in this shell — a static canonical here is what previously told
+      Google every URL was the home page.
+    -->
 
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Net-Tech" />
-    <meta property="og:url" content="https://nettech.ms/" />
-    <meta property="og:title" content="Net-Tech | Managed IT, Networking &amp; Security in New Albany, MS" />
-    <meta
-      property="og:description"
-      content="Managed IT, Ubiquiti networking, security cameras and Microsoft 365 support for North Mississippi businesses."
-    />
-    <meta property="og:image" content="https://nettech.ms/og.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Net-Tech | Managed IT, Networking &amp; Security in New Albany, MS" />
-    <meta
-      name="twitter:description"
-      content="Managed IT, Ubiquiti networking, security cameras and Microsoft 365 support for North Mississippi businesses."
-    />
-    <meta name="twitter:image" content="https://nettech.ms/og.jpg" />
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Net-Tech",
-        "url": "https://nettech.ms",
-        "image": "https://nettech.ms/og.jpg",
-        "telephone": "+1-662-539-7787",
-        "email": "support@nettech.ms",
-        "description": "Managed IT, Ubiquiti networking, security cameras and cloud support for businesses in New Albany and North Mississippi.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "112 W Main St",
-          "addressLocality": "New Albany",
-          "addressRegion": "MS",
-          "postalCode": "38652",
-          "addressCountry": "US"
-        },
-        "areaServed": "North Mississippi"
-      }
-    </script>
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <div id="root"></div>

@@ -5,8 +5,12 @@ interface PageHeroProps {
   eyebrow: string;
   title: React.ReactNode;
   lead?: React.ReactNode;
+  /** Sits above the eyebrow — breadcrumbs, usually. */
+  above?: React.ReactNode;
   /** Optional right-hand column: contact details, stats, a callout. */
   aside?: React.ReactNode;
+  /** Extra content below the lead, inside the text column. */
+  children?: React.ReactNode;
   /** Tightens vertical rhythm for secondary pages (legal, 404). */
   compact?: boolean;
   className?: string;
@@ -16,7 +20,7 @@ interface PageHeroProps {
  * The navy opening band shared by every interior page. Keeping it on all
  * routes is what lets the header render transparently at scroll-top.
  */
-export function PageHero({ eyebrow, title, lead, aside, compact = false, className }: PageHeroProps) {
+export function PageHero({ eyebrow, title, lead, above, aside, children, compact = false, className }: PageHeroProps) {
   return (
     <section className={cn("relative overflow-hidden bg-navy", className)}>
       <div aria-hidden className="pointer-events-none absolute inset-0 dot-grid mask-fade opacity-50" />
@@ -33,6 +37,7 @@ export function PageHero({ eyebrow, title, lead, aside, compact = false, classNa
         )}
       >
         <div className={cn(aside && "lg:col-span-7")}>
+          {above}
           <p className="eyebrow eyebrow-inverse animate-rise-in">{eyebrow}</p>
           <h1
             className={cn(
@@ -47,6 +52,7 @@ export function PageHero({ eyebrow, title, lead, aside, compact = false, classNa
               {lead}
             </p>
           )}
+          {children}
         </div>
 
         {aside && <div className="animate-fade-in [animation-delay:240ms] lg:col-span-5">{aside}</div>}
