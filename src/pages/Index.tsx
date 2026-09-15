@@ -15,6 +15,7 @@ import { Container } from "@/components/site/Container";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { CTABand } from "@/components/site/CTABand";
+import { TestimonialsSection } from "@/components/site/Trust";
 import { Seo } from "@/components/site/Seo";
 import { services } from "@/data/services";
 import { featuredTowns, site, towns } from "@/lib/site";
@@ -344,6 +345,8 @@ const Index = () => (
         </Reveal>
       </Container>
     </section>
+
+    <TestimonialsSection />
 
     {/* ───────────── How it works ───────────── */}
     <section className="border-t border-line bg-surface">

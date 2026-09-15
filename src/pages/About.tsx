@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { Seo } from "@/components/site/Seo";
 import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 import { CTABand } from "@/components/site/CTABand";
+import { CredentialStrip, TeamSection, TestimonialsSection } from "@/components/site/Trust";
 import { site } from "@/lib/site";
 import { Picture } from "@/components/site/Picture";
 import officeJpg from "@/assets/office-handshake.jpg";
@@ -35,6 +36,7 @@ const details = [
   { label: "Location", value: `${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip}` },
   { label: "Phone", value: site.phone.display, href: site.phone.href },
   { label: "Email", value: site.email.display, href: site.email.href },
+  { label: "Hours", value: site.hours.display },
   { label: "Service area", value: site.serviceArea },
   { label: "Specialties", value: "Managed IT, Ubiquiti networking, security cameras, Microsoft 365" },
 ];
@@ -90,6 +92,10 @@ const About = () => {
         }
       />
 
+      <CredentialStrip className="mx-auto w-full max-w-site px-5 pt-10 sm:px-8" />
+
+      <TeamSection />
+
       {/* Story */}
       <section className="border-b border-line bg-surface">
         <Container className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:gap-16 lg:py-24">
@@ -136,7 +142,7 @@ const About = () => {
           <Reveal className="lg:col-span-5">
             <SectionHeading eyebrow="The details" title="Everything in one place." />
             <p className="mt-6 max-w-prose text-[15px] leading-relaxed text-ink-soft">
-              Locally owned, locally staffed and reachable by a real phone number during business hours.
+              Locally owned, locally staffed, and reachable by a real phone number {site.hours.display.toLowerCase()}.
             </p>
           </Reveal>
 
@@ -188,6 +194,8 @@ const About = () => {
           </ol>
         </Container>
       </section>
+
+      <TestimonialsSection />
 
       <CTABand />
     </>

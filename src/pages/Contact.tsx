@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -233,6 +233,18 @@ const Contact = () => {
                     </a>
                   </li>
                 </ul>
+
+                <div className="card flex items-center gap-4 p-5">
+                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-tint text-brand-deep">
+                    <Clock className="h-5 w-5" strokeWidth={1.75} />
+                  </span>
+                  <span>
+                    <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">Hours</span>
+                    <span className="mt-0.5 block text-[15px] font-medium leading-snug text-ink">
+                      {site.hours.display}
+                    </span>
+                  </span>
+                </div>
 
                 <div className="overflow-hidden rounded-xl border border-line bg-surface-sunk shadow-sm">
                   <iframe

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/site/Container";
 import { Logo } from "./Logo";
 import { services } from "@/data/services";
@@ -52,6 +52,10 @@ const Footer = () => {
                     {site.address.city}, {site.address.state} {site.address.zip}
                   </address>
                 </a>
+              </li>
+              <li className="flex items-start gap-3 text-[15px] text-white/75">
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand" strokeWidth={1.75} />
+                <span>{site.hours.display}</span>
               </li>
             </ul>
           </div>

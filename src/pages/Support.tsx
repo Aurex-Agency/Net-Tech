@@ -290,8 +290,9 @@ const Support = () => {
                     What happens next
                   </p>
                   <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-                    Your ticket goes straight to our technicians. Most issues are handled remotely the same business
-                    day; if we need to come out, we will call you to set a time.
+                    Your ticket goes straight to our technicians. We are in {site.hours.display.toLowerCase()}, and most
+                    issues are handled remotely the same business day. If we need to come out, we will call you to set a
+                    time.
                   </p>
                 </div>
               </div>

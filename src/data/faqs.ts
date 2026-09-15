@@ -23,6 +23,10 @@ export const faqGroups: FaqGroup[] = [
         a: "No. You do not need a contract to get an assessment or a quote, and managed plans are built to be worth renewing rather than difficult to leave.",
       },
       {
+        q: "What are your hours?",
+        a: "Monday to Friday, 8am to 5pm. Tickets submitted outside those hours are picked up first thing the next business morning, so if something is stopping you working, call rather than filling in the form.",
+      },
+      {
         q: "How fast do you respond?",
         a: "Most issues are picked up the same business day and handled remotely, often within the hour. Anything that stops your business running should come by phone rather than the ticket form, so it reaches a technician immediately.",
       },

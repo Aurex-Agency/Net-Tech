@@ -37,15 +37,14 @@ export const site = {
     embedSrc:
       "https://www.google.com/maps?q=112+W+Main+St,+New+Albany,+MS+38652&output=embed",
   },
-  /**
-   * Office hours are not published anywhere we can verify, so the site and the
-   * schema both omit them rather than guess. Fill this in and the Contact page
-   * and openingHoursSpecification both start rendering automatically.
-   *
-   * Shape when known, e.g.:
-   *   hours: { days: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "08:00", closes: "17:00" }
-   */
-  hours: null as null | { days: string[]; opens: string; closes: string },
+  /** Office hours. Drives both the visible copy and openingHoursSpecification. */
+  hours: {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:00",
+    closes: "17:00",
+    display: "Monday to Friday, 8am to 5pm",
+    short: "Mon-Fri, 8-5",
+  },
   yearsInBusiness: "15+",
   serviceArea: "New Albany and surrounding North Mississippi",
   remoteSupportHref: "https://sos.splashtop.com/",
