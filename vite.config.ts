@@ -32,10 +32,16 @@ export default defineConfig(({ isSsrBuild }) => ({
     // and unknown paths fall through to a real 404.
     dirStyle: "nested",
     formatting: "none",
-    // Inline critical CSS per route to cut render-blocking work on first paint.
-    beastiesOptions: {
-      preload: "swap",
-      pruneSource: false,
-    },
+    /*
+      Critical CSS inlining is off deliberately.
+
+      The whole stylesheet is about 7.4 kB over the wire. Beasties was inlining
+      roughly 25 kB into every page to avoid that request, emitting a duplicate
+      stylesheet link, and deferring the real CSS to ~830 ms. Until it landed
+      the hero image had no layout constraint, so the browser picked the 1600w
+      candidate on top of the 800w it had already preloaded. Measured cost:
+      about 1.5s of LCP on mobile.
+    */
+    beastiesOptions: false,
   },
 }));

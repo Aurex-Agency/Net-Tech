@@ -50,8 +50,21 @@ const PrivacyPolicy = () => {
                 visited, time spent on pages, and other diagnostic data.
               </li>
               <li>
-                <strong>Cookies & Tracking:</strong> We may use cookies and
-                similar technologies to improve your experience on our site.
+                <strong>Cookies &amp; Analytics:</strong> We use Google
+                Analytics to understand how visitors find and use this site.
+                It sets cookies that record pages viewed, approximate location
+                derived from IP address, device and browser type, and how you
+                arrived here. We use this in aggregate to improve the site. We
+                do not use it to identify individual visitors, and we do not
+                sell or share this data. You can opt out with the{" "}
+                <a
+                  href="https://tools.google.com/dlpage/gaoptout"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Analytics opt-out add-on
+                </a>{" "}
+                or by blocking cookies in your browser.
               </li>
             </ul>
 

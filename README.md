@@ -99,6 +99,16 @@ scripts/
 
 Business details live in `src/lib/site.ts`; page copy lives in `src/data/`. Update those rather than hunting through pages.
 
+## Analytics
+
+Google Analytics 4 (`G-81YTRTKY6S`) lives in `index.html`, not in a component, so it is present in every pre-rendered page without waiting for hydration.
+
+The loader is injected **after the window load event** rather than during it. Measured on the home page: in the critical path it cost 18 Lighthouse points and pushed LCP from 3.7s to 5.7s. Deferred, observed LCP is 2.2s. The `page_view` still fires on every real visit; only sessions abandoned before load completes are missed, and those are bounces either way.
+
+To keep your own visits out of the reports, use GA4's internal traffic filter (Admin, Data streams, Configure tag settings) rather than adding a condition in code.
+
+There is no cookie consent banner. The privacy policy names Google Analytics and links to Google's opt-out. If you need a consent gate, that is a separate piece of work.
+
 ## SEO notes
 
 - **Location pages** exist for New Albany, Tupelo and Oxford only. Each carries content specific to that market. A fourth town belongs in running copy and `areaServed` unless it can clear the same bar. A city name swapped into a template is a doorway page.
