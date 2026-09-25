@@ -39,6 +39,7 @@ const pages = [
   ...industrySlugs.map((i) => ({ path: `/industries/${i}`, priority: "0.9", changefreq: "monthly" })),
   { path: "/blog", priority: "0.8", changefreq: "weekly" },
   ...postSlugs.map((p) => ({ path: `/blog/${p}`, priority: "0.7", changefreq: "yearly" })),
+  { path: "/service-area", priority: "0.8", changefreq: "monthly" },
   { path: "/pricing", priority: "0.8", changefreq: "monthly" },
   { path: "/faq", priority: "0.7", changefreq: "monthly" },
   { path: "/about", priority: "0.7", changefreq: "yearly" },
@@ -47,14 +48,15 @@ const pages = [
   { path: "/terms-of-service", priority: "0.2", changefreq: "yearly" },
 ];
 
-const lastmod = new Date().toISOString().slice(0, 10);
+// Maintain these dates only after a meaningful content change; omit unknown dates.
+const contentDates = JSON.parse(readFileSync(join(root, "src/data/content-dates.json"), "utf8"));
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages
   .map(
     (p) =>
-      `  <url><loc>${URL}${p.path}</loc><lastmod>${lastmod}</lastmod><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`,
+      `  <url><loc>${URL}${p.path}</loc>${contentDates[p.path] ? `<lastmod>${contentDates[p.path]}</lastmod>` : ""}<changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`,
   )
   .join("\n")}
 </urlset>
@@ -69,11 +71,11 @@ const llms = `# Net-Tech
 
 > Managed IT, Ubiquiti UniFi networking, security camera systems and Microsoft 365 support for businesses in New Albany and across North Mississippi.
 
-Net-Tech is a locally owned IT company at 112 W Main St, New Albany, Mississippi, serving small and mid-sized businesses for more than 15 years. Ubiquiti certified installer. Flat-fee managed IT, fixed-price projects, and no contract required to get a quote.
+Net-Tech is a locally owned IT company at 112 W Main St, New Albany, Mississippi, owned by Brian Adair and serving commercial customers within 100 miles of New Albany. Ubiquiti certified installer. Flat-fee managed IT, fixed-price projects, and no contract required to get a quote.
 
 ## Contact
 - Phone: (662) 539-7787
-- Email: support@nettech.ms
+- Email: brian@nettech.ms
 - Address: 112 W Main St, New Albany, MS 38652
 - Service area: New Albany, Tupelo, Oxford, Pontotoc, Ripley, Booneville, Corinth, Baldwyn, Blue Springs and Ecru, Mississippi
 
@@ -86,9 +88,10 @@ Net-Tech is a locally owned IT company at 112 W Main St, New Albany, Mississippi
 
 ## Who we work with
 Net-Tech works with businesses only and does not take residential work. Healthcare and rehab practices are the largest client segment.
-- [IT for healthcare and rehab practices](${URL}/industries/healthcare-rehab): HIPAA-aware IT, segmented clinical networks, signed Business Associate Agreement.
+- [IT for healthcare and rehab practices](${URL}/industries/healthcare-rehab): Practice networks, access controls and IT support; discuss BAA requirements during scoping.
 
 ## Locations
+- [100-mile commercial service area](${URL}/service-area)
 - [IT support in New Albany, MS](${URL}/locations/new-albany-ms)
 - [Managed IT services in Tupelo, MS](${URL}/locations/tupelo-ms)
 - [IT support in Oxford, MS](${URL}/locations/oxford-ms)

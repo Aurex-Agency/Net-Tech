@@ -29,9 +29,9 @@ const h1 = async () => (await screen.findByRole("heading", { level: 1 })).textCo
 describe("routing", () => {
   it("renders the home page with a headline and primary call to action", async () => {
     renderAt("/");
-    expect(await h1()).toMatch(/IT partner/i);
+    expect(await h1()).toMatch(/Business IT support/i);
     await waitFor(() =>
-      expect(screen.getAllByRole("link", { name: /free consultation/i }).length).toBeGreaterThan(0),
+      expect(screen.getAllByRole("link", { name: /free assessment/i }).length).toBeGreaterThan(0),
     );
   });
 

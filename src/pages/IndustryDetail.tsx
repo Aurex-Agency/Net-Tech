@@ -55,14 +55,13 @@ const IndustryDetail = () => {
             <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand/15 text-brand-bright">
               <ShieldCheck className="h-5 w-5" strokeWidth={1.75} />
             </span>
-            <h2 className="display-sm mt-5 text-xl text-white">We sign a BAA</h2>
+            <h2 className="display-sm mt-5 text-xl text-white">Discuss BAA requirements</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-white/60">
-              Before we have access to anything that touches patient information. If a provider hesitates at that
-              question, treat it as an answer.
+              Confirm the appropriate agreement, technical scope and responsibilities before granting access to patient information.
             </p>
             <div className="mt-6 flex flex-col gap-2.5">
               <Button asChild variant="inverse" className="w-full">
-                <Link to="/contact">Book a free assessment</Link>
+                <Link to="/contact?service=healthcare">Request a practice assessment</Link>
               </Button>
               <Button asChild variant="outlineInverse" className="w-full">
                 <a href={site.phone.href}>

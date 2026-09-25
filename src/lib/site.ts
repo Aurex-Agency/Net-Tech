@@ -3,7 +3,7 @@
  */
 export const site = {
   name: "Net-Tech",
-  legalName: "Net-Tech",
+  legalName: "Net-Tech, LLC",
   tagline: "Software. Hardware. Security.",
   url: "https://nettech.ms",
   phone: {
@@ -12,8 +12,8 @@ export const site = {
     e164: "+1-662-539-7787",
   },
   email: {
-    display: "support@nettech.ms",
-    href: "mailto:support@nettech.ms",
+    display: "brian@nettech.ms",
+    href: "mailto:brian@nettech.ms",
   },
   address: {
     street: "112 W Main St",
@@ -22,7 +22,7 @@ export const site = {
     stateName: "Mississippi",
     zip: "38652",
     county: "Union County",
-    mapsHref: "https://www.google.com/maps/search/?api=1&query=112+W+Main+St+New+Albany+MS+38652",
+    mapsHref: "https://maps.app.goo.gl/CABAMead1gLyrdSV6",
     /**
      * Rooftop geocode for 112 W Main St (OpenStreetMap, Sep 2026).
      * Worth sanity-checking against the pin on the Google Business Profile.
@@ -46,7 +46,7 @@ export const site = {
     short: "Mon-Fri, 8-5",
   },
   yearsInBusiness: "15+",
-  serviceArea: "New Albany and surrounding North Mississippi",
+  serviceArea: "New Albany, Mississippi and communities within 100 miles",
   /**
    * Net-Tech works with businesses only. Saying so plainly filters out
    * residential enquiries before they reach the contact form, which is the
@@ -55,15 +55,12 @@ export const site = {
   commercialOnly: true,
   residentialNotice: "We work with businesses only. We do not take on home or residential jobs.",
   remoteSupportHref: "https://sos.splashtop.com/",
-  supportWebhookUrl:
-    import.meta.env.VITE_SUPPORT_WEBHOOK_URL ||
-    "https://services.leadconnectorhq.com/hooks/ErZnn0dKKTqWAnjTnzaP/webhook-trigger/1f29b918-a9b2-4aa9-9338-bf9344887baf",
-  contactWebhookUrl: import.meta.env.VITE_CONTACT_WEBHOOK_URL || "",
+
   /**
    * Public profiles, emitted as schema `sameAs`. Add only URLs that exist.
    * A wrong or missing profile is worse than an absent one.
    */
-  sameAs: [] as string[],
+  sameAs: ["https://maps.app.goo.gl/CABAMead1gLyrdSV6"] as string[],
 } as const;
 
 export interface Town {
@@ -98,6 +95,7 @@ export const featuredTowns = towns.filter((t) => t.slug);
 export const navigation = [
   { label: "Services", to: "/services" },
   { label: "Pricing", to: "/pricing" },
+  { label: "Service area", to: "/service-area" },
   { label: "Insights", to: "/blog" },
   { label: "About", to: "/about" },
   { label: "FAQ", to: "/faq" },

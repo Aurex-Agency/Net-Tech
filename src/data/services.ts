@@ -57,14 +57,14 @@ export const services: Service[] = [
         heading: "What proactive monitoring actually catches",
         body: [
           "Monitoring is not a dashboard nobody looks at. It is a set of specific alarms tied to the failures that actually take small businesses offline.",
-          "Hard drives announce themselves before they die. SMART attributes degrade and reallocated sector counts climb. We see that and swap the drive during business-as-usual instead of rebuilding a machine from scratch. Backup jobs that silently fail are the single most common disaster we find when taking over an account; a backup nobody has tested is not a backup. Disk space filling on a server, a domain or SSL certificate approaching expiry, a security patch that has not applied across three machines: all of it is visible in advance if somebody is looking.",
+          "Monitoring can reveal disk health warnings, failed backup jobs, low storage, expiring certificates and missing updates. Some failures arrive without warning, so alerts need to be paired with a recovery plan. Agree which systems are monitored and who acts on each type of alert.",
         ],
       },
       {
         heading: "What the help desk is like to actually use",
         body: [
-          "You call and a technician picks up, or you submit a ticket and get a real response the same business day. There is no tier-one script, no queue position, no explaining your setup from scratch every time because we already have it documented.",
-          "Most issues get solved remotely in minutes. When we need to see your screen, we send a remote access client, you read us a session code, and we are looking at the problem with you. When it needs hands on the machine, we are in New Albany, so on-site is a short drive rather than a scheduled appointment for next week.",
+          "Call or submit a support request with the affected system and business impact. We review the issue and determine the next step. Response expectations and coverage hours are agreed in your service scope.",
+          "Where appropriate, remote support lets us work with you without a visit. If the issue needs hands-on work, we arrange an on-site visit from New Albany. Resolution time depends on the problem, parts, vendor availability and agreed coverage.",
         ],
       },
       {
@@ -77,7 +77,7 @@ export const services: Service[] = [
       {
         heading: "Backup and recovery, tested",
         body: [
-          "Every managed client gets backups configured, monitored and periodically test-restored. The test is the part most businesses skip and the part that determines whether a backup is worth anything.",
+          "Your quote should identify the systems being backed up, retention, monitoring and restore-testing responsibilities. Discuss recovery priorities and an agreed testing schedule before relying on a backup as your business recovery plan.",
           "We plan around two numbers that are worth knowing for your own business: how much data you can afford to lose (which sets how often backups run) and how long you can afford to be down (which sets how we recover). A file server that can be down overnight is a different design from a system that has to be back in an hour.",
         ],
       },
@@ -113,7 +113,7 @@ export const services: Service[] = [
       },
       {
         q: "What happens if something breaks after hours?",
-        a: "Call the office number and follow the prompts. For anything that stops the business running, reach us by phone rather than the ticket form. That is what the phone is there for.",
+        a: "Call to check availability. After-hours coverage and charges depend on your agreement; submitting a website form does not book emergency dispatch.",
       },
     ],
     related: ["networking", "cloud", "multi-site"],

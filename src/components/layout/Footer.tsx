@@ -134,7 +134,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link to="/contact" className="text-white/70 transition-colors hover:text-brand-bright">
-                    Book a consultation
+                    Request an assessment
                   </Link>
                 </li>
                 <li>

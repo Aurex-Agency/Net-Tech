@@ -38,17 +38,17 @@ export function PageHero({ eyebrow, title, lead, above, aside, children, compact
       >
         <div className={cn(aside && "lg:col-span-7")}>
           {above}
-          <p className="eyebrow eyebrow-inverse animate-rise-in">{eyebrow}</p>
+          <p className="eyebrow eyebrow-inverse">{eyebrow}</p>
           <h1
             className={cn(
-              "display mt-6 text-white animate-rise-in [animation-delay:80ms]",
+              "display mt-6 text-white",
               compact ? "text-[2.1rem] sm:text-[2.75rem]" : "text-[2.6rem] sm:text-5xl lg:text-[3.6rem]",
             )}
           >
             {title}
           </h1>
           {lead && (
-            <p className="mt-6 max-w-prose text-[17px] leading-relaxed text-white/65 animate-rise-in [animation-delay:160ms]">
+            <p className="mt-6 max-w-prose text-[17px] leading-relaxed text-white/65">
               {lead}
             </p>
           )}

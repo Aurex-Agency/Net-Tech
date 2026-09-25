@@ -1,8 +1,10 @@
 import "@testing-library/jest-dom/vitest";
 
 // jsdom does not implement scrolling or IntersectionObserver.
-window.scrollTo = () => {};
-Element.prototype.scrollIntoView = () => {};
+if (typeof window !== "undefined") {
+  window.scrollTo = () => {};
+  Element.prototype.scrollIntoView = () => {};
+}
 
 /*
   React Router's data router constructs `new Request(url, { signal })` for every
@@ -15,7 +17,7 @@ Element.prototype.scrollIntoView = () => {};
   browser has one consistent set of these globals.
 */
 const NativeRequest = globalThis.Request;
-if (NativeRequest) {
+if (NativeRequest && typeof window !== "undefined") {
   class TestRequest extends NativeRequest {
     constructor(input: RequestInfo | URL, init?: RequestInit) {
       if (init && "signal" in init) {

@@ -23,7 +23,7 @@ const PrivacyPolicy = () => {
         ])}
       />
       <PageHero
-        above={<Breadcrumbs items={crumbs} inverse className="mb-7" />} eyebrow="Legal" title="Privacy Policy" lead="Last updated March 25, 2026" compact />
+        above={<Breadcrumbs items={crumbs} inverse className="mb-7" />} eyebrow="Legal" title="Privacy Policy" lead="Last updated September 25, 2026" compact />
 
       <section>
         <Container className="max-w-3xl py-16 sm:py-20">
@@ -56,7 +56,7 @@ const PrivacyPolicy = () => {
                 derived from IP address, device and browser type, and how you
                 arrived here. We use this in aggregate to improve the site. We
                 do not use it to identify individual visitors, and we do not
-                sell or share this data. You can opt out with the{" "}
+                sell this data. Google processes analytics data to provide the service. You can opt out with the{" "}
                 <a
                   href="https://tools.google.com/dlpage/gaoptout"
                   target="_blank"
@@ -80,6 +80,9 @@ const PrivacyPolicy = () => {
               <li>To comply with legal obligations.</li>
             </ul>
 
+            <h2>Website inquiry delivery and measurement</h2>
+            <p>Our forms collect business contact details, location, service interest and your message so Brian Adair and Net-Tech can respond. Vercel hosts the website and processes form requests; Resend delivers the notification email. Support requests may also be passed to our LeadConnector support workflow. Please do not include passwords, patient records or other sensitive records in these forms.</p>
+            <p>We retain the landing-page path, referring website and campaign tags with an inquiry when available to understand which marketing led to it. Custom Google Analytics events record form acceptance, service category and link clicks, without sending your name, email, phone number or message text. A phone-link click does not tell us whether a call connected.</p>
             <h2>
               3. SMS/Text Messaging Policy
             </h2>

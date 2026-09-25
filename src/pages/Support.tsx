@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,7 +11,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Container } from "@/components/site/Container";
 import { PageHero } from "@/components/site/PageHero";
-import { postWebhook } from "@/lib/forms";
+import { submitForm } from "@/lib/forms";
+import { trackAccepted } from "@/lib/analytics";
 import { site } from "@/lib/site";
 import { Seo } from "@/components/site/Seo";
 
@@ -31,6 +33,7 @@ const Support = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [website, setWebsite] = useState("");
 
   const form = useForm<SupportFormValues>({
     resolver: zodResolver(supportSchema),
@@ -40,17 +43,19 @@ const Support = () => {
   const onSubmit = async (data: SupportFormValues) => {
     setSubmitting(true);
     try {
-      await postWebhook(site.supportWebhookUrl, {
+      const result = await submitForm("support", {
         full_name: data.fullName,
         business_name: data.businessName,
         phone: data.phoneNumber,
         email: data.email,
         issue_type: data.issueType,
         description: data.description,
-      });
-    } finally {
-      // The webhook is opaque (no-cors); treat any completed request as submitted.
+      }, website);
+      trackAccepted("support", result.emailId);
       setSubmitted(true);
+    } catch {
+      toast.error("Your request could not be sent", { description: `Please try again or call ${site.phone.display}. Your entries have been kept.` });
+    } finally {
       setSubmitting(false);
     }
   };
@@ -137,6 +142,7 @@ const Support = () => {
                       aria-label="Support ticket form"
                       noValidate
                     >
+                      <input name="website" aria-hidden="true" tabIndex={-1} autoComplete="off" className="hidden" value={website} onChange={(e) => setWebsite(e.target.value)} />
                       <div className="grid gap-6 sm:grid-cols-2">
                         <FormField
                           control={form.control}
@@ -290,8 +296,8 @@ const Support = () => {
                     What happens next
                   </p>
                   <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-                    Your ticket goes straight to our technicians. We are open {site.hours.display}, and most
-                    issues are handled remotely the same business day. If we need to come out, we will call you to set a
+                    Your ticket goes straight to our technicians. We are open {site.hours.display}, and will assess
+                    whether the issue can be handled remotely. If we need to come out, we will call you to set a
                     time.
                   </p>
                 </div>

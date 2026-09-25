@@ -54,6 +54,7 @@ export const routes: RouteRecord[] = [
         getStaticPaths: () => posts.map((p) => `/blog/${p.slug}`),
       },
 
+      { path: "service-area", entry: "src/pages/ServiceArea.tsx", lazy: () => import("./pages/ServiceArea") },
       { path: "pricing", entry: "src/pages/Pricing.tsx", lazy: () => import("./pages/Pricing") },
       { path: "faq", entry: "src/pages/Faq.tsx", lazy: () => import("./pages/Faq") },
       { path: "about", entry: "src/pages/About.tsx", lazy: () => import("./pages/About") },
@@ -79,6 +80,7 @@ export const staticPaths = [
   ...industries.map((i) => `/industries/${i.slug}`),
   "/blog",
   ...posts.map((p) => `/blog/${p.slug}`),
+  "/service-area",
   "/pricing",
   "/faq",
   "/about",

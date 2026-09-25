@@ -28,7 +28,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "How fast do you respond?",
-        a: "Most issues are picked up the same business day and handled remotely, often within the hour. Anything that stops your business running should come by phone rather than the ticket form, so it reaches a technician immediately.",
+        a: "Call to check availability for an urgent issue. Coverage, response expectations and after-hours work depend on your agreement. A website form is not emergency dispatch.",
       },
       {
         q: "Are you actually local?",
@@ -36,7 +36,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "What areas do you cover?",
-        a: "New Albany and Union County are home. We work regularly across North Mississippi, including Tupelo, Oxford, Pontotoc, Ripley, Booneville, Baldwyn and Corinth.",
+        a: "We serve commercial customers within 100 miles of New Albany, including Tupelo, Oxford, Pontotoc, Ripley, Booneville, Baldwyn and Corinth. We confirm the business address, scheduling and any travel charges before work begins.",
       },
       {
         q: "Can you take over from our current IT provider?",
@@ -84,7 +84,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "Why do you use Ubiquiti rather than other brands?",
-        a: "Two reasons. There is no recurring per-device licence, so the cost stops at the hardware. And network, Wi-Fi, cameras and door access all live in one interface, which is what makes managing several sites practical.",
+        a: "Two reasons. There is no recurring per-device licence, so a quote can separate hardware from installation, support and optional services. And network, Wi-Fi, cameras and door access all live in one interface, which is what makes managing several sites practical.",
       },
       {
         q: "Our Wi-Fi is slow. Do we need faster internet?",

@@ -112,6 +112,9 @@ const BlogPost = () => {
             {/* Article */}
             <article className="lg:col-span-9">
               <PostBody blocks={post.body} />
+              <p className="mt-8 text-sm text-ink-soft">Published by <Link className="link" to="/about">Net-Tech</Link>, a commercial IT business owned by Brian Adair in New Albany, Mississippi.</p>
+              {post.sources && <section className="mt-8"><h2 className="display-sm text-xl">Sources and further reading</h2><ul className="mt-4 space-y-3">{post.sources.map(source => <li key={source.url}><a href={source.url} className="link" target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul></section>}
+              <div className="mt-8 card p-6"><h2 className="display-sm text-xl">Discuss this with a local IT provider</h2><p className="mt-3">Commercial customers within 100 miles of New Albany can <Link className="link" to={`/contact?service=${post.relatedServices[0] || "other"}`}>request an assessment</Link>. See our <Link className="link" to="/service-area">service area</Link> or <Link className="link" to="/industries/healthcare-rehab">practice IT services</Link>.</p></div>
 
               {post.tags.length > 0 && (
                 <ul className="mt-12 flex flex-wrap gap-2 border-t border-line pt-8">

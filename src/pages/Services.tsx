@@ -92,7 +92,7 @@ const Services = () => (
                 </p>
               </div>
               <Link to="/contact" className="link mt-7 text-[15px] self-start">
-                Book a walkthrough
+                Request a walkthrough
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>

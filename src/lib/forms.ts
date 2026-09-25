@@ -1,20 +1,17 @@
-/**
- * Posts a form to a LeadConnector-style webhook as URL-encoded fields.
- * Uses no-cors, so the response is opaque; a thrown error means the request
- * never left the browser.
- */
-export async function postWebhook(url: string, fields: Record<string, string>) {
-  const body = new URLSearchParams();
-  for (const [key, value] of Object.entries(fields)) body.append(key, value);
-  await fetch(url, {
+// Retain the same reference when retrying unchanged data after a network failure.
+const pending = new Map<string, string>();
+export async function submitForm(kind: "contact" | "support", fields: Record<string, string>, website = "") {
+  const fingerprint = JSON.stringify({ kind, fields });
+  const requestId = pending.get(fingerprint) || crypto.randomUUID();
+  pending.set(fingerprint, requestId);
+  const response = await fetch("/api/forms", {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: body.toString(),
-    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ kind, fields, website, requestId }),
+    signal: AbortSignal.timeout(30000),
   });
-}
-
-/** Builds a mailto: URL with a prefilled subject and body. */
-export function mailtoHref(to: string, subject: string, body: string) {
-  return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const result = await response.json();
+  if (!response.ok || !result.ok || !result.emailId) throw new Error(result.error || "Sending could not be confirmed.");
+  pending.delete(fingerprint);
+  return result;
 }

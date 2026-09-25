@@ -34,7 +34,7 @@ export const industries: Industry[] = [
     shortName: "Healthcare & rehab",
     metaTitle: "IT for Medical & Rehab Practices, MS",
     metaDescription:
-      "HIPAA-aware IT for clinics, therapy and rehab practices in North Mississippi. Segmented networks, secure email, tested backups and a signed BAA. Call (662) 539-7787.",
+      "HIPAA-aware IT for clinics, therapy and rehab practices in North Mississippi. Segmented networks, secure email, tested backups and a scoped support plan. Call (662) 539-7787.",
     title: "IT for healthcare and rehab practices",
     lead: "Clinics, therapy practices and rehab facilities are a large share of who we look after. The work is different from ordinary small-business IT, and most of the difference is in what you have to be able to prove.",
     pressures: [
@@ -66,10 +66,10 @@ export const industries: Industry[] = [
         ],
       },
       {
-        heading: "A Business Associate Agreement, signed before we touch anything",
+        heading: "Agree responsibilities before access",
         body: [
           "Any IT provider with access to systems holding patient information is a business associate under HIPAA, and that relationship is supposed to be covered by a signed agreement setting out how that information is handled.",
-          "We sign one. If a provider is reluctant to, or does not know what you are asking for, that tells you something useful about how they treat the rest of it.",
+          "Discuss your practice requirements, including any Business Associate Agreement, before granting access. Confirm the agreement, safeguards and responsibilities as part of the service scope.",
         ],
       },
       {
@@ -77,7 +77,7 @@ export const industries: Industry[] = [
         body: [
           "A therapy gym is one of the more hostile Wi-Fi environments in small-business work, and it is almost always designed as though it were an office.",
           "The rooms are large and open, which sounds easy until you realise a single access point at one end has to cover forty or fifty feet of floor with equipment, mirrors and metal frames in between. Treatment bays divided by curtains behave like one big room for signal and like separate rooms for privacy. Staff carry tablets and walk while they document, so they roam constantly between access points, and a network that has not been tuned for roaming drops the session every time they cross a boundary.",
-          "The symptom a practice notices is documentation that will not save, or a therapist who has to walk back to the front desk to finish notes. The cause is nearly always access point density and roaming configuration rather than the internet connection, which means paying the provider for more bandwidth does not fix it.",
+          "The symptom a practice notices is documentation that will not save, or a therapist who has to walk back to the front desk to finish notes. Possible causes include coverage, roaming behavior, interference and internet connectivity. A survey and targeted testing help identify the right fix.",
         ],
       },
       {
@@ -100,7 +100,7 @@ export const industries: Industry[] = [
         heading: "Ransomware is the scenario that decides everything",
         body: [
           "Healthcare gets targeted because downtime is intolerable, which makes payment more likely. For a small practice, the difference between a bad week and an existential event comes down to decisions made long before anything happens.",
-          "Specifically: whether backups are isolated from the network that gets encrypted, whether anyone has ever restored from them, how long a full restore actually takes, and whether staff have somewhere to write down appointments while systems are down. We plan for all four, and the test restore is part of the service rather than an optional extra, because an untested backup is a hope rather than a plan.",
+          "Specifically: whether backups are isolated from the network that gets encrypted, whether anyone has ever restored from them, how long a full restore actually takes, and whether staff have somewhere to write down appointments while systems are down. Agree these responsibilities and a restore-test schedule in the service scope.",
         ],
       },
     ],
@@ -108,7 +108,7 @@ export const industries: Industry[] = [
     faqs: [
       {
         q: "Will you sign a Business Associate Agreement?",
-        a: "Yes, before we have access to anything that touches patient information. If an IT provider hesitates at that question, treat it as an answer.",
+        a: "Discuss BAA requirements during scoping and confirm the appropriate agreement before granting access to patient information.",
       },
       {
         q: "Can you make us HIPAA compliant?",
@@ -120,7 +120,7 @@ export const industries: Industry[] = [
       },
       {
         q: "Our therapists lose their notes when they walk across the gym. Is that fixable?",
-        a: "Almost always, and it is usually a roaming and access point density problem rather than an internet problem. It needs a survey of the actual space rather than a guess, but it is a common fix.",
+        a: "A survey can test coverage, roaming and connectivity to identify why sessions drop. We confirm the cause before proposing a fix.",
       },
       {
         q: "We are a single-location practice. Is this overkill?",

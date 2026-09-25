@@ -72,16 +72,16 @@ const Header = () => {
         )}
       >
         <Container className="flex h-[70px] items-center justify-between gap-6">
-          <Logo inverse={!solid} />
+          <Logo inverse={!solid} priority />
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-1 2xl:flex" aria-label="Primary">
             {navigation.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
                   cn(
-                    "relative rounded-md px-3.5 py-2 text-[15px] font-medium transition-colors duration-200",
+                    "relative rounded-md px-3.5 py-2 text-[15px] font-medium transition-colors duration-200 whitespace-nowrap",
                     solid
                       ? isActive
                         ? "text-brand-deep"
@@ -109,7 +109,7 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 2xl:flex">
             <Button asChild variant={solid ? "outline" : "outlineInverse"} size="sm">
               <a href={site.phone.href}>
                 <Phone />
@@ -117,7 +117,7 @@ const Header = () => {
               </a>
             </Button>
             <Button asChild variant={solid ? "primary" : "inverse"} size="sm">
-              <Link to="/contact">Free consultation</Link>
+              <Link to="/contact">Free assessment</Link>
             </Button>
           </div>
 
@@ -125,7 +125,7 @@ const Header = () => {
             type="button"
             onClick={() => setOpen((v) => !v)}
             className={cn(
-              "-mr-2 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-md transition-colors lg:hidden",
+              "-mr-2 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-md transition-colors 2xl:hidden",
               solid ? "text-ink hover:bg-ink/[0.06]" : "text-white hover:bg-white/10",
             )}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -142,7 +142,7 @@ const Header = () => {
       <div
         id="mobile-menu"
         className={cn(
-          "fixed inset-x-0 bottom-0 top-[70px] z-40 overflow-y-auto bg-navy transition-[opacity,visibility] duration-200 lg:hidden",
+          "fixed inset-x-0 bottom-0 top-[70px] lg:top-[106px] z-40 overflow-y-auto bg-navy transition-[opacity,visibility] duration-200 2xl:hidden",
           // `invisible` (not just opacity-0) takes the links out of the tab order,
           // so the aria-hidden panel holds no focusable content when closed.
           open ? "visible opacity-100" : "invisible pointer-events-none opacity-0",
@@ -188,7 +188,7 @@ const Header = () => {
             </p>
             <div className="flex flex-col gap-3 pt-2">
               <Button asChild variant="inverse" size="lg" className="w-full">
-                <Link to="/contact">Book a free consultation</Link>
+                <Link to="/contact">Request a free assessment</Link>
               </Button>
               <Button asChild variant="outlineInverse" size="lg" className="w-full">
                 <Link to="/support-form">Submit a support ticket</Link>

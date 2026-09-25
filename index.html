@@ -20,25 +20,9 @@
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!--
-      Google Analytics 4 (gtag.js), measurement ID G-81YTRTKY6S.
-
-      Lives in this shell rather than a React component so it is present in all
-      31 pre-rendered pages without waiting for hydration.
-
-      The loader is injected after the window load event rather than during it.
-      Measured on the home page with Lighthouse: in the critical path it cost
-      18 points and pushed LCP from 3.7s to 5.7s, because the browser fetches,
-      parses and executes about 170 kB of third-party JavaScript while it is
-      still trying to paint. Deferred, observed LCP is 3.1s.
-
-      The page_view still fires on every real visit. The only sessions this can
-      miss are ones abandoned before load completes, which are bounces anyway.
-
-      To keep your own visits out of the reports, use the internal traffic
-      filter in GA4 (Admin, Data streams, Configure tag settings) rather than
-      adding a condition here.
-    -->
+    <!-- GA4 loads after page load or first interaction. Page loads and SPA history
+         changes are measured by enhanced measurement; do not add a second router
+         page_view sender. Brief visits may end before the deferred script loads. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {

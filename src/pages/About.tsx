@@ -47,7 +47,7 @@ const About = () => {
     { name: "About", path: "/about" },
   ];
   const description =
-    "Net-Tech is a locally owned IT company on Main Street in New Albany, Mississippi, serving small businesses for more than 15 years.";
+    "Net-Tech is a locally owned IT company on Main Street in New Albany, Mississippi, owned by Brian Adair, a Ubiquiti certified installer serving commercial customers within 100 miles.";
 
   return (
     <>
@@ -86,7 +86,7 @@ const About = () => {
               {site.address.city}, {site.address.state} {site.address.zip}
             </a>
             <p className="mt-5 border-t border-white/10 pt-5 text-[15px] leading-relaxed text-white/55">
-              Fifteen years on Main Street, serving {site.serviceArea}.
+              Based on Main Street, serving {site.serviceArea}.
             </p>
           </div>
         }
@@ -106,7 +106,7 @@ const About = () => {
               challenges local businesses face because we face them too.
             </p>
             <p className="mt-5 max-w-prose text-[15px] leading-relaxed text-ink-soft sm:text-base">
-              For more than 15 years we have helped local businesses stay connected, secure and running smoothly. We
+              We help commercial customers stay connected, secure and running smoothly. We
               are not a faceless corporation. We are your neighbors, and we take pride in building lasting
               relationships with every client we serve.
             </p>
@@ -126,12 +126,13 @@ const About = () => {
                 jpgSmall={officeJpgSmall}
                 jpgTiny={officeJpgTiny}
                 sizes="(min-width: 1024px) 520px, 100vw"
-                alt="A Net-Tech technician greeting a client in a brick-walled New Albany office"
+                alt="Illustrative business consultation, not a Net-Tech project photograph"
                 width={1600}
                 height={893}
                 className="aspect-[4/3]"
               />
             </div>
+            <figcaption className="mt-3 text-sm text-ink-soft">Illustrative business consultation image.</figcaption>
           </Reveal>
         </Container>
       </section>

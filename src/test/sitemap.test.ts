@@ -50,6 +50,7 @@ describe("sitemap generator", () => {
       ...industries.map((i) => `/industries/${i.slug}`),
       "/blog",
       ...posts.map((p) => `/blog/${p.slug}`),
+      "/service-area",
       "/pricing",
       "/faq",
       "/about",

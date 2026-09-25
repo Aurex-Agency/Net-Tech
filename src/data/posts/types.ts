@@ -42,6 +42,7 @@ export interface Post {
   relatedPosts: string[];
   /** Location slug, when the post is written to a specific market. */
   location?: string;
+  sources?: { title: string; url: string }[];
   body: Block[];
 }
 

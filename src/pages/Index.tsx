@@ -52,7 +52,7 @@ const serviceIcons: Record<string, typeof Network> = {
 };
 
 const facts = [
-  { value: "15+", label: "Years in business" },
+  { value: "100 mi", label: "Commercial service radius" },
   { value: "Local", label: "Main St, New Albany" },
   { value: "Clinics", label: "Healthcare & rehab specialists" },
   { value: "1 call", label: "Straight to a technician" },
@@ -61,15 +61,15 @@ const facts = [
 const reasons = [
   {
     title: "Local and trusted",
-    body: "We are right here on Main Street in New Albany, so on-site help is a short drive, not a scheduled visit next week.",
+    body: "We are right here on Main Street in New Albany, serving commercial customers within a 100-mile radius.",
   },
   {
-    title: "15+ years of experience",
+    title: "Ubiquiti certified installer",
     body: "Proven expertise across networking, security and managed IT, backed by Ubiquiti certification.",
   },
   {
     title: "Personalized service",
-    body: "We know your name, your setup and your history. You will never have to explain your business from scratch.",
+    body: "We know your name, your setup and your history. We document the agreed setup so support has useful context.",
   },
 ];
 
@@ -80,7 +80,7 @@ const steps = [
   },
   {
     title: "We come take a look",
-    body: "A free, no-pressure on-site assessment. You get a plain-English plan and a straightforward quote.",
+    body: "We discuss your needs and arrange the appropriate assessment. You receive proposed next steps and a quote; site visits and travel are agreed in advance.",
   },
   {
     title: "We fix it, then keep it fixed",
@@ -115,23 +115,23 @@ const Index = () => (
 
       <Container className="relative grid items-center gap-14 py-16 sm:py-20 lg:grid-cols-12 lg:gap-12 lg:py-24">
         <div className="lg:col-span-6">
-          <p className="eyebrow eyebrow-inverse animate-rise-in">Managed IT · Networking · Security</p>
+          <p className="eyebrow eyebrow-inverse">Managed IT · Networking · Security</p>
 
-          <h1 className="display mt-6 text-[2.75rem] text-white animate-rise-in [animation-delay:80ms] sm:text-[3.5rem] lg:text-[4.25rem]">
-            The IT partner
+          <h1 className="display mt-6 text-[2.75rem] text-white sm:text-[3.5rem] lg:text-[4.25rem]">
+            Business IT support
             <br />
-            <span className="text-brand-bright">down the street.</span>
+            <span className="text-brand-bright">in New Albany, MS.</span>
           </h1>
 
-          <p className="mt-7 max-w-prose text-[17px] leading-relaxed text-white/65 animate-rise-in [animation-delay:160ms] sm:text-lg">
+          <p className="mt-7 max-w-prose text-[17px] leading-relaxed text-white/65 sm:text-lg">
             Managed IT, Ubiquiti networking and security cameras for clinics, rehab practices and commercial
-            businesses across North Mississippi. Handled by people you can call by name.
+            businesses within 100 miles of New Albany. A local IT partner for North Mississippi.
           </p>
 
-          <div className="mt-9 flex flex-col gap-3 animate-rise-in [animation-delay:240ms] sm:flex-row">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
               <Link to="/contact">
-                Book a free consultation
+                Request a free assessment
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
               </Link>
             </Button>
@@ -143,13 +143,13 @@ const Index = () => (
             </Button>
           </div>
 
-          <p className="mt-8 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-white/55 animate-fade-in [animation-delay:400ms]">
+          <p className="mt-8 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-white/55">
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-signal animate-pulse-dot" />
             Commercial clients only · No contract to get a quote
           </p>
         </div>
 
-        <figure className="relative lg:col-span-6 animate-fade-in [animation-delay:200ms]">
+        <figure className="relative lg:col-span-6">
           <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-1.5 shadow-xl backdrop-blur-sm">
             <Picture
               webp={rackWebp}
@@ -159,7 +159,7 @@ const Index = () => (
               jpgSmall={rackJpgSmall}
               jpgTiny={rackJpgTiny}
               sizes={HERO_SIZES}
-              alt="A Ubiquiti UniFi network rack with neatly dressed cabling in a New Albany, Mississippi office"
+              alt="Illustrative business network rack with organized cabling"
               width={1600}
               height={893}
               className="aspect-[4/3] rounded-lg"
@@ -169,7 +169,7 @@ const Index = () => (
 
           <figcaption className="mt-4 flex items-center gap-2.5 font-mono text-[11px] tracking-[0.08em] text-white/55">
             <span aria-hidden className="h-px w-6 bg-white/20" />
-            UniFi rack build · New Albany, MS
+            Business networking · Illustrative image
           </figcaption>
         </figure>
       </Container>
@@ -307,7 +307,7 @@ const Index = () => (
           <SectionHeading
             eyebrow="Service area"
             title="Based in New Albany. Working across North Mississippi."
-            lead="Remote support reaches you immediately wherever you are. On-site work is a drive we are happy to make."
+            lead="Commercial service within 100 miles of New Albany. We confirm scheduling and travel arrangements before work begins."
             split
           />
         </Reveal>
@@ -344,7 +344,7 @@ const Index = () => (
           <a href={site.phone.href} className="link tabular">
             call and ask
           </a>{" "}
-          . The answer is usually yes.
+          <Link to="/service-area" className="link"> See our full service area and on-site arrangements.</Link>
         </p>
       </Container>
     </section>
@@ -362,7 +362,7 @@ const Index = () => (
               jpgSmall={officeJpgSmall}
               jpgTiny={officeJpgTiny}
               sizes="(min-width: 1024px) 460px, 100vw"
-              alt="A Net-Tech technician shaking hands with a client in a New Albany office"
+              alt="Illustrative business IT consultation"
               width={1600}
               height={893}
               className="aspect-[4/3]"
@@ -380,7 +380,7 @@ const Index = () => (
           <ul className="mt-10 space-y-px overflow-hidden rounded-xl bg-line">
             {reasons.map((r, i) => (
               <li key={r.title} className="grid gap-3 bg-surface p-6 sm:grid-cols-12 sm:gap-5">
-                <span className="tabular font-mono text-xs tracking-[0.1em] text-brand sm:col-span-1 sm:pt-1">
+                <span className="tabular font-mono text-xs tracking-[0.1em] text-brand-deep sm:col-span-1 sm:pt-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="sm:col-span-11">
@@ -447,13 +447,13 @@ const Index = () => (
               Let&rsquo;s talk about your setup.
             </h2>
             <p className="mt-5 max-w-prose text-[15px] leading-relaxed text-white/65 sm:text-base">
-              Book a free consultation. We will look at what you have, tell you what we would change and give you a
+              Request a free assessment. We will look at what you have, tell you what we would change and give you a
               straightforward quote. No pressure, no jargon.
             </p>
             <div className="mt-auto pt-10">
               <Button asChild variant="inverse" size="lg">
                 <Link to="/contact">
-                  Book a free consultation
+                  Request a free assessment
                   <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
                 </Link>
               </Button>
@@ -530,7 +530,7 @@ const Index = () => (
           Locally owned. <span className="text-brand-bright">Ubiquiti certified.</span>
         </>
       }
-      lead="Fifteen years keeping North Mississippi businesses online. Book a free assessment and find out what we would do differently."
+      lead="Commercial IT from New Albany, within a 100-mile service radius. Request an assessment to discuss your business."
     />
   </>
 );

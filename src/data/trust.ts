@@ -57,7 +57,7 @@ export interface CaseStudy {
   service: string;
 }
 
-export const team: TeamMember[] = [];
+export const team: TeamMember[] = [{ name: "Brian Adair", role: "Owner", bio: "Brian Adair owns Net-Tech in New Albany, Mississippi. A Ubiquiti certified installer, he helps commercial customers with business IT, networking and security-camera projects within a 100-mile service radius." }];
 
 export const testimonials: Testimonial[] = [];
 
@@ -67,7 +67,7 @@ export const testimonials: Testimonial[] = [];
  * so naming the real one, and linking to a verification page if there is one,
  * turns an unverifiable adjective into a checkable credential.
  */
-export const credentials: Credential[] = [];
+export const credentials: Credential[] = [{ name: "Ubiquiti certified installer", issuer: "Ubiquiti" }];
 
 export const caseStudies: CaseStudy[] = [];
 

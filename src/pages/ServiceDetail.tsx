@@ -10,6 +10,7 @@ import { Seo } from "@/components/site/Seo";
 import { serviceBySlug, services } from "@/data/services";
 import { featuredTowns, site } from "@/lib/site";
 import { breadcrumbNode, graph, serviceNode, webPageNode } from "@/lib/schema";
+import { servicePlanning } from "@/data/service-planning";
 import NotFound from "./NotFound";
 
 const ServiceDetail = () => {
@@ -59,7 +60,7 @@ const ServiceDetail = () => {
               ))}
             </ul>
             <Button asChild variant="inverse" className="mt-6 w-full">
-              <Link to="/contact">
+              <Link to={`/contact?service=${service.slug}`}>
                 Get a quote
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
               </Link>
@@ -134,11 +135,11 @@ const ServiceDetail = () => {
                   Talk it through
                 </p>
                 <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-                  Free on-site assessment, a plain-English plan and a fixed quote. No contract needed to get a number.
+                  Start with a free business IT assessment request. We agree scope, scheduling and any travel charges before work begins.
                 </p>
                 <div className="mt-6 flex flex-col gap-2.5">
                   <Button asChild>
-                    <Link to="/contact">Book an assessment</Link>
+                    <Link to={`/contact?service=${service.slug}`}>Request an assessment</Link>
                   </Button>
                   <Button asChild variant="outline">
                     <a href={site.phone.href}>
@@ -153,6 +154,7 @@ const ServiceDetail = () => {
         </Container>
       </section>
 
+      <section className="border-t border-line"><Container className="py-16 sm:py-20"><h2 className="display text-3xl">{servicePlanning[slug].heading}</h2><ul className="mt-6 grid gap-4 sm:grid-cols-2">{servicePlanning[slug].items.map(item => <li className="card p-5" key={item}>{item}</li>)}</ul><p className="mt-6 max-w-prose text-ink-soft">{servicePlanning[slug].handover}</p><p className="mt-5"><Link className="link" to="/pricing">How quotes are built</Link> · <Link className="link" to={`/contact?service=${slug}`}>{slug === "networking" || slug === "security-cameras" ? "Request a business site survey" : "Request a business IT assessment"}</Link></p></Container></section>
       {/* Outcomes */}
       <section className="border-y border-line bg-surface">
         <Container className="py-16 sm:py-20">
@@ -176,8 +178,9 @@ const ServiceDetail = () => {
               <h2 className="display text-[1.9rem] sm:text-[2.25rem]">Where we do this work</h2>
               <p className="mt-5 max-w-prose text-[16.5px] leading-relaxed text-ink-soft">
                 Based in New Albany, working across North Mississippi, including Tupelo, Oxford, Pontotoc, Ripley,
-                Booneville, Baldwyn and Corinth.
+                Booneville, Baldwyn and Corinth, within 100 miles of our New Albany office.
               </p>
+              <Link className="link mt-4" to="/service-area">Coverage and travel arrangements</Link>
             </div>
             <ul className="grid gap-3 sm:grid-cols-3 lg:col-span-7">
               {featuredTowns.map((t) => (
@@ -256,7 +259,7 @@ const ServiceDetail = () => {
             Want this done properly? <span className="text-brand-bright">Start with a free look.</span>
           </>
         }
-        lead={`We will come out, look at what you have and tell you what we would change. No contract required to get a quote.`}
+        lead={`Tell us about your business systems. We will discuss next steps and arrange any site survey before preparing a quote.`}
       />
     </>
   );

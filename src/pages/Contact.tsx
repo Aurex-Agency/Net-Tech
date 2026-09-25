@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -12,12 +12,18 @@ import { PageHero } from "@/components/site/PageHero";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { Seo } from "@/components/site/Seo";
 import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
-import { mailtoHref, postWebhook } from "@/lib/forms";
+import { submitForm } from "@/lib/forms";
+import { captureAttribution, track, trackAccepted } from "@/lib/analytics";
 import { site } from "@/lib/site";
 
-const emptyForm = { name: "", email: "", phone: "", message: "" };
+const emptyForm = { name: "", company: "", city: "", email: "", phone: "", message: "" };
+const serviceOptions = ["managed-it", "networking", "security-cameras", "cloud", "multi-site", "healthcare", "other"];
 
 const Contact = () => {
+  const [query] = useSearchParams();
+  const [service, setService] = useState(serviceOptions.includes(query.get("service") || "") ? query.get("service")! : "other");
+  const started = useRef(false);
+  const [confirmed, setConfirmed] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [smsConsent, setSmsConsent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
@@ -30,35 +36,19 @@ const Contact = () => {
     e.preventDefault();
     setSending(true);
     try {
-      if (site.contactWebhookUrl) {
-        await postWebhook(site.contactWebhookUrl, {
-          full_name: form.name,
-          email: form.email,
-          phone: form.phone,
-          message: form.message,
-          sms_consent: smsConsent ? "yes" : "no",
-          marketing_consent: marketingConsent ? "yes" : "no",
-        });
-        toast.success("Message sent", { description: "Thanks. We will get back to you shortly." });
-      } else {
-        const body = [
-          `Name: ${form.name}`,
-          `Email: ${form.email}`,
-          `Phone: ${form.phone}`,
-          "",
-          form.message,
-          "",
-          `SMS consent: ${smsConsent ? "yes" : "no"}`,
-          `Marketing consent: ${marketingConsent ? "yes" : "no"}`,
-        ].join("\n");
-        window.location.href = mailtoHref(site.email.display, `Website inquiry from ${form.name}`, body);
-        toast("Opening your email app", { description: "Your message is ready to send." });
-      }
+      const result = await submitForm("contact", {
+        business_name: form.company, city: form.city, service_interest: service, ...captureAttribution(),
+        full_name: form.name, email: form.email, phone: form.phone, message: form.message,
+        sms_consent: smsConsent ? "yes" : "no", marketing_consent: marketingConsent ? "yes" : "no",
+      }, String(new FormData(e.currentTarget as HTMLFormElement).get("website") || ""));
+      trackAccepted("contact", result.emailId, service);
+      setConfirmed(true);
+      toast.success("Message sent", { description: "Thanks. We will get back to you shortly." });
       setForm(emptyForm);
       setSmsConsent(false);
       setMarketingConsent(false);
     } catch {
-      toast.error("Something went wrong", { description: `Please call us at ${site.phone.display}.` });
+      toast.error("Something went wrong", { description: `Please retry or call ${site.phone.display}. Your entries have been kept.` });
     } finally {
       setSending(false);
     }
@@ -68,7 +58,7 @@ const Contact = () => {
     { name: "Home", path: "/" },
     { name: "Contact", path: "/contact" },
   ];
-  const description = `Call ${site.phone.display}, email ${site.email.display} or send a message to book a free IT consultation with Net-Tech in New Albany, MS.`;
+  const description = `Call ${site.phone.display}, email ${site.email.display} or request a free business IT assessment with Net-Tech in New Albany, MS.`;
 
   return (
     <>
@@ -89,7 +79,7 @@ const Contact = () => {
             Get in <span className="text-brand-bright">touch.</span>
           </>
         }
-        lead="Call, email or send a note. We read every message and reply quickly. Consultations are free and never come with a hard sell."
+        lead="Request a free business IT assessment. Tell us your company, location and the problem you want to solve. We will contact you to discuss scope and next steps. Commercial customers only, within 100 miles of New Albany."
       />
 
       <section>
@@ -97,18 +87,23 @@ const Contact = () => {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <form
               onSubmit={handleSubmit}
+              onChange={() => { if (!started.current) { started.current = true; track("consultation_request_start", { service_interest: service }); } }}
               className="card space-y-6 p-6 sm:p-8 lg:col-span-7 lg:p-10"
               aria-label="Contact form"
             >
+              <p className="text-sm">Prefer to talk? <a href={site.phone.href} className="link">Call {site.phone.display}</a>. Existing client? <Link to="/support-form" className="link">Get support</Link>.</p>
+              {confirmed && <p role="status" className="rounded-lg bg-brand-tint p-4">Your request has been sent. Brian will contact you about the business needs you described. This is an inquiry, not a confirmed appointment. Call if the issue is urgent.</p>}
+              <input name="website" aria-hidden="true" tabIndex={-1} autoComplete="off" className="hidden" />
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
-                  <Input id="name" name="name" autoComplete="name" value={form.name} onChange={update("name")} required />
+                  <Input id="name" name="name" maxLength={100} autoComplete="name" value={form.name} onChange={update("name")} required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
+                    maxLength={255}
                     name="email"
                     type="email"
                     autoComplete="email"
@@ -118,23 +113,29 @@ const Contact = () => {
                   />
                 </div>
               </div>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="space-y-2"><Label htmlFor="company">Company</Label><Input id="company" name="company" autoComplete="organization" maxLength={100} value={form.company} onChange={update("company")} required /></div>
+                <div className="space-y-2"><Label htmlFor="city">Business city or ZIP</Label><Input id="city" name="city" autoComplete="address-level2" maxLength={100} value={form.city} onChange={update("city")} required /></div>
+              </div>
+              <div className="space-y-2"><Label htmlFor="service">What do you need?</Label><select id="service" className="flex h-11 w-full rounded-md border border-input bg-background px-3 text-sm" value={service} onChange={e => setService(e.target.value)}><option value="other">Help choosing the right service</option><option value="managed-it">Managed IT and business support</option><option value="networking">Business Wi-Fi and networking</option><option value="security-cameras">Commercial security cameras</option><option value="cloud">Microsoft 365 and cloud</option><option value="multi-site">Multi-site IT</option><option value="healthcare">Healthcare / rehab IT</option></select></div>
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone</Label>
+                <Label htmlFor="phone">Phone (optional)</Label>
                 <Input
                   id="phone"
+                  maxLength={30}
                   name="phone"
                   type="tel"
                   autoComplete="tel"
                   placeholder="(662) 555-0000"
                   value={form.phone}
                   onChange={update("phone")}
-                  required
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="message">How can we help?</Label>
                 <Textarea
                   id="message"
+                  maxLength={2000}
                   name="message"
                   rows={6}
                   placeholder="Tell us a little about your business and what is going on."
@@ -172,7 +173,7 @@ const Contact = () => {
 
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <Button type="submit" size="lg" disabled={sending} className="sm:min-w-[200px]">
-                  {sending ? "Sending…" : "Send message"}
+                  {sending ? "Sending…" : "Request assessment"}
                 </Button>
                 <p className="text-xs text-ink-soft">
                   By sending you agree to our{" "}

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "./Container";
@@ -17,8 +17,10 @@ export function CTABand({
       Ready to stop worrying <span className="text-brand-bright">about your IT?</span>
     </>
   ),
-  lead = "Book a free, no-pressure consultation. We will look at what you have, tell you what we would change and give you a straightforward quote.",
+  lead = "Request a free business IT assessment. Tell us what you have and what needs to improve. We will discuss next steps and quote the agreed work, including any on-site or travel arrangements.",
 }: CTABandProps) {
+  const { pathname } = useLocation();
+  const service = pathname.startsWith("/services/") ? pathname.split("/")[2] : pathname.startsWith("/industries/") ? "healthcare" : "other";
   return (
     <section className="relative overflow-hidden bg-navy">
       <div
@@ -34,8 +36,8 @@ export function CTABand({
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
             <Button asChild variant="inverse" size="lg">
-              <Link to="/contact">
-                Book a consultation
+              <Link to={`/contact?service=${service}`} data-cta-placement="closing">
+                Request an assessment
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
               </Link>
             </Button>

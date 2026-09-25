@@ -42,12 +42,12 @@ export const locations: Location[] = [
     metaDescription:
       "New Albany's locally owned IT company, on W Main St. Managed IT, networking, security cameras and Microsoft 365 for Union County businesses.",
     title: "IT support for New Albany businesses",
-    lead: "We are on Main Street, which means on-site help is a few minutes away rather than a scheduled visit next week. Fifteen years of keeping Union County businesses running.",
+    lead: "Business IT support from 112 W Main St in New Albany. Managed IT, business networks and commercial camera projects for Union County and businesses within our 100-mile service radius.",
     sections: [
       {
         heading: "Being down the street is the whole point",
         body: [
-          "Most IT providers serving Union County are not in Union County. They are in Tupelo or further, and their response to anything they cannot fix remotely is to schedule a visit for whenever the route brings them this way.",
+          "Our home base is in Union County. Tell us whether your issue needs ongoing support, a site visit or a planned project so we can agree the right next step.",
           "We are at 112 W Main St. When something needs hands on it, we are minutes away, and we will often just come rather than talk you through it over the phone. That changes what is practical: swapping a failed switch before lunch instead of losing a day, or dropping in to check a camera angle rather than asking you to describe it.",
         ],
       },
@@ -76,7 +76,7 @@ export const locations: Location[] = [
     faqs: [
       {
         q: "How quickly can you get to us in New Albany?",
-        a: "Usually within the hour for anything urgent, and often much faster. We are on W Main St, so most of the town is a few minutes away.",
+        a: "Call to check current availability. We are based on W Main St, but arrival time depends on the issue, schedule and agreed support coverage.",
       },
       {
         q: "Do you work with businesses outside Union County?",
@@ -98,7 +98,7 @@ export const locations: Location[] = [
     metaDescription:
       "Managed IT, Ubiquiti networking and security cameras for Tupelo businesses. Locally owned, 30 minutes away in New Albany, no per-device licence fees.",
     title: "Managed IT services for Tupelo businesses",
-    lead: "Tupelo is the business centre of North Mississippi, and most of the IT providers serving it are either national outfits with a support queue or one-person shops with no cover. We sit in between: a real local team, thirty minutes up the road, that answers the phone.",
+    lead: "Commercial IT support for Tupelo and Lee County, delivered from our New Albany base. We help businesses plan reliable networks, manage user access and coordinate support across locations.",
     sections: [
       {
         heading: "A bigger market with a different set of problems",
@@ -118,14 +118,14 @@ export const locations: Location[] = [
         heading: "Retail, hospitality and the traffic that comes with them",
         body: [
           "Tupelo draws shoppers and visitors from across the region, and the businesses serving them live or die on systems that cannot afford a bad Saturday. Point-of-sale that stays up, card processing that does not drop, guest Wi-Fi that does not put customers on the same network as the till.",
-          "That last one is more common than it should be. Separating guest traffic from business systems is a twenty-minute configuration job that a surprising number of sites have never had done.",
+          "Guest and business traffic should be separated with appropriate network rules. The work depends on the existing equipment, payment systems and coverage requirements; survey and testing come before a time estimate.",
         ],
       },
       {
         heading: "Honest about distance",
         body: [
           "We are in New Albany, about thirty minutes from Tupelo. For monitoring, help desk and anything solvable remotely, which is most things, that distance makes no difference at all.",
-          "For on-site work it means we are scheduling a drive. We would rather say that plainly than pretend otherwise. In practice it means we are quicker than a provider dispatching from Memphis or Jackson, and slower than someone with an office on Gloster Street. What we offer against that is a team that actually picks up the phone and a network standard that reduces how often anyone needs to be on site at all.",
+          "On-site work is a scheduled drive from New Albany. We confirm scope, availability and travel arrangements before work begins. We do not have a separate Tupelo office.",
         ],
       },
     ],
@@ -139,7 +139,7 @@ export const locations: Location[] = [
     faqs: [
       {
         q: "You are in New Albany. How does that work for a Tupelo business?",
-        a: "Monitoring and help desk are remote, so location makes no difference for most issues. For on-site work we are about thirty minutes away, quicker than a provider coming from Memphis and slower than one based in Tupelo itself. We would rather be straight with you about that.",
+        a: "Suitable issues can be handled remotely. On-site visits are arranged from New Albany, roughly thirty minutes away depending on traffic. Scheduling and any travel charges are confirmed with the scope.",
       },
       {
         q: "Do you support medical practices?",
@@ -211,7 +211,7 @@ export const locations: Location[] = [
       },
       {
         q: "Our Wi-Fi only fails on busy weekends. Why?",
-        a: "Almost always access point density rather than internet speed. One access point serving far more devices than it was sized for degrades for everyone. It is fixable, and the fix is usually more access points rather than a faster connection.",
+        a: "Busy-period problems can involve access point capacity, interference, cabling or internet bandwidth. We measure the network under load before recommending equipment or a faster connection.",
       },
       {
         q: "Do you work with property management companies?",

@@ -1,3 +1,4 @@
+import { Analytics } from "@/components/site/Analytics";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -14,6 +15,7 @@ const Layout = () => (
       Skip to content
     </a>
     <ScrollToTop />
+    <Analytics />
     <Header />
     <main id="main" className="flex-1">
       <Outlet />

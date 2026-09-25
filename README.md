@@ -52,8 +52,15 @@ Point the `nettech.ms` DNS at the new host once the deployment is verified.
 
 ## Forms
 
-- **Support ticket** (`/support-form`) posts to the existing LeadConnector webhook. Override with `VITE_SUPPORT_WEBHOOK_URL`.
-- **Contact** (`/contact`) posts to `VITE_CONTACT_WEBHOOK_URL` when set; otherwise it opens the visitor's email client with the message pre-filled.
+- **Contact** and **support** post to `/api/forms`, a Vercel Node function using Resend.
+- Set server-only `RESEND_API_KEY` in Vercel. Never put it in a `VITE_` variable or Git.
+- Sender: `team@support.nettech.ms`; recipient and Reply-To: `brian@nettech.ms`. Customer contact details are in the message body.
+- Existing support CRM forwarding is preserved; optional server variables `SUPPORT_WEBHOOK_URL` and `CONTACT_WEBHOOK_URL` override it. Legacy VITE webhook variables remain compatible on the server.
+- Success means Resend accepted the message. Actual delivery must be checked in Resend using the returned email ID; it does not prove inbox placement.
+- Failed sends retain entries. Unchanged retries reuse a Resend idempotency key. CRM forwarding errors are logged separately after email acceptance and require operator attention; CRM retries may create duplicate tickets.
+- The API validates fields, fixes recipients, checks browser origins, and applies a best-effort per-instance rate limit. Use Vercel Firewall for distributed abuse protection if needed.
+- Static-only hosting is insufficient for these forms. Use Vercel deployments or `vercel dev` for end-to-end local testing.
+
 
 Copy `.env.example` to `.env` for local use; set them as build-time variables on the host.
 
