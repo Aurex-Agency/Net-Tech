@@ -31,7 +31,7 @@ The last contact test used networking, company and city fields with no phone. GA
 - Production build and TypeScript check passed. All 23 tests passed; lint reported zero errors and two existing fast-refresh warnings.
 - Live crawl: 30 sitemap URLs returned 200, one H1, self-canonical, valid JSON-LD and no noindex. Support utilities remain noindex; an unknown route returns 404.
 - Google live inspection confirmed managed IT is available for indexing. Google accepted indexing requests for managed IT and the new service-area page. A request is not a confirmed index entry.
-- Initial release PageSpeed run: mobile 80, LCP 4.7 seconds, CLS 0; desktop 100, LCP 0.5 seconds, CLS 0. No field data was available. Report: https://pagespeed.web.dev/analysis/https-nettech-ms/noclv32nd4 . This run preceded the final hero, contrast and logo sizing adjustments. Mobile performance remains an area to measure and improve.
+- Initial release PageSpeed run: mobile 80, LCP 4.7 seconds, CLS 0; desktop 100, LCP 0.5 seconds, CLS 0. No field data was available. Report: https://pagespeed.web.dev/analysis/https-nettech-ms/noclv32nd4 . A second run after hero, contrast and logo fixes scored mobile performance 79, accessibility 100, best practices 100 and SEO 100, with LCP 4.7 seconds and CLS 0: https://pagespeed.web.dev/analysis/https-nettech-ms/ru3vuegrtt . The LCP element is now the headline, with render delay still present. Mobile speed remains unresolved; the two runs do not establish a speed improvement.
 
 ## Dependencies and remaining work
 
@@ -43,3 +43,9 @@ The last contact test used networking, company and city fields with no phone. GA
 6. Ongoing work: weekly index and lead-quality reviews, monthly content improvements and consistent AI visibility checks are future work over the approved 90-day program. See measurement-review.md. No autonomous recurring schedule has been configured.
 
 A broad production-log request was rejected by automatic approval review because it could expose unrelated submission data. Verification continued successfully using a query limited to the authorized test email ID.
+
+## Dependency maintenance
+
+Compatible security updates were applied to the lockfile, including React Router 6.30.6. Vite was upgraded to 6.4.3, a major version supported by the existing static generator and React plugin. The resulting audit has no critical or high findings, with five moderate findings remaining across React Router/DOM/static-generator and Vitest/mocker dependencies. This is not a claim of zero security issues.
+
+The remaining router fixes require moving beyond the static generator's React Router 6 peer range; Vitest's fix requires a separate major upgrade. Existing route links use repository-controlled destinations; the live deployment serves static HTML and a forms function, rather than a public Vite/Vitest development server. No exploitability assessment or penetration test was performed. Plan a separately validated static-generator/router migration and test-runner upgrade; do not force incompatible dependency versions into this release.
