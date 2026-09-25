@@ -11,7 +11,7 @@ Official guidance:
 - https://support.google.com/business/answer/4566671
 - https://support.google.com/business/answer/12756178
 
-## Ready-to-apply profile content when access is available
+## Profile content applied September 25, 2026
 
 Website: https://nettech.ms/?utm_source=google&utm_medium=organic&utm_campaign=gbp
 
@@ -31,3 +31,17 @@ Service-area starting towns: New Albany, Tupelo, Oxford, Pontotoc, Ripley, Boone
 - Minimum account/project size, capacity, assessment terms, after-hours arrangements and pricing examples approved by Brian.
 
 Do not publish additional city or industry pages solely by swapping names. Pontotoc/Corinth pages, a professional-office page and a separate backup/security page stay conditional on distinct useful content and real service evidence.
+
+## Application and verification record
+
+Access to the verified 112 West Main Street profile was confirmed in the Aurex account. Profile ID: 6462611781396825396; Maps place ID in the management link: 12773978621666345124.
+
+The editor now shows the commercial description above, Computer support and services as the primary category, and the tracked HTTPS website link, with no pending notice for those fields. The public Google result also displayed the updated category and description. Name, phone, physical address and business hours were preserved.
+
+Service areas now show 16 specific Mississippi communities: Ecru, Tupelo, Baldwyn, Columbus, Southaven, Fulton, Oxford, Ripley, Corinth, Pontotoc, Batesville, Booneville, New Albany, Starkville, Blue Springs and Holly Springs. Removed Jackson, the statewide Mississippi entry, Meridian, Vicksburg, Hattiesburg, Canton, Lucedale and the broad North Mississippi entry. The final editor showed the revised list with no pending notice. Exact boundary addresses still need coverage confirmation.
+
+Five custom services were submitted, each with a commercial description and no invented price: Managed IT and business support; Business Wi-Fi and network cabling; Commercial security camera installation; Microsoft 365 support and migration; Multi-site IT management. Google displayed all five saved services and stated that service edits were pending review and could take up to one day to publish. Public service publication is not yet confirmed.
+
+The historical 621 Highland St listing remains unresolved. Access to the current profile does not itself recover the old account or merge the old listing. No support message, ownership transfer, permanent closure or duplicate removal was submitted.
+
+Automatic approval review rejected a batch removal using fixed accessibility indices because list changes could target the wrong locations. No batch removal ran. Each intended removal was subsequently performed individually with a fresh state check.
