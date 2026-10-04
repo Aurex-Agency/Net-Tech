@@ -88,7 +88,7 @@ const Pricing = () => (
       </Container>
     </section>
 
-    <section className="border-t border-line"><Container className="py-12"><h2 className="display-sm text-2xl">Before you approve a quote</h2><p className="mt-4 max-w-prose">Confirm setup work, recurring support, software licenses, replacement equipment, backup storage and any on-site travel or after-hours charges. A free assessment request does not commit you to a project or guarantee a free site visit at every address.</p><p className="mt-4"><Link className="link" to="/services/managed-it">Compare managed IT scope</Link> · <Link className="link" to="/service-area">Check the 100-mile service area</Link></p></Container></section>
+    <section className="border-t border-line"><Container className="py-12"><h2 className="display-sm text-2xl">Before you approve a quote</h2><p className="mt-4 max-w-prose">Confirm setup work, recurring support, software licenses, replacement equipment, backup storage and any on-site travel or after-hours charges. An inquiry does not commit you to a project. Agree assessment, site visit and travel charges before work begins.</p><p className="mt-4"><Link className="link" to="/services/managed-it">Compare managed IT scope</Link> · <Link className="link" to="/service-area">Check the 100-mile service area</Link></p></Container></section>
     {/* What moves the number */}
     <section className="border-y border-line bg-surface">
       <Container className="py-16 sm:py-20 lg:py-24">
@@ -170,7 +170,7 @@ const Pricing = () => (
     <CTABand
       title={
         <>
-          Free assessment. <span className="text-brand-bright">Fixed quote.</span>
+          Clear scope. <span className="text-brand-bright">Agreed quote.</span>
         </>
       }
       lead="No contract to get a number, and no obligation after you have one. Plenty of businesses use our assessment to find out their current setup is fine."

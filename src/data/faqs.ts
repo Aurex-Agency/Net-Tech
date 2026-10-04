@@ -62,11 +62,11 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "How much does managed IT cost?",
-        a: "It depends on how many people and devices you have, whether you run servers, how many locations you operate and what compliance obligations you carry. We price it as one flat monthly fee after a free assessment. The pricing page explains what moves the number.",
+        a: "It depends on how many people and devices you have, whether you run servers, how many locations you operate and what compliance obligations you carry. We price it as one flat monthly fee after an agreed assessment. The pricing page explains what moves the number.",
       },
       {
-        q: "Is the assessment really free?",
-        a: "Yes, and it carries no obligation. We will look at what you have, tell you what we would change and give you a straightforward quote.",
+        q: "What happens after I request an assessment?",
+        a: "We discuss your business needs, the assessment scope and any charges. On-site visits and travel are agreed before work begins. An inquiry is not a confirmed appointment.",
       },
       {
         q: "Will I get surprise invoices?",

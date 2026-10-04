@@ -1,5 +1,14 @@
 import "@testing-library/jest-dom/vitest";
 
+// Radix Checkbox measures its hidden input. jsdom has no layout observer;
+// these routing tests verify form semantics, not element measurements.
+class TestResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+Object.defineProperty(globalThis, "ResizeObserver", { value: TestResizeObserver, configurable: true });
+
 // jsdom does not implement scrolling or IntersectionObserver.
 if (typeof window !== "undefined") {
   window.scrollTo = () => {};

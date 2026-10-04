@@ -8,6 +8,8 @@ import { site } from "@/lib/site";
 interface CTABandProps {
   title?: React.ReactNode;
   lead?: string;
+  service?: string;
+  label?: string;
 }
 
 /** Dark closing panel used at the bottom of most pages. */
@@ -17,10 +19,12 @@ export function CTABand({
       Ready to stop worrying <span className="text-brand-bright">about your IT?</span>
     </>
   ),
-  lead = "Request a free business IT assessment. Tell us what you have and what needs to improve. We will discuss next steps and quote the agreed work, including any on-site or travel arrangements.",
+  lead = "Tell us what you have and what needs to improve. We will discuss next steps and quote the agreed work, including any assessment, on-site or travel arrangements.",
+  service: requestedService,
+  label = "Request a business review",
 }: CTABandProps) {
   const { pathname } = useLocation();
-  const service = pathname.startsWith("/services/") ? pathname.split("/")[2] : pathname.startsWith("/industries/") ? "healthcare" : "other";
+  const service = requestedService ?? (pathname.startsWith("/services/") ? pathname.split("/")[2] : pathname.startsWith("/industries/") ? "healthcare" : "other");
   return (
     <section className="relative overflow-hidden bg-navy">
       <div
@@ -37,7 +41,7 @@ export function CTABand({
           <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
             <Button asChild variant="inverse" size="lg">
               <Link to={`/contact?service=${service}`} data-cta-placement="closing">
-                Request an assessment
+                {label}
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
               </Link>
             </Button>

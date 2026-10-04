@@ -24,6 +24,12 @@ const BlogPost = () => {
   if (!post) return <NotFound />;
 
   const path = `/blog/${post.slug}`;
+  const cta = post.cta ?? {
+    title: "Discuss your business systems",
+    text: "Commercial customers within 100 miles of New Albany can discuss the problem, assessment scope and next steps. Any site visit and travel arrangements are agreed in advance.",
+    label: "Request a business review",
+    service: post.relatedServices[0] || "other",
+  };
   const crumbs = [
     { name: "Home", path: "/" },
     { name: "Insights", path: "/blog" },
@@ -110,11 +116,11 @@ const BlogPost = () => {
             </nav>
 
             {/* Article */}
-            <article className="lg:col-span-9">
+            <article className="min-w-0 lg:col-span-9">
               <PostBody blocks={post.body} />
               <p className="mt-8 text-sm text-ink-soft">Published by <Link className="link" to="/about">Net-Tech</Link>, a commercial IT business owned by Brian Adair in New Albany, Mississippi.</p>
               {post.sources && <section className="mt-8"><h2 className="display-sm text-xl">Sources and further reading</h2><ul className="mt-4 space-y-3">{post.sources.map(source => <li key={source.url}><a href={source.url} className="link" target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul></section>}
-              <div className="mt-8 card p-6"><h2 className="display-sm text-xl">Discuss this with a local IT provider</h2><p className="mt-3">Commercial customers within 100 miles of New Albany can <Link className="link" to={`/contact?service=${post.relatedServices[0] || "other"}`}>request an assessment</Link>. See our <Link className="link" to="/service-area">service area</Link> or <Link className="link" to="/industries/healthcare-rehab">practice IT services</Link>.</p></div>
+              <div className="mt-8 card p-6"><h2 className="display-sm text-xl">{cta.title}</h2><p className="mt-3">{cta.text}</p><Button asChild className="mt-5"><Link to={`/contact?service=${cta.service}`}>{cta.label}</Link></Button><p className="mt-4"><Link className="link" to="/service-area">Check commercial service coverage</Link></p></div>
 
               {post.tags.length > 0 && (
                 <ul className="mt-12 flex flex-wrap gap-2 border-t border-line pt-8">
@@ -179,7 +185,7 @@ const BlogPost = () => {
         </section>
       )}
 
-      <CTABand />
+      <CTABand title={cta.title} lead={cta.text} label={cta.label} service={cta.service} />
     </>
   );
 };

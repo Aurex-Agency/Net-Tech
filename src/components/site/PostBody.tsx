@@ -16,6 +16,16 @@ export function PostBody({ blocks }: { blocks: Block[] }) {
         const key = `${block.type}-${i}`;
 
         switch (block.type) {
+          case "table":
+            return (
+              <div key={key} role="region" aria-label={block.title ?? "Comparison table"} tabIndex={0} className="mt-6 overflow-x-auto rounded-xl border border-line focus-visible:outline focus-visible:outline-brand">
+                <table className="w-full min-w-[34rem] text-left text-[15px] leading-relaxed">
+                  {block.title && <caption className="bg-surface p-4 text-left font-semibold text-ink">{block.title}</caption>}
+                  <thead className="bg-surface-sunk"><tr>{block.columns?.map(column => <th scope="col" className="p-4" key={column}>{column}</th>)}</tr></thead>
+                  <tbody>{block.rows?.map((row, index) => <tr className="border-t border-line" key={index}>{row.map((cell, col) => col === 0 ? <th scope="row" className="p-4 align-top font-medium" key={col}>{cell}</th> : <td className="p-4 align-top text-ink-soft" key={col}>{cell}</td>)}</tr>)}</tbody>
+                </table>
+              </div>
+            );
           case "h2":
             return (
               <h2

@@ -37,14 +37,14 @@ export const pricingModels: PricingModel[] = [
   {
     name: "Project work",
     who: "Network installs, camera systems, cabling, Microsoft 365 migrations and office moves.",
-    how: "A fixed quote for the job, given after a free on-site assessment. You approve the number before anything starts.",
+    how: "A fixed quote for the agreed job. Assessment scope, site visits and any travel charges are agreed before work begins.",
     includes: [
-      "Free assessment and written quote",
+      "Agreed assessment scope and written project quote",
       "Hardware quoted at cost plus a stated margin",
       "Labour and configuration included in the figure",
       "A defined scope, so changes are visible",
     ],
-    cta: { label: "Book a free assessment", to: "/contact" },
+    cta: { label: "Discuss your project", to: "/contact" },
   },
   {
     name: "As-needed support",
@@ -95,7 +95,7 @@ export const costDrivers = [
 export const pricingPrinciples = [
   {
     title: "The quote is the price",
-    body: "Project work is quoted as a fixed figure after an assessment. If we get the scope wrong, that is our problem, not a change order.",
+    body: "Project work is quoted as a fixed figure after an assessment. Any additional work or change in scope must be agreed before it starts.",
   },
   {
     title: "No per-device licence fees",
@@ -103,7 +103,7 @@ export const pricingPrinciples = [
   },
   {
     title: "No contract to get a number",
-    body: "The assessment and the quote are free and carry no obligation. Plenty of businesses use them to find out their current provider is doing fine.",
+    body: "An inquiry does not commit you to a support contract. We agree the assessment scope and any charges before starting work.",
   },
   {
     title: "Licensing reviewed, not resold",

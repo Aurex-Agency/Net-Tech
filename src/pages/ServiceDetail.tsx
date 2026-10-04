@@ -11,6 +11,8 @@ import { serviceBySlug, services } from "@/data/services";
 import { featuredTowns, site } from "@/lib/site";
 import { breadcrumbNode, graph, serviceNode, webPageNode } from "@/lib/schema";
 import { servicePlanning } from "@/data/service-planning";
+import { serviceIntake } from "@/data/service-intake";
+import { BuyerGuides } from "@/components/site/BuyerGuides";
 import NotFound from "./NotFound";
 
 const ServiceDetail = () => {
@@ -20,6 +22,7 @@ const ServiceDetail = () => {
   if (!service) return <NotFound />;
 
   const path = `/services/${service.slug}`;
+  const intake = serviceIntake[slug];
   const crumbs = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
@@ -61,7 +64,7 @@ const ServiceDetail = () => {
             </ul>
             <Button asChild variant="inverse" className="mt-6 w-full">
               <Link to={`/contact?service=${service.slug}`}>
-                Get a quote
+                {intake?.label ?? "Discuss your project"}
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
               </Link>
             </Button>
@@ -84,6 +87,10 @@ const ServiceDetail = () => {
       </section>
 
       {/* Body */}
+      {intake && <section className="border-b border-line"><Container className="py-12 grid gap-8 md:grid-cols-2">
+        <div><h2 className="display-sm text-2xl">Is this the right service for your business?</h2><p className="mt-4 text-ink-soft">{intake.fit}</p></div>
+        <div><h2 className="display-sm text-2xl">Make the scope clear</h2><p className="mt-4 text-ink-soft">{intake.scope}</p><p className="mt-4 text-ink-soft">Owned by Brian Adair in New Albany. <Link to="/about" className="link">Meet Net-Tech</Link> and review our <Link to="/service-area" className="link">100-mile commercial service area</Link>.</p></div>
+      </Container></section>}
       <section>
         <Container className="grid gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:gap-16 lg:py-24">
           <div className="lg:col-span-7">
@@ -135,7 +142,7 @@ const ServiceDetail = () => {
                   Talk it through
                 </p>
                 <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-                  Start with a free business IT assessment request. We agree scope, scheduling and any travel charges before work begins.
+                  Start with a business IT review request. We agree scope, scheduling and any travel charges before work begins.
                 </p>
                 <div className="mt-6 flex flex-col gap-2.5">
                   <Button asChild>
@@ -253,13 +260,16 @@ const ServiceDetail = () => {
         </Container>
       </section>
 
+      <Container><BuyerGuides service={slug} /></Container>
       <CTABand
+        service={slug}
+        label={intake?.label}
         title={
           <>
-            Want this done properly? <span className="text-brand-bright">Start with a free look.</span>
+            Have a business project? <span className="text-brand-bright">Let’s discuss the scope.</span>
           </>
         }
-        lead={`Tell us about your business systems. We will discuss next steps and arrange any site survey before preparing a quote.`}
+        lead={intake?.description ?? "Tell us about your business systems. We will discuss next steps and arrange any site survey before preparing a quote."}
       />
     </>
   );

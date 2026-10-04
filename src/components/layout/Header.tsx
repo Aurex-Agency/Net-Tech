@@ -117,7 +117,7 @@ const Header = () => {
               </a>
             </Button>
             <Button asChild variant={solid ? "primary" : "inverse"} size="sm">
-              <Link to="/contact">Free assessment</Link>
+              <Link to="/contact">Business review</Link>
             </Button>
           </div>
 
@@ -188,7 +188,7 @@ const Header = () => {
             </p>
             <div className="flex flex-col gap-3 pt-2">
               <Button asChild variant="inverse" size="lg" className="w-full">
-                <Link to="/contact">Request a free assessment</Link>
+                <Link to="/contact">Request a business review</Link>
               </Button>
               <Button asChild variant="outlineInverse" size="lg" className="w-full">
                 <Link to="/support-form">Submit a support ticket</Link>

@@ -9,6 +9,7 @@ export const post: Post = {
   excerpt:
     "Nobody can log in. The practice management system shows a ransom note. Whether this is a bad week or an existential event was decided long before this morning.",
   date: "2026-09-15",
+  updated: "2026-10-03",
   category: "security",
   tags: ["Ransomware", "Backup", "Healthcare"],
   relatedServices: ["managed-it", "cloud", "networking"],
@@ -126,7 +127,7 @@ export const post: Post = {
     {
       type: "callout",
       title: "Find out where you actually stand",
-      text: "We will check the four questions above against your practice: are the backups isolated, have they been restored, how long recovery takes, and what would be visible in your logs. Free assessment, no obligation. Call (662) 539-7787.",
+      text: "We will check the four questions above against your practice: are the backups isolated, have they been restored, how long recovery takes, and what would be visible in your logs. Contact us to agree assessment scope, scheduling and any charges. Call (662) 539-7787.",
     },
   ],
 };
