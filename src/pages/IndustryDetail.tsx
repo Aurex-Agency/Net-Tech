@@ -182,7 +182,7 @@ const IndustryDetail = () => {
             Want the technical side <span className="text-brand-bright">handled properly?</span>
           </>
         }
-        lead="Free assessment, a plain-English view of where your practice actually stands, and a fixed quote. No contract required to get a number."
+        lead="Discuss your practice needs, agree the assessment scope and receive a quote for the proposed work. Site visits and travel are arranged in advance."
       />
     </>
   );

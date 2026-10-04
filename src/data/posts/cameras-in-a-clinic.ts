@@ -9,6 +9,7 @@ export const post: Post = {
   excerpt:
     "Practices want cameras for good reasons. The useful part of the conversation is about where they do not go, and what happens to footage once patients are in it.",
   date: "2026-09-15",
+  updated: "2026-10-03",
   category: "healthcare",
   tags: ["Cameras", "Privacy", "Rehab clinics"],
   relatedServices: ["security-cameras", "networking"],
@@ -126,7 +127,7 @@ export const post: Post = {
     {
       type: "callout",
       title: "Walk it with us",
-      text: "We will go through your building, work out what you actually need to see and tell you honestly which positions we would avoid and why. Free assessment, fixed quote, no monthly fee for your own footage. Call (662) 539-7787.",
+      text: "We will go through your building, work out what you actually need to see and tell you honestly which positions we would avoid and why. Discuss coverage, recording and installation scope before agreeing a quote. Call (662) 539-7787.",
     },
   ],
 };

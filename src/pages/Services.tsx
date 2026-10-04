@@ -87,8 +87,8 @@ const Services = () => (
               <div>
                 <h2 className="display-sm text-xl text-ink">Not sure what you need?</h2>
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-                  Most clients start with a free walkthrough. We look at what you have and tell you honestly what is
-                  worth changing, and what is not.
+                  Start by describing your business and the problem. We will discuss what needs checking and agree
+                  any assessment, site visit and travel arrangements.
                 </p>
               </div>
               <Link to="/contact" className="link mt-7 text-[15px] self-start">
@@ -169,7 +169,7 @@ const Services = () => (
           Networking, security and more. <span className="text-brand-bright">Unified by a local expert.</span>
         </>
       }
-      lead="Tell us what you are working with and we will tell you what we would do. Free assessment, fixed quote, no contract required."
+      lead="Tell us what you are working with and we will tell you what we would do. Assessment scope and a project quote agreed before work begins."
     />
   </>
 );

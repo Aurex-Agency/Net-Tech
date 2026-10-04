@@ -9,6 +9,7 @@ export const post: Post = {
   excerpt:
     "The hardware quote is the part everyone compares. The licence renewal is the part that decides what the network actually costs, and it does not appear until year two.",
   date: "2026-09-15",
+  updated: "2026-10-03",
   category: "cost",
   tags: ["Ubiquiti", "Networking", "Pricing"],
   relatedServices: ["networking", "multi-site"],
@@ -107,7 +108,7 @@ export const post: Post = {
     {
       type: "callout",
       title: "Want the numbers for your building?",
-      text: "We will survey the space, tell you how many access points it actually needs, and give you a fixed quote with no recurring licence attached. Free assessment, no obligation. Call (662) 539-7787.",
+      text: "We will survey the space, tell you how many access points it actually needs, and give you a fixed quote with no recurring licence attached. Contact us to agree assessment scope, scheduling and any charges. Call (662) 539-7787.",
     },
   ],
 };

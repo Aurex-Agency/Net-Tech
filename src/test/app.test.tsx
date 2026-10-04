@@ -7,6 +7,7 @@ import { routes, staticPaths } from "@/App";
 import { services } from "@/data/services";
 import { locations } from "@/data/locations";
 import { site } from "@/lib/site";
+import { posts } from "@/data/posts";
 
 /**
  * Routes are lazy, so the router resolves them asynchronously. Every
@@ -31,7 +32,7 @@ describe("routing", () => {
     renderAt("/");
     expect(await h1()).toMatch(/Business IT support/i);
     await waitFor(() =>
-      expect(screen.getAllByRole("link", { name: /free assessment/i }).length).toBeGreaterThan(0),
+      expect(screen.getAllByRole("link", { name: /business review/i }).length).toBeGreaterThan(0),
     );
   });
 
@@ -82,5 +83,27 @@ describe("sitemap coverage", () => {
 
   it("does not list the 404 route", () => {
     expect(staticPaths).not.toContain("*");
+  });
+});
+
+describe("buyer guide inquiry paths", () => {
+  it("renders each buyer guide with comparison tables and service-specific inquiry links", async () => {
+    for (const post of posts.filter(post => post.cta)) {
+      const view = renderAt(`/blog/${post.slug}`);
+      expect(await h1()).toBe(post.title);
+      expect(screen.getAllByRole("table").length).toBeGreaterThan(0);
+      const links = screen.getAllByRole("link", { name: post.cta!.label });
+      expect(links.length).toBeGreaterThanOrEqual(2);
+      for (const link of links) expect(link).toHaveAttribute("href", `/contact?service=${post.cta!.service}`);
+      view.unmount();
+    }
+  });
+
+  it("preserves camera intent on contact arrival without making an appointment promise", async () => {
+    renderAt("/contact?service=security-cameras");
+    await h1();
+    expect(screen.getByRole("combobox", { name: "What do you need?" })).toHaveValue("security-cameras");
+    expect(screen.getByRole("heading", { name: "Plan your commercial camera project" })).toBeInTheDocument();
+    expect(screen.getByText(/Sending this form does not book an appointment/)).toBeInTheDocument();
   });
 });

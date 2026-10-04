@@ -9,6 +9,7 @@ export const post: Post = {
   excerpt:
     "We get asked this weekly, usually by someone who has been passed around. The honest answer is that doing both badly serves nobody, so we picked one.",
   date: "2026-09-15",
+  updated: "2026-10-03",
   category: "cost",
   tags: ["Commercial only", "How we work"],
   relatedServices: ["managed-it", "networking"],
@@ -101,7 +102,7 @@ export const post: Post = {
     {
       type: "callout",
       title: "Run a business in North Mississippi?",
-      text: "Free assessment, straight answer about what we would change, fixed quote, no contract required to get a number. Call (662) 539-7787.",
+      text: "Discuss what needs to improve and agree assessment scope before requesting a project quote. Call (662) 539-7787.",
     },
   ],
 };

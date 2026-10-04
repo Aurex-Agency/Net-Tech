@@ -15,6 +15,7 @@ import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 import { submitForm } from "@/lib/forms";
 import { captureAttribution, track, trackAccepted } from "@/lib/analytics";
 import { site } from "@/lib/site";
+import { serviceIntake } from "@/data/service-intake";
 
 const emptyForm = { name: "", company: "", city: "", email: "", phone: "", message: "" };
 const serviceOptions = ["managed-it", "networking", "security-cameras", "cloud", "multi-site", "healthcare", "other"];
@@ -28,6 +29,7 @@ const Contact = () => {
   const [smsConsent, setSmsConsent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
   const [sending, setSending] = useState(false);
+  const intake = serviceIntake[service];
 
   const update = (field: keyof typeof emptyForm) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
@@ -58,7 +60,7 @@ const Contact = () => {
     { name: "Home", path: "/" },
     { name: "Contact", path: "/contact" },
   ];
-  const description = `Call ${site.phone.display}, email ${site.email.display} or request a free business IT assessment with Net-Tech in New Albany, MS.`;
+  const description = `Call ${site.phone.display}, email ${site.email.display} or request a business IT review with Net-Tech in New Albany, MS.`;
 
   return (
     <>
@@ -79,7 +81,7 @@ const Contact = () => {
             Get in <span className="text-brand-bright">touch.</span>
           </>
         }
-        lead="Request a free business IT assessment. Tell us your company, location and the problem you want to solve. We will contact you to discuss scope and next steps. Commercial customers only, within 100 miles of New Albany."
+        lead="Request a business IT review. Tell us your company, location and the problem you want to solve. We will contact you to discuss scope and next steps. Commercial customers only, within 100 miles of New Albany."
       />
 
       <section>
@@ -118,6 +120,7 @@ const Contact = () => {
                 <div className="space-y-2"><Label htmlFor="city">Business city or ZIP</Label><Input id="city" name="city" autoComplete="address-level2" maxLength={100} value={form.city} onChange={update("city")} required /></div>
               </div>
               <div className="space-y-2"><Label htmlFor="service">What do you need?</Label><select id="service" className="flex h-11 w-full rounded-md border border-input bg-background px-3 text-sm" value={service} onChange={e => setService(e.target.value)}><option value="other">Help choosing the right service</option><option value="managed-it">Managed IT and business support</option><option value="networking">Business Wi-Fi and networking</option><option value="security-cameras">Commercial security cameras</option><option value="cloud">Microsoft 365 and cloud</option><option value="multi-site">Multi-site IT</option><option value="healthcare">Healthcare / rehab IT</option></select></div>
+              <aside aria-live="polite" className="rounded-lg bg-surface-sunk p-5"><h2 className="font-semibold">{intake?.title ?? "Tell us about your business"}</h2><p className="mt-2 text-sm text-ink-soft">{intake?.prepare ?? "Describe your current setup, the problem and your project timing. Do not include passwords or confidential customer information."}</p><p className="mt-3 text-sm text-ink-soft">We will discuss next steps and agree any assessment, site visit or travel charges before work begins. Sending this form does not book an appointment.</p></aside>
               <div className="space-y-2">
                 <Label htmlFor="phone">Phone (optional)</Label>
                 <Input

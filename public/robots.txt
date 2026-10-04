@@ -61,7 +61,7 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-# --- Training crawlers: allowed, so future models know this business exists ---
+# --- Training crawlers: permission is separate from search discoverability ---
 User-agent: CCBot
 Allow: /
 

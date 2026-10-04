@@ -82,7 +82,7 @@ const LocationDetail = () => {
                 </a>
               </Button>
               <Button asChild variant="outlineInverse" className="w-full">
-                <Link to="/contact">Request a free assessment</Link>
+                <Link to="/contact">Request a business review</Link>
               </Button>
             </div>
           </div>
@@ -209,7 +209,7 @@ const LocationDetail = () => {
             Serving {loc.city} from <span className="text-brand-bright">New Albany.</span>
           </>
         }
-        lead="Request a free business IT assessment. We will look at what you have, tell you what we would change and give you a straightforward quote."
+        lead="Request a business IT review. We will look at what you have, tell you what we would change and give you a straightforward quote."
       />
     </>
   );

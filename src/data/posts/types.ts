@@ -9,7 +9,7 @@
  *   No em dashes. Use a full stop, a colon, or rewrite the clause.
  */
 
-export type BlockType = "p" | "h2" | "h3" | "ul" | "ol" | "callout" | "quote";
+export type BlockType = "p" | "h2" | "h3" | "ul" | "ol" | "callout" | "quote" | "table";
 
 export interface Block {
   type: BlockType;
@@ -19,6 +19,8 @@ export interface Block {
   items?: string[];
   /** Optional heading for a callout block. */
   title?: string;
+  columns?: string[];
+  rows?: string[][];
 }
 
 export interface Post {
@@ -43,6 +45,7 @@ export interface Post {
   /** Location slug, when the post is written to a specific market. */
   location?: string;
   sources?: { title: string; url: string }[];
+  cta?: { title: string; text: string; label: string; service: string };
   body: Block[];
 }
 
@@ -58,18 +61,12 @@ export type PostCategory = keyof typeof postCategories;
 
 /** Roughly 220 words per minute, rounded up, minimum one. */
 export function readingMinutes(post: Post): number {
-  const words = post.body.reduce((n, b) => {
-    if (b.text) return n + b.text.split(/\s+/).length;
-    if (b.items) return n + b.items.join(" ").split(/\s+/).length;
-    return n;
-  }, 0);
-  return Math.max(1, Math.round(words / 220));
+  return Math.max(1, Math.ceil(wordCount(post) / 220));
 }
 
 export function wordCount(post: Post): number {
   return post.body.reduce((n, b) => {
-    if (b.text) return n + b.text.split(/\s+/).length;
-    if (b.items) return n + b.items.join(" ").split(/\s+/).length;
-    return n;
+    const text = [b.title, b.text, ...(b.items ?? []), ...(b.columns ?? []), ...(b.rows ?? []).flat()].filter(Boolean).join(" ");
+    return n + (text ? text.trim().split(/\s+/).length : 0);
   }, 0);
 }

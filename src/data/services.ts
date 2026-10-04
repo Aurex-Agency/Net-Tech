@@ -42,14 +42,14 @@ export const services: Service[] = [
     metaDescription:
       "Flat-fee managed IT and help desk for North Mississippi businesses. Proactive monitoring, patching, backup and a technician who actually answers.",
     short:
-      "Proactive monitoring, patching and a help desk that actually answers, so small problems never become big ones.",
-    lead: "We keep your computers, servers and software running so you can focus on the business. One flat monthly fee, no surprise bills.",
+      "Monitoring, patching and business help desk support with responsibilities and coverage agreed in your plan.",
+    lead: "Ongoing support for commercial computers, servers and business systems. Agree the covered users, support hours and responsibilities in a monthly plan.",
     problem: {
       heading: "The problem with calling someone only when it breaks",
       body: [
-        "Most small businesses in North Mississippi handle IT the same way: something stops working, somebody calls a guy, the guy comes out, and the business loses half a day. It feels cheaper than paying monthly. It usually is not.",
+        "When support starts only after something breaks, the business still needs someone to own maintenance, backups and access changes. Compare the responsibilities as well as the price when choosing between reactive support and an ongoing plan.",
         "The costs that hurt are the ones that never show up on an invoice. The drive-time wait while nobody can print invoices. The failed backup nobody noticed until the drive died. The workstation still running an operating system that stopped getting security patches two years ago. The employee who left in March whose email account is still active in September.",
-        "Managed IT flips the order of operations. Instead of waiting for the phone to ring, we watch the things that fail before they fail, and we fix them on a Tuesday afternoon rather than on the morning of your busiest day.",
+        "Managed IT assigns ongoing tasks to an agreed provider. Monitoring can surface warnings and planned maintenance can address known issues; neither replaces a recovery plan for unexpected failures.",
       ],
     },
     sections: [

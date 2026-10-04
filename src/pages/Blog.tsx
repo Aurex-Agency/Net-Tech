@@ -45,7 +45,7 @@ const Blog = () => {
             Written for people who <span className="text-brand-bright">run the business.</span>
           </>
         }
-        lead="No jargon, no filler and nothing written to hit a word count. These are the questions we actually get asked, answered properly."
+        lead="Practical guides to commercial IT support, camera projects and business networking. Compare options, prepare questions and plan the next step for your North Mississippi business."
         above={<Breadcrumbs items={crumbs} inverse className="mb-7" />}
       />
 

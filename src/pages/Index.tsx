@@ -24,6 +24,7 @@ import { industries } from "@/data/industries";
 import { posts, postCategories, readingMinutes } from "@/data/posts";
 import { featuredTowns, site, towns } from "@/lib/site";
 import { graph, serviceNode, webPageNode } from "@/lib/schema";
+import { BuyerGuides } from "@/components/site/BuyerGuides";
 import { Picture } from "@/components/site/Picture";
 import rackJpg from "@/assets/network-rack.jpg";
 import rackJpgSmall from "@/assets/network-rack-800.jpg";
@@ -65,7 +66,7 @@ const reasons = [
   },
   {
     title: "Ubiquiti certified installer",
-    body: "Proven expertise across networking, security and managed IT, backed by Ubiquiti certification.",
+    body: "Owner Brian Adair is a Ubiquiti certified installer. Discuss your network and camera requirements with a local business.",
   },
   {
     title: "Personalized service",
@@ -131,7 +132,7 @@ const Index = () => (
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
               <Link to="/contact">
-                Request a free assessment
+                Request a business review
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
               </Link>
             </Button>
@@ -447,13 +448,13 @@ const Index = () => (
               Let&rsquo;s talk about your setup.
             </h2>
             <p className="mt-5 max-w-prose text-[15px] leading-relaxed text-white/65 sm:text-base">
-              Request a free assessment. We will look at what you have, tell you what we would change and give you a
+              Request a business review. We will look at what you have, tell you what we would change and give you a
               straightforward quote. No pressure, no jargon.
             </p>
             <div className="mt-auto pt-10">
               <Button asChild variant="inverse" size="lg">
                 <Link to="/contact">
-                  Request a free assessment
+                  Request a business review
                   <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
                 </Link>
               </Button>
@@ -524,6 +525,7 @@ const Index = () => (
       </Container>
     </section>
 
+    <Container><BuyerGuides /></Container>
     <CTABand
       title={
         <>
