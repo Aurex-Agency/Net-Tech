@@ -87,11 +87,14 @@ describe("sitemap coverage", () => {
 });
 
 describe("buyer guide inquiry paths", () => {
-  it("renders each buyer guide with comparison tables and service-specific inquiry links", async () => {
+  it("renders each buyer guide with its content and service-specific inquiry links", async () => {
     for (const post of posts.filter(post => post.cta)) {
       const view = renderAt(`/blog/${post.slug}`);
       expect(await h1()).toBe(post.title);
-      expect(screen.getAllByRole("table").length).toBeGreaterThan(0);
+      if (post.body.some(block => block.type === "table")) {
+        expect(screen.getAllByRole("table").length).toBeGreaterThan(0);
+      }
+      expect(screen.getByRole("article")).toHaveTextContent(post.body[0].text!);
       const links = screen.getAllByRole("link", { name: post.cta!.label });
       expect(links.length).toBeGreaterThanOrEqual(2);
       for (const link of links) expect(link).toHaveAttribute("href", `/contact?service=${post.cta!.service}`);

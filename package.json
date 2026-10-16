@@ -7,11 +7,13 @@
   "scripts": {
     "dev": "vite-react-ssg dev",
     "build": "tsc -p tsconfig.app.json && vite-react-ssg build && node scripts/generate-seo-files.mjs",
-    "preview": "vite preview --outDir dist",
+    "preview": "node scripts/preview-static.mjs",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.app.json",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:indexnow": "node --test scripts/indexnow.test.mjs",
+    "seo:indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

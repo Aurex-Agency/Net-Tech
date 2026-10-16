@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Info } from "lucide-react";
 import type { Block } from "@/data/posts";
 import { slugifyHeading } from "@/lib/slug";
@@ -16,6 +17,8 @@ export function PostBody({ blocks }: { blocks: Block[] }) {
         const key = `${block.type}-${i}`;
 
         switch (block.type) {
+          case "link":
+            return <p key={key} className="mt-5"><Link className="link" to={block.href ?? "/services"}>{block.text}</Link></p>;
           case "table":
             return (
               <div key={key} role="region" aria-label={block.title ?? "Comparison table"} tabIndex={0} className="mt-6 overflow-x-auto rounded-xl border border-line focus-visible:outline focus-visible:outline-brand">
