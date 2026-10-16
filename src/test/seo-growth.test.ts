@@ -6,7 +6,8 @@ import { runInNewContext } from 'node:vm';
 
 describe('commercial growth articles', () => {
   it('has four new articles whose resource and related-content links resolve', () => {
-    const added = posts.filter(post => post.date === '2026-10-16');
+    const slugs = new Set(['choosing-it-provider-medical-rehab-practice', 'prepare-business-network-assessment', 'business-it-employee-offboarding-checklist', 'second-business-location-it-acceptance-tests']);
+    const added = posts.filter(post => slugs.has(post.slug));
     expect(added).toHaveLength(4);
     for (const post of added) {
       expect(staticPaths).toContain(`/blog/${post.slug}`);
@@ -27,4 +28,28 @@ it('does not initialize analytics on previews or localhost', () => {
     expect(window).not.toHaveProperty('gtag');
     expect(window).not.toHaveProperty('dataLayer');
   }
+});
+
+it('initializes production analytics once even when load and interaction both fire', () => {
+  const script = readFileSync('index.html', 'utf8').match(/<script>([\s\S]*?)<\/script>/)?.[1];
+  const events = new Map<string, () => void>();
+  const appended: { src?: string }[] = [];
+  const window = {
+    location: { hostname: 'nettech.ms' },
+    dataLayer: [] as IArguments[],
+    addEventListener: (name: string, callback: () => void) => events.set(name, callback),
+  };
+  const document = {
+    readyState: 'loading',
+    createElement: () => ({}),
+    head: { appendChild: (script: { src?: string }) => appended.push(script) },
+  };
+  runInNewContext(script!, { window, document });
+  expect(window.dataLayer.map(entry => entry[0])).toEqual(['js', 'config']);
+  expect(appended).toHaveLength(0);
+  events.get('pointerdown')!();
+  events.get('load')!();
+  events.get('scroll')!();
+  expect(appended).toHaveLength(1);
+  expect(appended[0].src).toBe('https://www.googletagmanager.com/gtag/js?id=G-81YTRTKY6S');
 });
