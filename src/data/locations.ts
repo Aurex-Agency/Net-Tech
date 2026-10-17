@@ -48,7 +48,7 @@ export const locations: Location[] = [
         heading: "Being down the street is the whole point",
         body: [
           "Our home base is in Union County. Tell us whether your issue needs ongoing support, a site visit or a planned project so we can agree the right next step.",
-          "We are at 112 W Main St. When something needs hands on it, we are minutes away, and we will often just come rather than talk you through it over the phone. That changes what is practical: swapping a failed switch before lunch instead of losing a day, or dropping in to check a camera angle rather than asking you to describe it.",
+          "Our office is at 112 W Main St. When the scope calls for hands-on work, confirm site access, scheduling and any required equipment before the visit. Being based in New Albany helps us coordinate local work, but it is not a same-day resolution guarantee.",
         ],
       },
       {

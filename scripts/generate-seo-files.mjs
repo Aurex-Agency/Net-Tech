@@ -4,6 +4,7 @@
  *
  * Runs after the SSG build and writes into dist/.
  */
+import { writeVerification } from "./indexnow.mjs";
 import { writeFileSync, readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -17,6 +18,11 @@ const serviceSlugs = ["managed-it", "networking", "security-cameras", "cloud", "
 const locationSlugs = ["new-albany-ms", "tupelo-ms", "oxford-ms"];
 const industrySlugs = ["healthcare-rehab"];
 const postSlugs = [
+  "choosing-it-provider-medical-rehab-practice",
+  "prepare-business-network-assessment",
+  "business-it-employee-offboarding-checklist",
+  "second-business-location-it-acceptance-tests",
+
   "commercial-security-camera-installation-cost-north-mississippi",
   "managed-it-vs-break-fix-north-mississippi",
   "warehouse-wifi-planning-north-mississippi",
@@ -102,6 +108,10 @@ Net-Tech works with businesses only and does not take residential work. Healthca
 - [IT support in Oxford, MS](${URL}/locations/oxford-ms)
 
 ## Articles
+- [Choosing an IT Provider for a Medical or Rehab Practice: A Checklist](${URL}/blog/choosing-it-provider-medical-rehab-practice)
+- [What to Prepare Before a Business Network Assessment](${URL}/blog/prepare-business-network-assessment)
+- [An Employee Is Leaving: A Business IT Offboarding Checklist](${URL}/blog/business-it-employee-offboarding-checklist)
+- [Opening a Second Business Location? Test These IT Workflows Before Launch](${URL}/blog/second-business-location-it-acceptance-tests)
 - [What Does Commercial Security Camera Installation Cost in North Mississippi?](${URL}/blog/commercial-security-camera-installation-cost-north-mississippi)
 - [Managed IT or Pay-As-You-Go Support? A Decision Guide for North Mississippi Businesses](${URL}/blog/managed-it-vs-break-fix-north-mississippi)
 - [Warehouse Wi-Fi in North Mississippi: What to Plan Before Installing More Access Points](${URL}/blog/warehouse-wifi-planning-north-mississippi)
@@ -183,3 +193,6 @@ function hoistCharset(file) {
 walk(dist);
 console.log(`[seo] charset      hoisted in ${hoisted} pages`);
 console.log(`[seo] preloads     redundant image preloads stripped`);
+
+// Verification is emitted only for an explicitly configured production build.
+writeVerification(process.env, dist);

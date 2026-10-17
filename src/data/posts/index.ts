@@ -17,12 +17,18 @@ import { post as growth1 } from "./managed-it-vs-break-fix-north-mississippi";
 import { post as growth2 } from "./warehouse-wifi-planning-north-mississippi";
 import { post as growth3 } from "./business-backup-internet-north-mississippi";
 
+import { post as seo0 } from "./choosing-it-provider-medical-rehab-practice";
+import { post as seo1 } from "./prepare-business-network-assessment";
+import { post as seo2 } from "./business-it-employee-offboarding-checklist";
+import { post as seo3 } from "./second-business-location-it-acceptance-tests";
+
 /**
  * Editorial order, strongest first. The whole set published together, so a
  * date sort would be arbitrary: the first entry is the lead article on the
  * blog index and the one surfaced on the home page.
  */
 export const posts: Post[] = [
+  seo0, seo1, seo2, seo3,
   growth0,
   growth1,
   growth2,

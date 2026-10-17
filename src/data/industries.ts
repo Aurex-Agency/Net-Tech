@@ -57,18 +57,25 @@ export const industries: Industry[] = [
     ],
     sections: [
       {
+        heading: "Agree the practice and provider responsibilities",
+        body: [
+          "Name a practice contact for access approvals, software-vendor coordination and planned changes. Record who owns the domain, email tenant and other business accounts, and how the practice receives its documentation.",
+          "Define which systems are covered, what backup and restore checks are included, and how a patient-facing interruption is escalated. Clinical, privacy and compliance decisions remain with the practice and its appropriate advisers; technical support does not by itself establish compliance.",
+        ],
+      },
+      {
         heading: "What HIPAA actually asks of your IT",
         body: [
           "HIPAA is not a product you can buy, and no vendor can make you compliant on their own. What the Security Rule does is set out safeguards you have to have in place and be able to evidence. Most of the technical half lands on whoever runs your IT.",
-          "In practice that means a handful of concrete things. Access has to be limited to the people who need it, with unique logins rather than a shared password taped under a monitor. Activity has to be logged so there is an audit trail. Data has to be protected in transit and at rest. There has to be a documented backup and recovery plan that someone has actually tested. And there has to be a process for removing access when a staff member leaves, on the day they leave.",
-          "None of that is exotic. What catches practices out is that it has to be documented and demonstrable, not just true. We keep that documentation as part of the service rather than assembling it in a panic when someone asks.",
+          "Use the assessment to review account access, logging, data protection, recovery and staff departures. The practice should determine its obligations with its advisers and document the safeguards selected for its systems. A short service-page checklist is not a complete regulatory assessment.",
+          "Agree which documentation Net-Tech will maintain under the support scope, who reviews it and how the practice can retrieve it. Keep changes and test outcomes recorded as work is completed.",
           "One thing worth being plain about: we handle the technical safeguards. Your policies, training and the administrative side belong with you and your compliance advisor. We are an IT company, not a law firm, and anyone telling you their software makes you compliant is selling something.",
         ],
       },
       {
         heading: "Agree responsibilities before access",
         body: [
-          "Any IT provider with access to systems holding patient information is a business associate under HIPAA, and that relationship is supposed to be covered by a signed agreement setting out how that information is handled.",
+          "Whether an IT provider is a business associate depends on the services and handling of protected health information. Have the practice and its appropriate advisers determine the relationship and required agreement before access is granted.",
           "Discuss your practice requirements, including any Business Associate Agreement, before granting access. Confirm the agreement, safeguards and responsibilities as part of the service scope.",
         ],
       },
@@ -85,14 +92,14 @@ export const industries: Industry[] = [
         body: [
           "This is where most of the real security work happens, and it is largely invisible once done.",
           "Clinical systems, the front desk, staff devices, guest Wi-Fi for patients in the waiting room and any connected equipment all belong on separate segments that cannot freely reach one another. A patient on your guest network should have no path to the machine running your practice management software. A smart TV in the waiting room should not be on the same network as anything clinical.",
-          "We see the opposite constantly: one flat network where everything can talk to everything, a guest password that has not changed in three years, and a printer with a web interface reachable from the car park. Splitting that apart is usually a day of work and it is the single highest-value security change available to most practices.",
+          "Review the existing network before changing access rules. Segmentation needs to preserve required clinical workflows while limiting unnecessary access. Scope, disruption and timing depend on the equipment, applications and test results.",
         ],
       },
       {
         heading: "Cameras in a clinical setting",
         body: [
           "Practices ask for cameras for good reasons: entrances after hours, medication storage, parking areas, and liability cover in the gym if a patient falls.",
-          "The design conversation is about where they do not go. Treatment rooms, changing areas and anywhere a patient would reasonably expect privacy are off limits, and footage that captures patients is information you then have to protect and control access to like any other record. That is a strong argument for recording on site rather than to a third-party cloud tier, and for locking the recorder somewhere only named staff can reach.",
+          "Start with privacy constraints and the business purpose of each camera. Have the practice and its advisers approve coverage, retention, access and any handling of patient information before installation. Local and cloud recording both need appropriate safeguards; storage location alone does not establish compliance.",
           "We will design around what you actually need to see and tell you plainly when a camera position creates more risk than it removes. Confirm the specifics with your compliance advisor; we will build to what you decide.",
         ],
       },

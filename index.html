@@ -24,10 +24,12 @@
          changes are measured by enhanced measurement; do not add a second router
          page_view sender. Brief visits may end before the deferred script loads. -->
     <script>
+      (function productionAnalytics() {
+      if (window.location.hostname !== "nettech.ms") return;
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
+      var gtag = window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
       gtag("js", new Date());
       gtag("config", "G-81YTRTKY6S");
 
@@ -52,6 +54,7 @@
         ["pointerdown", "keydown", "scroll"].forEach(function (evt) {
           window.addEventListener(evt, start, { once: true, passive: true });
         });
+      })();
       })();
     </script>
 

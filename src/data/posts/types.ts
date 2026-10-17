@@ -9,9 +9,11 @@
  *   No em dashes. Use a full stop, a colon, or rewrite the clause.
  */
 
-export type BlockType = "p" | "h2" | "h3" | "ul" | "ol" | "callout" | "quote" | "table";
+export type BlockType = "link" | "p" | "h2" | "h3" | "ul" | "ol" | "callout" | "quote" | "table";
 
 export interface Block {
+  /** Internal contextual resource link. */
+  href?: string;
   type: BlockType;
   /** Paragraph, heading or callout text. */
   text?: string;

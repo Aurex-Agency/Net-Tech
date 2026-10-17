@@ -127,6 +127,15 @@ const LocationDetail = () => {
         </Container>
       </section>
 
+      <section className="border-t border-line">
+        <Container className="py-12">
+          <h2 className="display-sm text-2xl">Arrange support for your {loc.city} business</h2>
+          <p className="mt-4 max-w-prose text-ink-soft">Net-Tech is based at 112 W Main St in New Albany. {loc.city === "New Albany" ? "Tell us your site address and business hours so we can scope the work." : `We serve ${loc.city} from New Albany; this page does not represent a separate office.`} Confirm travel, site access and scheduling before an on-site visit.</p>
+          <p className="mt-4 max-w-prose text-ink-soft">For a new inquiry, describe the affected business workflow, number of locations and whether you need ongoing support or a project. Keep credentials and confidential records out of your message.</p>
+          <div className="mt-6 flex flex-wrap gap-6"><Link className="link" to="/contact">Request a business review</Link><Link className="link" to="/support-form">Existing client support</Link><Link className="link" to="/blog/prepare-business-network-assessment">Prepare for a network assessment</Link></div>
+        </Container>
+      </section>
+
       {/* Services for this market */}
       <section className="border-y border-line bg-surface">
         <Container className="py-16 sm:py-20">

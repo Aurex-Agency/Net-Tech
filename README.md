@@ -14,7 +14,7 @@ npm run dev        # http://localhost:8080
 | Script              | What it does                                              |
 | ------------------- | --------------------------------------------------------- |
 | `npm run build`     | Type-checks, pre-renders every route, writes SEO files     |
-| `npm run preview`   | Serves the production build locally                        |
+| `npm run preview`   | Serves prerendered HTML with clean paths and true 404s                        |
 | `npm run lint`      | ESLint                                                     |
 | `npm run typecheck` | `tsc` without emitting                                     |
 | `npm test`          | Vitest (jsdom + Testing Library)                           |
@@ -124,3 +124,9 @@ There is no cookie consent banner. The privacy policy names Google Analytics and
 - **No em dashes.** The client asked for none anywhere on the site, and `src/test/no-em-dash.test.ts` fails the build if one appears in `src/`, `scripts/`, `public/`, `index.html` or this README. Rewrite the sentence rather than swapping the character.
 - **Businesses only.** Net-Tech does not take residential work, and the site says so in the footer, the FAQ and a dedicated article. That is deliberate lead filtering, not an oversight.
 - `robots.txt` names AI crawlers explicitly. They were never blocked (the wildcard already allowed them), but being explicit removes the ambiguity.
+
+## SEO release tools
+
+The local preview serves generated route HTML instead of falling back to the homepage. It sends noindex headers and does not deliver forms. Use `npm run preview -- --port 8771` after a build.
+
+See `docs/seo-implementation-2026-10-16.md` for the four-article package, validation, IndexNow dry-run procedure and remaining external tasks.
