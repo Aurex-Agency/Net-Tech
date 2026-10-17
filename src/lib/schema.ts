@@ -60,7 +60,6 @@ export function organizationNode() {
     },
     hasMap: site.address.mapsHref,
     areaServed: allTownRefs,
-    priceRange: "$$",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Net-Tech services",
